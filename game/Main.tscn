@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://xwxup6f3hc8h"]
+[gd_scene load_steps=3 format=3 uid="uid://xwxup6f3hc8h"]
 
 [ext_resource type="Texture2D" uid="uid://b8xkvd8n1cj0l" path="res://art/stickman.png" id="1_84x4l"]
+[ext_resource type="PackedScene" uid="uid://qquik506innj" path="res://scenes/baby.tscn" id="2_qm3xf"]
 
 [node name="Main" type="Node2D"]
 
@@ -13,3 +14,6 @@ text = "Game jam time boys"
 position = Vector2(116, 119)
 scale = Vector2(0.405, 0.405)
 texture = ExtResource("1_84x4l")
+
+[node name="Baby" parent="." instance=ExtResource("2_qm3xf")]
+position = Vector2(153, 129)
