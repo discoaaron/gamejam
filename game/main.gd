@@ -7,7 +7,7 @@ var keys = ["w", "a", "s", "d" ]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var dad = dad_scene.instantiate();
-	dad.position = Vector2(150,120)
+	dad.position = Vector2(200,200)
 	dad.up = get_button()
 	dad.down = get_button()
 	dad.left = get_button()
