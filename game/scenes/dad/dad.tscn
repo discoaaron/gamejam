@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7pm5d2fv82l2"]
+[gd_scene load_steps=5 format=3 uid="uid://7l4sbhfl0wks"]
 
-[ext_resource type="Script" path="res://scenes/dad.gd" id="1_6knfq"]
+[ext_resource type="Script" path="res://scenes/dad/dad.gd" id="1_6knfq"]
 [ext_resource type="Texture2D" uid="uid://8mkdef3du7q0" path="res://art/Dad.png" id="1_v5e8r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tbahi"]
 radius = 2.3
 height = 5.6
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qqgts"]
+height = 62.0
 
 [node name="Dad" type="CharacterBody2D"]
 script = ExtResource("1_6knfq")
@@ -17,3 +20,9 @@ texture = ExtResource("1_v5e8r")
 position = Vector2(-7, -1)
 scale = Vector2(10, 10)
 shape = SubResource("CapsuleShape2D_tbahi")
+
+[node name="Area2D - Hands" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D - Hands"]
+position = Vector2(18, -2)
+shape = SubResource("CapsuleShape2D_qqgts")

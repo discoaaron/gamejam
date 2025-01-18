@@ -1,17 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://xwxup6f3hc8h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m74ch"]
-[ext_resource type="PackedScene" uid="uid://b7pm5d2fv82l2" path="res://scenes/dad.tscn" id="2_5guhk"]
-[ext_resource type="PackedScene" uid="uid://qquik506innj" path="res://scenes/baby.tscn" id="2_qm3xf"]
+[ext_resource type="PackedScene" uid="uid://7l4sbhfl0wks" path="res://scenes/dad/dad.tscn" id="2_0ntrq"]
+[ext_resource type="PackedScene" uid="uid://bnqyrnrvtf11f" path="res://scenes/baby/baby.tscn" id="3_1mr6s"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_m74ch")
-dad_scene = ExtResource("2_5guhk")
+dad_scene = ExtResource("2_0ntrq")
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Game jam time boys"
 
-[node name="Baby" parent="." instance=ExtResource("2_qm3xf")]
-position = Vector2(153, 129)
+[node name="Baby" parent="." instance=ExtResource("3_1mr6s")]
+position = Vector2(102, 79)

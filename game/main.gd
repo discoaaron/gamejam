@@ -2,6 +2,8 @@ extends Node2D
 
 @export var dad_scene: PackedScene
 
+
+
 var keys = ["w", "a", "s", "d" ]
 
 # Called when the node enters the scene tree for the first time.
