@@ -1,19 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://xwxup6f3hc8h"]
 
-[ext_resource type="Texture2D" uid="uid://b8xkvd8n1cj0l" path="res://art/stickman.png" id="1_84x4l"]
+[ext_resource type="Script" path="res://main.gd" id="1_m74ch"]
 [ext_resource type="PackedScene" uid="uid://qquik506innj" path="res://scenes/baby.tscn" id="2_qm3xf"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_m74ch")
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Game jam time boys"
-
-[node name="Stickman" type="Sprite2D" parent="."]
-position = Vector2(116, 119)
-scale = Vector2(0.405, 0.405)
-texture = ExtResource("1_84x4l")
 
 [node name="Baby" parent="." instance=ExtResource("2_qm3xf")]
 position = Vector2(153, 129)
