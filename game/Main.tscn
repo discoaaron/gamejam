@@ -5,13 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://bnqyrnrvtf11f" path="res://scenes/baby/baby.tscn" id="3_1mr6s"]
 
 [node name="Main" type="Node2D"]
+position = Vector2(719, 230)
 script = ExtResource("1_m74ch")
 dad_scene = ExtResource("2_0ntrq")
-
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Game jam time boys"
 
 [node name="Baby" parent="." instance=ExtResource("3_1mr6s")]
 position = Vector2(102, 79)

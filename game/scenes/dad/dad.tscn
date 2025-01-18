@@ -16,13 +16,13 @@ script = ExtResource("1_6knfq")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_v5e8r")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Body_Collision" type="CollisionShape2D" parent="."]
 position = Vector2(-7, -1)
 scale = Vector2(10, 10)
 shape = SubResource("CapsuleShape2D_tbahi")
 
-[node name="Area2D - Hands" type="Area2D" parent="."]
+[node name="Hands_Collision" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D - Hands"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hands_Collision"]
 position = Vector2(18, -2)
 shape = SubResource("CapsuleShape2D_qqgts")
