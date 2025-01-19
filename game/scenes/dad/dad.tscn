@@ -26,5 +26,3 @@ shape = SubResource("CapsuleShape2D_tbahi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hands_Collision"]
 position = Vector2(27, -1)
 shape = SubResource("CapsuleShape2D_qqgts")
-
-[connection signal="body_entered" from="Hands_Collision" to="." method="_on_hands_collision_body_entered"]

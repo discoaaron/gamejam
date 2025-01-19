@@ -1,8 +1,7 @@
-extends Node2D
+extends CharacterBody2D
 
-class_name Dad
 
-@export var speed = 400 # How fast the player will move (pixels/sec).
+@export var speed = 200 # How fast the player will move (pixels/sec).
 @export var up = "not_set"
 @export var down = "not_set"
 @export var left = "not_set"
@@ -11,6 +10,7 @@ class_name Dad
 
 var laser_scene = preload("res://scenes/laser/laser.tscn")
 var screen_size # Size of the game window.
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,19 +22,19 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var velocity = Vector2.ZERO # The player's movement vector.
-	if Input.is_action_pressed(up):
-		velocity.y -= 1
-		rotation_degrees = -90
-	if Input.is_action_pressed(down):
-		velocity.y += 1
-		rotation_degrees = 90
-	if Input.is_action_pressed(left):
-		velocity.x -= 1
-		rotation_degrees = -180
-	if Input.is_action_pressed(right):
-		velocity.x += 1
-		rotation_degrees = 0
+	#var velocity = Vector2.ZERO # The player's movement vector.
+	#if Input.is_action_pressed(up):
+		#velocity.y -= 1
+		#rotation_degrees = -90
+	#if Input.is_action_pressed(down):
+		#velocity.y += 1
+		#rotation_degrees = 90
+	#if Input.is_action_pressed(left):
+		#velocity.x -= 1
+		#rotation_degrees = -180
+	#if Input.is_action_pressed(right):
+		#velocity.x += 1
+		#rotation_degrees = 0
 	if Input.is_action_pressed("q"):
 		fire_laser(self.position, Vector2.RIGHT)
 	if Input.is_action_just_pressed(action):
@@ -42,16 +42,38 @@ func _process(delta: float) -> void:
 			print("you win!!")
 		else:
 			print("not quite!")
-
-
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
+	#if velocity.length() > 0:
+		#velocity = velocity.normalized() * speed
 		#$AnimatedSprite2D.play()
 	#else:
 		#$AnimatedSprite2D.stop()
 		
-	position += velocity * delta
-	position = position.clamp(Vector2.ZERO, screen_size)
+	#position += velocity * delta
+	#position = position.clamp(Vector2.ZERO, screen_size)
+	
+
+
+func _physics_process(delta: float) -> void:	
+	velocity = Vector2.ZERO
+	movement_input_check()
+	velocity = velocity.normalized() * speed
+	move_and_collide(velocity * delta)
+
+func movement_input_check() -> void:
+	if Input.is_action_pressed(up):
+		velocity.y -= speed
+		rotation_degrees = -90
+	if Input.is_action_pressed(down):
+		velocity.y += speed
+		rotation_degrees = 90
+	if Input.is_action_pressed(left):
+		velocity.x -= speed
+		rotation_degrees = -180
+	if Input.is_action_pressed(right):
+		velocity.x += speed
+		rotation_degrees = 0
+
+
 
 func fire_laser(start_position: Vector2, direction: Vector2):
 	var laser = laser_scene.instantiate()
@@ -64,10 +86,3 @@ func on_baby_area2d(area: Area2D) -> void:
 
 func on_baby_exit(area: Area2D) -> void:
 	print("exit", area.name)
-
-#func perform_action() -> void:
-	
-
-#func _on_hands_collision_body_entered(body: Node2D) -> void:
-	#if body is Baby:
-		#print("Success")
