@@ -2,8 +2,6 @@ extends Node2D
 
 class_name Baby
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -16,6 +14,11 @@ func _process(delta: float) -> void:
 
 
 
-func _on_body_test_area_entered(area: Area2D) -> void:
+func _on_body_area_entered(area: Area2D) -> void:
 	SignalManager.baby_enter.emit(area)
-	pass # Replace with function body.
+	Globals.action_ready = true
+
+
+func _on_body_area_exited(area: Area2D) -> void:
+	SignalManager.baby_exit.emit(area)
+	Globals.action_ready = false

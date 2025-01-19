@@ -1,18 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnqyrnrvtf11f"]
+[gd_scene load_steps=7 format=3 uid="uid://bnqyrnrvtf11f"]
 
 [ext_resource type="Script" path="res://scenes/baby/baby.gd" id="1_77sm7"]
 [ext_resource type="Texture2D" uid="uid://ctsgab0pttv18" path="res://art/Baby.png" id="1_wj4r6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ee0u2"]
-radius = 12.0
-height = 32.0
+radius = 13.0
+height = 34.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vi5uo"]
 radius = 8.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1u8k6"]
-radius = 12.0
-height = 32.0
+radius = 13.0
+height = 34.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oh43a"]
+radius = 8.0
 
 [node name="Baby" type="StaticBody2D"]
 script = ExtResource("1_77sm7")
@@ -21,17 +24,24 @@ script = ExtResource("1_77sm7")
 texture = ExtResource("1_wj4r6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9)
+visible = false
+position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_ee0u2")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0, -16)
+visible = false
+position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_vi5uo")
 
-[node name="BodyTest" type="Area2D" parent="."]
+[node name="BodyArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyTest"]
-position = Vector2(0, 9)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyArea"]
+position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_1u8k6")
 
-[connection signal="area_entered" from="BodyTest" to="." method="_on_body_test_area_entered"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BodyArea"]
+position = Vector2(0, -15)
+shape = SubResource("CircleShape2D_oh43a")
+
+[connection signal="area_entered" from="BodyArea" to="." method="_on_body_area_entered"]
+[connection signal="area_exited" from="BodyArea" to="." method="_on_body_area_exited"]

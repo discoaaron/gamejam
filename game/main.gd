@@ -5,7 +5,7 @@ var baby_scene = preload("res://scenes/baby/baby.tscn")
 
 var screen_size # Size of the game window.
 
-var keys = ["w", "a", "s", "d" ]
+var keys = ["w", "a", "s", "d", "e" ]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,6 +31,7 @@ func _spawnDad() -> void:
 	dad.down = get_button()
 	dad.left = get_button()
 	dad.right = get_button()
+	dad.action = get_button()
 	add_child(dad)
 	
 func _spawnBaby() -> void:
