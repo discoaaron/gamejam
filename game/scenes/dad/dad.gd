@@ -8,7 +8,7 @@ class_name Dad
 @export var left = "not_set"
 @export var right = "not_set"
 
-
+var laser_scene = preload("res://scenes/laser/laser.tscn")
 
 var screen_size # Size of the game window.
 
@@ -33,6 +33,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed(right):
 		velocity.x += 1
 		rotation_degrees = 0
+	if Input.is_action_pressed("q"):
+		fire_laser(self.position, Vector2.RIGHT)
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
@@ -43,6 +45,11 @@ func _process(delta: float) -> void:
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
 
+func fire_laser(start_position: Vector2, direction: Vector2):
+	var laser = laser_scene.instantiate()
+	add_child(laser)
+	laser.global_position = start_position
+	laser.laser_direction = direction
 
 func on_baby_area2d(area: Area2D) -> void:
 	print("works", area.name)
