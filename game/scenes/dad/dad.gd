@@ -8,17 +8,12 @@ class_name Dad
 @export var left = "not_set"
 @export var right = "not_set"
 
-@onready var body_collision: CollisionShape2D = $Body_Collision
-@onready var hands_collision: Area2D = $Hands_Collision
-@onready var baby: Node2D = get_node ("Baby")
-
 
 var screen_size # Size of the game window.
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
-	hands_collision.body_entered.connect(on_hands_entered)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -46,6 +41,9 @@ func _process(delta: float) -> void:
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
 
-func on_hands_entered (body: Node2D) -> void:
+
+
+
+func _on_hands_collision_body_entered(body: Node2D) -> void:
 	if body is Baby:
-		print("success yea")
+		print("Success")
