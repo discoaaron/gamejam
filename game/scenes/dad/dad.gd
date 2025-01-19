@@ -9,11 +9,13 @@ class_name Dad
 @export var right = "not_set"
 
 
+
 var screen_size # Size of the game window.
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
+	SignalManager.baby_enter.connect(on_baby_area2d)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,8 +44,9 @@ func _process(delta: float) -> void:
 	position = position.clamp(Vector2.ZERO, screen_size)
 
 
+func on_baby_area2d(area: Area2D) -> void:
+	print("works", area.name)
 
-
-func _on_hands_collision_body_entered(body: Node2D) -> void:
-	if body is Baby:
-		print("Success")
+#func _on_hands_collision_body_entered(body: Node2D) -> void:
+	#if body is Baby:
+		#print("Success")
