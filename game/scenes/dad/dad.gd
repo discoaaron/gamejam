@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
-
-@export var speed = 200 # How fast the player will move (pixels/sec).
+@export var speed = 250 # How fast the player will move (pixels/sec).
 @export var dash_speed = 800
 @export var dash_distance = 100
 @export var dashing = false
@@ -13,19 +12,19 @@ extends CharacterBody2D
 @onready var timer: Timer = $Timer
 
 var laser_scene = preload("res://scenes/laser/laser.tscn")
-var screen_size # Size of the game window.
-
+var laser_instance: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	screen_size = get_viewport_rect().size
+	laser_instance = laser_scene.instantiate()
+	add_child(laser_instance)
 	SignalManager.baby_enter.connect(on_baby_area2d)
 	SignalManager.baby_exit.connect(on_baby_exit)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("q"):
-		fire_laser(self.position, Vector2.RIGHT)
+		fire_laser(self.position, rotation_degrees)
 	if Input.is_action_just_pressed(action):
 		if Globals.action_ready:
 			print("you win!!")
@@ -61,12 +60,6 @@ func movement_input_check() -> void:
 		velocity.x += speed
 		rotation_degrees = 0
 
-func fire_laser(start_position: Vector2, direction: Vector2):
-	var laser = laser_scene.instantiate()
-	add_child(laser)
-	laser.global_position = start_position
-	laser.laser_direction = direction
-
 func on_baby_area2d(area: Area2D) -> void:
 	print("works", area.name)
 
@@ -79,3 +72,10 @@ func dash_action() -> void:
 
 func _on_timer_timeout() -> void:
 	dashing = false
+
+func fire_laser(start_position: Vector2, rotation: int):
+	laser_instance.firing = true
+	$LaserTimer.start()
+	
+func _on_laser_timer_timeout() -> void:
+	laser_instance.firing = false

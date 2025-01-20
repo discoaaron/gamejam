@@ -31,4 +31,7 @@ shape = SubResource("CapsuleShape2D_qqgts")
 wait_time = 0.4
 one_shot = true
 
+[node name="LaserTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
