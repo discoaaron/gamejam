@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var left = "not_set"
 @export var right = "not_set"
 @export var action = "not_set"
+@onready var timer: Timer = $Timer
 
 var laser_scene = preload("res://scenes/laser/laser.tscn")
 var screen_size # Size of the game window.
@@ -69,6 +70,8 @@ func _physics_process(delta: float) -> void:
 	if dashing:
 		var direction = rotation
 		var vect = Vector2.from_angle(direction)
+		var dash_velocity = vect * dash_speed
+		move_and_collide(dash_velocity * delta)
 
 func movement_input_check() -> void:
 	if Input.is_action_pressed(up):
@@ -84,8 +87,6 @@ func movement_input_check() -> void:
 		velocity.x += speed
 		rotation_degrees = 0
 
-
-
 func fire_laser(start_position: Vector2, direction: Vector2):
 	var laser = laser_scene.instantiate()
 	add_child(laser)
@@ -98,11 +99,9 @@ func on_baby_area2d(area: Area2D) -> void:
 func on_baby_exit(area: Area2D) -> void:
 	print("exit", area.name)
 
-
 func dash_action() -> void:
 	dashing = true
-	#var direction = rotation
-	#var vect = Vector2.from_angle(direction)
-	#var movement = vect * 200 
-	#position += movement
-	#dashing = false
+	timer.start()
+
+func _on_timer_timeout() -> void:
+	dashing = false
