@@ -66,6 +66,9 @@ func _physics_process(delta: float) -> void:
 		movement_input_check()
 		velocity = velocity.normalized() * speed
 		move_and_collide(velocity * delta)
+	if dashing:
+		var direction = rotation
+		var vect = Vector2.from_angle(direction)
 
 func movement_input_check() -> void:
 	if Input.is_action_pressed(up):
@@ -98,8 +101,8 @@ func on_baby_exit(area: Area2D) -> void:
 
 func dash_action() -> void:
 	dashing = true
-	var direction = rotation
-	var vect = Vector2.from_angle(direction)
-	var movement = vect * 200 
-	position += movement
-	dashing = false
+	#var direction = rotation
+	#var vect = Vector2.from_angle(direction)
+	#var movement = vect * 200 
+	#position += movement
+	#dashing = false
