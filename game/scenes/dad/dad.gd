@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 
 @export var speed = 200 # How fast the player will move (pixels/sec).
+@export var dash_speed = 800
+@export var dash_distance = 100
+@export var dashing = false
 @export var up = "not_set"
 @export var down = "not_set"
 @export var left = "not_set"
@@ -42,6 +45,10 @@ func _process(delta: float) -> void:
 			print("you win!!")
 		else:
 			print("not quite!")
+	if Input.is_action_just_pressed("z"):
+		#dashing = true
+		dash_action()
+	
 	#if velocity.length() > 0:
 		#velocity = velocity.normalized() * speed
 		#$AnimatedSprite2D.play()
@@ -54,10 +61,11 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:	
-	velocity = Vector2.ZERO
-	movement_input_check()
-	velocity = velocity.normalized() * speed
-	move_and_collide(velocity * delta)
+	if not dashing:
+		velocity = Vector2.ZERO
+		movement_input_check()
+		velocity = velocity.normalized() * speed
+		move_and_collide(velocity * delta)
 
 func movement_input_check() -> void:
 	if Input.is_action_pressed(up):
@@ -86,3 +94,12 @@ func on_baby_area2d(area: Area2D) -> void:
 
 func on_baby_exit(area: Area2D) -> void:
 	print("exit", area.name)
+
+
+func dash_action() -> void:
+	dashing = true
+	var direction = rotation
+	var vect = Vector2.from_angle(direction)
+	var movement = vect * 200 
+	position += movement
+	dashing = false
