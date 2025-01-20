@@ -9,6 +9,7 @@ var keys = ["w", "a", "s", "d", "e" ]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SignalManager.baby_lasered.connect(laser_baby)
 	screen_size = get_viewport_rect().size
 	_spawnDad()
 	_spawnBaby()
@@ -41,3 +42,7 @@ func _spawnBaby() -> void:
 	
 func _getRandomPositionOnScreen() -> Vector2:
 	return Vector2(randi_range(0, screen_size.x),randi_range(0, screen_size.y))
+	
+func laser_baby() -> void:
+	print("ya dun fucked up")
+	

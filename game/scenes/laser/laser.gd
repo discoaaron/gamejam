@@ -17,14 +17,15 @@ func _ready():
 	$Line2D.width = widthy
 	target_position = laser_direction.normalized() * maxrange
 
-
 func _process(delta):
 	if firing:
 		$Line2D.visible = true
 		if is_colliding():
 			$Line2D.points[1] = to_local(get_collision_point())
+			var collidedThing = get_collider()
+			if collidedThing is Baby:
+				SignalManager.baby_lasered.emit()
 		else:
 			$Line2D.points[1] = target_position
 	else:
 		$Line2D.visible = false
-#
