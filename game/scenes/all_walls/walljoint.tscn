@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://v83dlctc1oua"]
+
+[ext_resource type="Texture2D" uid="uid://dtigoct02445y" path="res://art/walls/Wall straight joint.png" id="1_7t8ns"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfeem"]
+size = Vector2(33, 64)
+
+[node name="walljoint" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7t8ns")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_pfeem")

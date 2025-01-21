@@ -1,57 +1,92 @@
-[gd_scene load_steps=4 format=3 uid="uid://xwxup6f3hc8h"]
+[gd_scene load_steps=6 format=3 uid="uid://xwxup6f3hc8h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m74ch"]
 [ext_resource type="PackedScene" uid="uid://dre28xt7mpcfn" path="res://scenes/all_walls/wallcorner.tscn" id="2_iwlok"]
 [ext_resource type="PackedScene" uid="uid://c6sahoulewigm" path="res://scenes/all_walls/wallstraight.tscn" id="3_52rpf"]
+[ext_resource type="PackedScene" uid="uid://be01h6qhgp5b" path="res://scenes/all_walls/walllongstraight.tscn" id="3_8747k"]
+[ext_resource type="PackedScene" uid="uid://v83dlctc1oua" path="res://scenes/all_walls/walljoint.tscn" id="5_x3qqu"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_m74ch")
 
-[node name="mainwalls" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="borderwalls" type="Node" parent="."]
 
-[node name="wallcorner" parent="mainwalls" instance=ExtResource("2_iwlok")]
+[node name="wallcorner" parent="borderwalls" instance=ExtResource("2_iwlok")]
 position = Vector2(15, 16)
 rotation = -1.5708
 
-[node name="wallstraight" parent="mainwalls" instance=ExtResource("3_52rpf")]
-position = Vector2(15, 80)
-
-[node name="wallstraight2" parent="mainwalls" instance=ExtResource("3_52rpf")]
-position = Vector2(15, 144)
-
-[node name="wallstraight3" parent="mainwalls" instance=ExtResource("3_52rpf")]
-position = Vector2(15, 208)
-
-[node name="wallstraight4" parent="mainwalls" instance=ExtResource("3_52rpf")]
-position = Vector2(15, 272)
-
-[node name="wallstraight5" parent="mainwalls" instance=ExtResource("3_52rpf")]
-position = Vector2(15, 336)
-
-[node name="wallstraight6" parent="mainwalls" instance=ExtResource("3_52rpf")]
-position = Vector2(15, 400)
-
-[node name="wallstraight7" parent="mainwalls" instance=ExtResource("3_52rpf")]
-position = Vector2(15, 464)
-
-[node name="wallstraight8" parent="mainwalls" instance=ExtResource("3_52rpf")]
-position = Vector2(15, 528)
-
-[node name="wallstraight9" parent="mainwalls" instance=ExtResource("3_52rpf")]
-position = Vector2(15, 592)
-
-[node name="wallcorner2" parent="mainwalls" instance=ExtResource("2_iwlok")]
+[node name="wallcorner2" parent="borderwalls" instance=ExtResource("2_iwlok")]
 position = Vector2(16, 633)
 rotation = -3.14159
 
-[node name="wallstraight10" parent="mainwalls" instance=ExtResource("3_52rpf")]
-position = Vector2(80, 633)
-rotation = 4.71239
+[node name="walllongstraight" parent="borderwalls" instance=ExtResource("3_8747k")]
+position = Vector2(15, 176)
 
-[node name="wallstraight11" parent="mainwalls" instance=ExtResource("3_52rpf")]
-position = Vector2(59, 262)
+[node name="walllongstraight2" parent="borderwalls" instance=ExtResource("3_8747k")]
+position = Vector2(15, 432)
+
+[node name="wallstraight" parent="borderwalls" instance=ExtResource("3_52rpf")]
+position = Vector2(15, 580)
+
+[node name="walllongstraight3" parent="borderwalls" instance=ExtResource("3_8747k")]
+position = Vector2(176, 632)
 rotation = 1.5708
+
+[node name="walllongstraight4" parent="borderwalls" instance=ExtResource("3_8747k")]
+position = Vector2(432, 632)
+rotation = 1.5708
+
+[node name="walllongstraight5" parent="borderwalls" instance=ExtResource("3_8747k")]
+position = Vector2(688, 632)
+rotation = 1.5708
+
+[node name="walllongstraight6" parent="borderwalls" instance=ExtResource("3_8747k")]
+position = Vector2(944, 632)
+rotation = 1.5708
+
+[node name="wallcorner3" parent="borderwalls" instance=ExtResource("2_iwlok")]
+position = Vector2(1137, 632)
+rotation = 1.5708
+
+[node name="wallstraight2" parent="borderwalls" instance=ExtResource("3_52rpf")]
+position = Vector2(1082, 632)
+rotation = 1.5708
+
+[node name="walllongstraight7" parent="borderwalls" instance=ExtResource("3_8747k")]
+position = Vector2(1137, 472)
+rotation = -3.14159
+
+[node name="walllongstraight8" parent="borderwalls" instance=ExtResource("3_8747k")]
+position = Vector2(1137, 216)
+rotation = -3.14159
+
+[node name="wallcorner4" parent="borderwalls" instance=ExtResource("2_iwlok")]
+position = Vector2(1136, 15)
+
+[node name="wallstraight3" parent="borderwalls" instance=ExtResource("3_52rpf")]
+position = Vector2(1136, 70)
+
+[node name="walllongstraight9" parent="borderwalls" instance=ExtResource("3_8747k")]
+position = Vector2(175, 16)
+rotation = -1.5708
+
+[node name="walllongstraight10" parent="borderwalls" instance=ExtResource("3_8747k")]
+position = Vector2(431, 16)
+rotation = -1.5708
+
+[node name="walllongstraight11" parent="borderwalls" instance=ExtResource("3_8747k")]
+position = Vector2(687, 16)
+rotation = -1.5708
+
+[node name="walllongstraight12" parent="borderwalls" instance=ExtResource("3_8747k")]
+position = Vector2(943, 16)
+rotation = -1.5708
+
+[node name="wallstraight4" parent="borderwalls" instance=ExtResource("3_52rpf")]
+position = Vector2(1085, 16)
+rotation = -1.5708
+
+[node name="walljoint" parent="." instance=ExtResource("5_x3qqu")]
+z_index = 1
+position = Vector2(884, 59)
+rotation = 3.14159

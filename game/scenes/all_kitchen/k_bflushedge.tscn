@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://barrb3i5shvy4"]
+
+[ext_resource type="Texture2D" uid="uid://cej21op1a3utt" path="res://art/kitchen/Kitchen bench flush end.png" id="1_imgh1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmawe"]
+size = Vector2(62, 62)
+
+[node name="KBflushedge" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_imgh1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_pmawe")

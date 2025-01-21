@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cndxoe0rvwmfp"]
+
+[ext_resource type="Texture2D" uid="uid://n26sf7inf5gj" path="res://art/kitchen/Kitchen bench floating end double.png" id="1_ii0qx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0nwv"]
+size = Vector2(60, 60)
+
+[node name="KBfloating" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ii0qx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i0nwv")
