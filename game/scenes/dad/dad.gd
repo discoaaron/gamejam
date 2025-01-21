@@ -3,13 +3,18 @@ extends CharacterBody2D
 @export var speed = 250 # How fast the player will move (pixels/sec).
 @export var dash_speed = 800
 @export var dash_distance = 100
-@export var dashing = false
+var dashing = false
+var step_audio = false
+
 @export var up = "not_set"
 @export var down = "not_set"
 @export var left = "not_set"
 @export var right = "not_set"
 @export var action = "not_set"
 @onready var timer: Timer = $Timer
+@onready var audio_steps: AudioStreamPlayer2D = $audio_steps
+@onready var step_timer: Timer = $audio_steps/Timer
+@onready var audio_dash: AudioStreamPlayer2D = $audio_dash
 
 var laser_scene = preload("res://scenes/laser/laser.tscn")
 var laser_instance: Node
@@ -31,7 +36,6 @@ func _process(delta: float) -> void:
 		else:
 			print("not quite!")
 	if Input.is_action_just_pressed("z"):
-		#dashing = true
 		dash_action()
 
 func _physics_process(delta: float) -> void:	
@@ -50,24 +54,32 @@ func movement_input_check() -> void:
 	if Input.is_action_pressed(up):
 		velocity.y -= speed
 		rotation_degrees = -90
+		stepping()
 	if Input.is_action_pressed(down):
 		velocity.y += speed
 		rotation_degrees = 90
+		stepping()
 	if Input.is_action_pressed(left):
 		velocity.x -= speed
 		rotation_degrees = -180
+		stepping()
 	if Input.is_action_pressed(right):
 		velocity.x += speed
 		rotation_degrees = 0
+		stepping()
 
 func on_baby_area2d(area: Area2D) -> void:
-	print("works", area.name)
+	if not dashing:
+		print("works", area.name)
+	if dashing:
+		print("ya messed up")
 
 func on_baby_exit(area: Area2D) -> void:
 	print("exit", area.name)
 
 func dash_action() -> void:
 	dashing = true
+	audio_dash.play()
 	timer.start()
 
 func _on_timer_timeout() -> void:
@@ -79,3 +91,12 @@ func fire_laser(start_position: Vector2, rotation: int):
 	
 func _on_laser_timer_timeout() -> void:
 	laser_instance.firing = false
+
+func stepping() -> void:
+	if not step_audio:
+		step_audio = true
+		audio_steps.play()
+		step_timer.start()
+
+func _on_step_timer_timeout() -> void:
+	step_audio = false

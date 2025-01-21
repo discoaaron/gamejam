@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://7l4sbhfl0wks"]
+[gd_scene load_steps=7 format=3 uid="uid://7l4sbhfl0wks"]
 
 [ext_resource type="Script" path="res://scenes/dad/dad.gd" id="1_6knfq"]
 [ext_resource type="Texture2D" uid="uid://8mkdef3du7q0" path="res://art/Dad.png" id="1_v5e8r"]
+[ext_resource type="AudioStream" uid="uid://bpjqiqcveuvfo" path="res://sound/406747__kretopi__steponwood-013.wav" id="3_71toy"]
+[ext_resource type="AudioStream" uid="uid://b8y0jbbvqsite" path="res://sound/742832__sadiquecat__woosh-metal-tea-strainer-1.wav" id="4_6w2tv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tbahi"]
 radius = 2.3
@@ -33,5 +35,15 @@ one_shot = true
 
 [node name="LaserTimer" type="Timer" parent="."]
 
+[node name="audio_steps" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_71toy")
+
+[node name="Timer" type="Timer" parent="audio_steps"]
+wait_time = 0.4
+
+[node name="audio_dash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_6w2tv")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
+[connection signal="timeout" from="audio_steps/Timer" to="." method="_on_step_timer_timeout"]
