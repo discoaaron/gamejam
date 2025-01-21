@@ -23,7 +23,8 @@ func get_button() -> String:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("space"):
+		GameManager.load_menu_scene()
 	
 func _spawnDad() -> void:
 	var dad = dad_scene.instantiate();
