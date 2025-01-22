@@ -24,10 +24,12 @@ func start_level() -> void:
 	_spawnBaby()
 	
 func start_next_level() -> void:
+	ScoreManager.increase_score()
 	remove_child(dad)
 	remove_child(baby)
 	start_level()
 	print("start new level")
+	print(ScoreManager.score)
 		
 func get_button() -> String:
 	var keysCopy = keys.duplicate();
