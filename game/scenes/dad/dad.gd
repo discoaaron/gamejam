@@ -32,6 +32,7 @@ func _process(delta: float) -> void:
 		fire_laser(self.position, rotation_degrees)
 	if Input.is_action_just_pressed(action):
 		if Globals.action_ready:
+			SignalManager.baby_saved.emit()
 			print("you win!!")
 		else:
 			print("not quite!")
