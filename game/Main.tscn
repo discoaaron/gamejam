@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://xwxup6f3hc8h"]
+[gd_scene load_steps=13 format=3 uid="uid://xwxup6f3hc8h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m74ch"]
 [ext_resource type="PackedScene" uid="uid://dre28xt7mpcfn" path="res://scenes/all_walls/wallcorner.tscn" id="2_iwlok"]
 [ext_resource type="PackedScene" uid="uid://c6sahoulewigm" path="res://scenes/all_walls/wallstraight.tscn" id="3_52rpf"]
 [ext_resource type="PackedScene" uid="uid://be01h6qhgp5b" path="res://scenes/all_walls/walllongstraight.tscn" id="3_8747k"]
 [ext_resource type="PackedScene" uid="uid://v83dlctc1oua" path="res://scenes/all_walls/walljoint.tscn" id="5_x3qqu"]
+[ext_resource type="Texture2D" uid="uid://b17klsih03xxc" path="res://art/Carpet speckled.png" id="6_5ahhh"]
+[ext_resource type="PackedScene" uid="uid://cc0y04c6ea4it" path="res://scenes/all_walls/wallstraightend.tscn" id="6_q67f0"]
+[ext_resource type="Texture2D" uid="uid://cmh045y6a8v75" path="res://art/kitchen/Floor tiles.png" id="7_sk75g"]
+[ext_resource type="PackedScene" uid="uid://barrb3i5shvy4" path="res://scenes/all_kitchen/k_bflushedge.tscn" id="7_w1uw1"]
+[ext_resource type="PackedScene" uid="uid://xcfmc4nra18" path="res://scenes/all_kitchen/k_bflush.tscn" id="8_dkbco"]
+[ext_resource type="PackedScene" uid="uid://bk1ine5xwxmip" path="res://scenes/all_kitchen/k_bflushend.tscn" id="9_8tx62"]
+[ext_resource type="PackedScene" uid="uid://bs7lus22j3wpu" path="res://scenes/risk_objects/toaster.tscn" id="12_arlyk"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_m74ch")
@@ -86,9 +93,64 @@ rotation = -1.5708
 position = Vector2(1085, 16)
 rotation = -1.5708
 
-[node name="walljoint" parent="." instance=ExtResource("5_x3qqu")]
+[node name="kitchenwalls" type="Node" parent="."]
+
+[node name="walljoint" parent="kitchenwalls" instance=ExtResource("5_x3qqu")]
 z_index = 1
-position = Vector2(884, 59)
+position = Vector2(816, 59)
+rotation = 3.14159
+
+[node name="wallstraightend" parent="kitchenwalls" instance=ExtResource("6_q67f0")]
+position = Vector2(816, 123)
+rotation = 3.14159
+
+[node name="walljoint2" parent="kitchenwalls" instance=ExtResource("5_x3qqu")]
+position = Vector2(1093, 380)
+rotation = -1.5708
+
+[node name="wallstraightend2" parent="kitchenwalls" instance=ExtResource("6_q67f0")]
+position = Vector2(1029, 380)
+rotation = -1.5708
+
+[node name="wallcorner" parent="kitchenwalls" instance=ExtResource("2_iwlok")]
+position = Vector2(816, 380)
+rotation = 3.14159
+
+[node name="wallstraightend3" parent="kitchenwalls" instance=ExtResource("6_q67f0")]
+position = Vector2(815, 331)
+
+[node name="wallstraightend4" parent="kitchenwalls" instance=ExtResource("6_q67f0")]
+position = Vector2(864, 379)
+rotation = 1.5708
+
+[node name="Kitchen" type="Node" parent="."]
+
+[node name="KBflushedge" parent="Kitchen" instance=ExtResource("7_w1uw1")]
+position = Vector2(864, 125)
+rotation = 3.14159
+
+[node name="KBflush" parent="Kitchen" instance=ExtResource("8_dkbco")]
+position = Vector2(864, 64)
+rotation = 3.14159
+
+[node name="KBflush2" parent="Kitchen" instance=ExtResource("8_dkbco")]
+position = Vector2(1088, 64)
+
+[node name="KBflush3" parent="Kitchen" instance=ExtResource("8_dkbco")]
+position = Vector2(1088, 128)
+
+[node name="KBflush4" parent="Kitchen" instance=ExtResource("8_dkbco")]
+position = Vector2(1088, 192)
+
+[node name="KBflushedge2" parent="Kitchen" instance=ExtResource("7_w1uw1")]
+position = Vector2(1088, 256)
+rotation = -1.5708
+
+[node name="KBflushend" parent="Kitchen" instance=ExtResource("9_8tx62")]
+position = Vector2(933, 256)
+
+[node name="KBflushend2" parent="Kitchen" instance=ExtResource("9_8tx62")]
+position = Vector2(963, 256)
 rotation = 3.14159
 
 [node name="Label" type="Label" parent="."]
@@ -96,3 +158,27 @@ offset_left = 551.0
 offset_top = 117.0
 offset_right = 591.0
 offset_bottom = 140.0
+
+[node name="Carpet" type="TextureRect" parent="."]
+z_index = -1
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 1120.0
+offset_bottom = 616.0
+texture = ExtResource("6_5ahhh")
+stretch_mode = 1
+
+[node name="KitchenFloor" type="TextureRect" parent="."]
+z_index = -1
+offset_left = 832.0
+offset_top = 32.0
+offset_right = 1120.0
+offset_bottom = 363.0
+texture = ExtResource("7_sk75g")
+stretch_mode = 1
+
+[node name="RiskItems" type="Node" parent="."]
+
+[node name="Toaster" parent="RiskItems" instance=ExtResource("12_arlyk")]
+position = Vector2(948, 256)
+rotation = 1.5708
