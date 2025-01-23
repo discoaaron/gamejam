@@ -5,7 +5,7 @@ var baby_scene = preload("res://scenes/baby/baby.tscn")
 var dad: Node
 var baby: Node
 var screen_size # Size of the game window.
-var originalKeys = ["w", "a", "s", "d", "e" ]
+var originalKeys = ["w", "a", "s", "d", "e", "q", "z"]
 var keysCopy = []
 var spawn_offset = 50
 
@@ -23,6 +23,15 @@ func _process(delta: float) -> void:
 	$Label.text = str(ScoreManager.score)
 	if Input.is_action_just_pressed("space"):
 		GameManager.load_menu_scene()
+	if Input.is_action_just_pressed("dev_mode"):
+		ScoreManager.reset_score()
+		dad.up = "w"
+		dad.down = "s"
+		dad.left = "a"
+		dad.right = "d"
+		dad.action = "e"
+		dad.laser = "q"
+		dad.dash = "z"
 		
 func start_level() -> void:
 	_spawnDad()
@@ -53,6 +62,8 @@ func _spawnDad() -> void:
 	dad.left = get_button()
 	dad.right = get_button()
 	dad.action = get_button()
+	dad.laser = get_button()
+	dad.dash = get_button()
 	add_child(dad)
 	
 func _spawnBaby() -> void:

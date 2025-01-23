@@ -11,6 +11,8 @@ var step_audio = false
 @export var left = "not_set"
 @export var right = "not_set"
 @export var action = "not_set"
+@export var laser = "not_set"
+@export var dash = "not_set"
 @onready var timer: Timer = $Timer
 @onready var audio_steps: AudioStreamPlayer2D = $audio_steps
 @onready var step_timer: Timer = $audio_steps/Timer
@@ -28,7 +30,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("q"):
+	if Input.is_action_pressed(laser):
 		fire_laser(self.position, rotation_degrees)
 	if Input.is_action_just_pressed(action):
 		if Globals.action_ready:
@@ -36,7 +38,7 @@ func _process(delta: float) -> void:
 			print("you win!!")
 		else:
 			print("not quite!")
-	if Input.is_action_just_pressed("z"):
+	if Input.is_action_just_pressed(dash):
 		dash_action()
 
 func _physics_process(delta: float) -> void:	
