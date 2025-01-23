@@ -13,3 +13,6 @@ func _process(delta: float) -> void:
 
 func increase_score():
 	score = score + 1
+
+func reset_score():
+	score = 0

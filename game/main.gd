@@ -2,14 +2,15 @@ extends Node2D
 
 var dad_scene = preload("res://scenes/dad/dad.tscn")
 var baby_scene = preload("res://scenes/baby/baby.tscn")
-var dad: Node;
-var baby: Node;
+var dad: Node
+var baby: Node
 var screen_size # Size of the game window.
-var keys = ["w", "a", "s", "d", "e" ]
+var originalKeys = ["w", "a", "s", "d", "e" ]
+var keysCopy = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalManager.baby_lasered.connect(laser_baby)
+	SignalManager.baby_lasered.connect(game_over)
 	SignalManager.baby_saved.connect(start_next_level)
 	screen_size = get_viewport_rect().size
 	start_level()
@@ -32,7 +33,8 @@ func start_next_level() -> void:
 	print(ScoreManager.score)
 		
 func get_button() -> String:
-	var keysCopy = keys.duplicate();
+	if(keysCopy.size() == 0):
+		keysCopy = originalKeys.duplicate();
 	var key;
 	var keys_index = randi_range(0, keysCopy.size() - 1);
 	key = keysCopy[keys_index]
@@ -40,6 +42,7 @@ func get_button() -> String:
 	return key;
 	
 func _spawnDad() -> void:
+	var keys = originalKeys.duplicate();
 	dad = dad_scene.instantiate();
 	dad.position = _getRandomPositionOnScreen()
 	dad.up = get_button()
@@ -57,7 +60,10 @@ func _spawnBaby() -> void:
 func _getRandomPositionOnScreen() -> Vector2:
 	return Vector2(randi_range(0, screen_size.x),randi_range(0, screen_size.y))
 	
-func laser_baby() -> void:
+func game_over() -> void:
+	ScoreManager.reset_score()
+	remove_child(dad)
+	remove_child(baby)
 	print("ya dun fucked up")
 
 	
