@@ -17,6 +17,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	$Label.text = str(ScoreManager.score)
 	if Input.is_action_just_pressed("space"):
 		GameManager.load_menu_scene()
 		
@@ -34,10 +35,9 @@ func start_next_level() -> void:
 		
 func get_button() -> String:
 	if(keysCopy.size() == 0):
-		keysCopy = originalKeys.duplicate();
-	var key;
-	var keys_index = randi_range(0, keysCopy.size() - 1);
-	key = keysCopy[keys_index]
+		keysCopy = originalKeys.duplicate()
+	var keys_index = randi_range(0, keysCopy.size() - 1)
+	var key = keysCopy[keys_index]
 	keysCopy.remove_at(keys_index)
 	return key;
 	
