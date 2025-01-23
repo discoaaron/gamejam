@@ -7,12 +7,15 @@ var baby: Node
 var screen_size # Size of the game window.
 var originalKeys = ["w", "a", "s", "d", "e" ]
 var keysCopy = []
+var spawn_offset = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalManager.baby_lasered.connect(game_over)
 	SignalManager.baby_saved.connect(start_next_level)
 	screen_size = get_viewport_rect().size
+	screen_size.x = screen_size.x - spawn_offset
+	screen_size.y = screen_size.y - spawn_offset
 	start_level()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -58,7 +61,7 @@ func _spawnBaby() -> void:
 	add_child(baby)
 	
 func _getRandomPositionOnScreen() -> Vector2:
-	return Vector2(randi_range(0, screen_size.x),randi_range(0, screen_size.y))
+	return Vector2(randi_range(spawn_offset, screen_size.x),randi_range(spawn_offset, screen_size.y))
 	
 func game_over() -> void:
 	ScoreManager.reset_score()

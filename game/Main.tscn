@@ -1,12 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://xwxup6f3hc8h"]
+[gd_scene load_steps=6 format=3 uid="uid://xwxup6f3hc8h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m74ch"]
 [ext_resource type="PackedScene" uid="uid://dre28xt7mpcfn" path="res://scenes/all_walls/wallcorner.tscn" id="2_iwlok"]
 [ext_resource type="PackedScene" uid="uid://c6sahoulewigm" path="res://scenes/all_walls/wallstraight.tscn" id="3_52rpf"]
 [ext_resource type="PackedScene" uid="uid://be01h6qhgp5b" path="res://scenes/all_walls/walllongstraight.tscn" id="3_8747k"]
 [ext_resource type="PackedScene" uid="uid://v83dlctc1oua" path="res://scenes/all_walls/walljoint.tscn" id="5_x3qqu"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_81lqc"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_m74ch")
@@ -98,4 +96,3 @@ offset_left = 551.0
 offset_top = 117.0
 offset_right = 591.0
 offset_bottom = 140.0
-label_settings = SubResource("LabelSettings_81lqc")
