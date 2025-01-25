@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://xwxup6f3hc8h"]
+[gd_scene load_steps=16 format=3 uid="uid://xwxup6f3hc8h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m74ch"]
 [ext_resource type="PackedScene" uid="uid://dre28xt7mpcfn" path="res://scenes/all_walls/wallcorner.tscn" id="2_iwlok"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bs7lus22j3wpu" path="res://scenes/risk_objects/toaster.tscn" id="12_arlyk"]
 [ext_resource type="PackedScene" uid="uid://conjny7l1pn1y" path="res://scenes/all_furniture/chair.tscn" id="13_jkp1c"]
 [ext_resource type="PackedScene" uid="uid://xgaahnhjccj" path="res://scenes/all_furniture/table.tscn" id="14_hcyx7"]
+[ext_resource type="AudioStream" uid="uid://d0dyiupatsmsv" path="res://sound/418866__name__heartbeat-loop.wav" id="15_k8mtv"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_m74ch")
@@ -173,28 +174,37 @@ rotation = 1.5708
 [node name="ChairsNTable" type="Node" parent="."]
 
 [node name="Chair" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
-position = Vector2(959, 386)
+position = Vector2(959, 376)
 rotation = 1.5708
 
 [node name="Chair2" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
-position = Vector2(875, 386)
+position = Vector2(875, 376)
 rotation = 1.5708
 
 [node name="Table" parent="ChairsNTable" instance=ExtResource("14_hcyx7")]
-position = Vector2(917, 461)
+position = Vector2(917, 451)
 rotation = 1.5708
 
 [node name="Chair3" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
-position = Vector2(818, 462)
+position = Vector2(818, 452)
 
 [node name="Chair4" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
-position = Vector2(1016, 462)
+position = Vector2(1016, 452)
 rotation = 3.14159
 
 [node name="Chair5" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
-position = Vector2(875, 536)
+position = Vector2(875, 526)
 rotation = -1.5708
 
 [node name="Chair6" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
-position = Vector2(959, 536)
+position = Vector2(959, 526)
 rotation = -1.5708
+
+[node name="Heartbeatsound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_k8mtv")
+volume_db = -6.215
+
+[node name="Heartbeat" type="Timer" parent="."]
+wait_time = 0.8
+
+[connection signal="timeout" from="Heartbeat" to="." method="_on_heartbeat_timeout"]

@@ -9,6 +9,11 @@ var originalKeys = ["w", "a", "s", "d", "e", "q", "z"]
 var keysCopy = []
 var spawn_offset = 50
 
+@onready var heartbeatsound: AudioStreamPlayer2D = $Heartbeatsound
+
+@onready var heartbeat: Timer = $Heartbeat
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalManager.baby_lasered.connect(game_over)
@@ -32,7 +37,8 @@ func _process(delta: float) -> void:
 		dad.action = "e"
 		dad.laser = "q"
 		dad.dash = "z"
-		
+	heart_pulse()
+
 func start_level() -> void:
 	_spawnDad()
 	_spawnBaby()
@@ -80,6 +86,11 @@ func game_over() -> void:
 	remove_child(baby)
 	print("ya dun fucked up")
 
-	
+func heart_pulse() -> void:
+	if Globals.heartbeat_pulse_ready:
+		heartbeatsound.play()
+		heartbeat.start()
+		Globals.heartbeat_pulse_ready = false
 
-	
+func _on_heartbeat_timeout() -> void:
+	Globals.heartbeat_pulse_ready = true

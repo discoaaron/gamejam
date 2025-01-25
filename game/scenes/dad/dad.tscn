@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://b8y0jbbvqsite" path="res://sound/742832__sadiquecat__woosh-metal-tea-strainer-1.wav" id="4_6w2tv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bw4p8"]
-radius = 2.80178
+radius = 2.90172
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qqgts"]
 radius = 14.0
@@ -27,7 +27,7 @@ shape = SubResource("CircleShape2D_bw4p8")
 [node name="Hands_Collision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hands_Collision"]
-position = Vector2(23, -3)
+position = Vector2(23, -1)
 shape = SubResource("CapsuleShape2D_qqgts")
 
 [node name="Timer" type="Timer" parent="."]
