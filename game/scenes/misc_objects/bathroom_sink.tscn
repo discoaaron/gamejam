@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1klbkjabo2bj"]
+
+[ext_resource type="Texture2D" uid="uid://cb0y0jm4y0nm4" path="res://art/Sink.png" id="1_ugjp0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tyen5"]
+size = Vector2(28, 62)
+
+[node name="BathroomSink" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ugjp0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(18, 0)
+shape = SubResource("RectangleShape2D_tyen5")

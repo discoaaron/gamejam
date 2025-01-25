@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://xwxup6f3hc8h"]
+[gd_scene load_steps=21 format=3 uid="uid://xwxup6f3hc8h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m74ch"]
 [ext_resource type="PackedScene" uid="uid://dre28xt7mpcfn" path="res://scenes/all_walls/wallcorner.tscn" id="2_iwlok"]
@@ -14,9 +14,12 @@
 [ext_resource type="PackedScene" uid="uid://bs7lus22j3wpu" path="res://scenes/risk_objects/toaster.tscn" id="12_arlyk"]
 [ext_resource type="PackedScene" uid="uid://conjny7l1pn1y" path="res://scenes/all_furniture/chair.tscn" id="13_jkp1c"]
 [ext_resource type="PackedScene" uid="uid://b3v76c1kw8qh8" path="res://scenes/risk_objects/toilet.tscn" id="13_wv7pw"]
+[ext_resource type="PackedScene" uid="uid://d10q63frccgx" path="res://scenes/risk_objects/tv.tscn" id="14_br2es"]
 [ext_resource type="PackedScene" uid="uid://xgaahnhjccj" path="res://scenes/all_furniture/table.tscn" id="14_hcyx7"]
 [ext_resource type="AudioStream" uid="uid://d0dyiupatsmsv" path="res://sound/418866__name__heartbeat-loop.wav" id="15_k8mtv"]
 [ext_resource type="PackedScene" uid="uid://t50cjbmojbxg" path="res://scenes/hud/hud.tscn" id="16_2j5fn"]
+[ext_resource type="PackedScene" uid="uid://c1klbkjabo2bj" path="res://scenes/misc_objects/bathroom_sink.tscn" id="18_ooh6d"]
+[ext_resource type="PackedScene" uid="uid://dmfyuh7mc4jvs" path="res://scenes/misc_objects/couch.tscn" id="20_rlsls"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_m74ch")
@@ -176,6 +179,25 @@ position = Vector2(487, 524)
 position = Vector2(488, 367)
 rotation = 3.14159
 
+[node name="loungewalls" type="Node" parent="."]
+
+[node name="walljoint" parent="loungewalls" instance=ExtResource("5_x3qqu")]
+z_index = 1
+position = Vector2(59, 303)
+rotation = 1.5708
+
+[node name="wallstraight" parent="loungewalls" instance=ExtResource("3_52rpf")]
+position = Vector2(123, 303)
+rotation = 1.5708
+
+[node name="wallstraightend" parent="loungewalls" instance=ExtResource("6_q67f0")]
+position = Vector2(236, 303)
+rotation = 1.5708
+
+[node name="wallstraight2" parent="loungewalls" instance=ExtResource("3_52rpf")]
+position = Vector2(180, 303)
+rotation = 1.5708
+
 [node name="Carpet" type="TextureRect" parent="."]
 z_index = -1
 offset_left = 32.0
@@ -211,6 +233,10 @@ rotation = 1.5708
 [node name="Toilet" parent="RiskItems" instance=ExtResource("13_wv7pw")]
 position = Vector2(579, 569)
 rotation = 1.5708
+
+[node name="TV" parent="RiskItems" instance=ExtResource("14_br2es")]
+position = Vector2(129, 585)
+rotation = -1.5708
 
 [node name="ChairsNTable" type="Node" parent="."]
 
@@ -249,5 +275,17 @@ volume_db = -6.215
 wait_time = 0.8
 
 [node name="HUD" parent="." instance=ExtResource("16_2j5fn")]
+
+[node name="BathroomSink" parent="." instance=ExtResource("18_ooh6d")]
+position = Vector2(628, 452)
+
+[node name="Table" parent="." instance=ExtResource("14_hcyx7")]
+position = Vector2(129, 590)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+
+[node name="Couch" parent="." instance=ExtResource("20_rlsls")]
+position = Vector2(131, 387)
+rotation = -1.5708
 
 [connection signal="timeout" from="Heartbeat" to="." method="_on_heartbeat_timeout"]
