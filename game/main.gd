@@ -17,7 +17,7 @@ var spawn_offset = 50
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalManager.baby_lasered.connect(game_over)
-	SignalManager.baby_saved.connect(start_next_level)
+	SignalManager.baby_saved.connect(update_score)
 	screen_size = get_viewport_rect().size
 	screen_size.x = screen_size.x - spawn_offset
 	screen_size.y = screen_size.y - spawn_offset
@@ -25,7 +25,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$Label.text = str(ScoreManager.score)
 	if Input.is_action_just_pressed("space"):
 		GameManager.load_menu_scene()
 	if Input.is_action_just_pressed("dev_mode"):
@@ -42,14 +41,16 @@ func _process(delta: float) -> void:
 func start_level() -> void:
 	_spawnDad()
 	_spawnBaby()
-	
-func start_next_level() -> void:
+
+func update_score() -> void:
 	ScoreManager.increase_score()
+	start_next_level()
+
+func start_next_level() -> void:
 	remove_child(dad)
 	remove_child(baby)
 	start_level()
 	print("start new level")
-	print(ScoreManager.score)
 		
 func get_button() -> String:
 	if(keysCopy.size() == 0):

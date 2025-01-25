@@ -8,3 +8,5 @@ signal baby_saved
 
 signal chair_enter
 signal chair_exit
+
+signal update_score(score: int)

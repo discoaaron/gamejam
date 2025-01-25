@@ -39,8 +39,8 @@ func _process(delta: float) -> void:
 		fire_laser(self.position, rotation_degrees)
 	if Input.is_action_just_pressed(action) and not sitting:
 		if Globals.action_ready:
-			SignalManager.baby_saved.emit()
 			print("you win!!")
+			SignalManager.baby_saved.emit()
 		elif Globals.chair_ready:
 			print("in the chair")
 			sit_in_chair(Globals.target_chair)

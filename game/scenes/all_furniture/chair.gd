@@ -21,4 +21,4 @@ func _on_chair_area_entered(area: Area2D) -> void:
 func _on_chair_area_exited(area: Area2D) -> void:
 	SignalManager.chair_exit.emit(area)
 	Globals.chair_ready = false
-	Globals.target_chair = null
+	#Globals.target_chair = null #THIS IS CAUSING A BUG!!!! MAY NEED TO REMOVE

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://xwxup6f3hc8h"]
+[gd_scene load_steps=17 format=3 uid="uid://xwxup6f3hc8h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m74ch"]
 [ext_resource type="PackedScene" uid="uid://dre28xt7mpcfn" path="res://scenes/all_walls/wallcorner.tscn" id="2_iwlok"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://conjny7l1pn1y" path="res://scenes/all_furniture/chair.tscn" id="13_jkp1c"]
 [ext_resource type="PackedScene" uid="uid://xgaahnhjccj" path="res://scenes/all_furniture/table.tscn" id="14_hcyx7"]
 [ext_resource type="AudioStream" uid="uid://d0dyiupatsmsv" path="res://sound/418866__name__heartbeat-loop.wav" id="15_k8mtv"]
+[ext_resource type="PackedScene" uid="uid://t50cjbmojbxg" path="res://scenes/hud/hud.tscn" id="16_2j5fn"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_m74ch")
@@ -141,12 +142,6 @@ rotation = -1.5708
 [node name="KBflushend" parent="Kitchen" instance=ExtResource("9_8tx62")]
 position = Vector2(1012, 256)
 
-[node name="Label" type="Label" parent="."]
-offset_left = 551.0
-offset_top = 117.0
-offset_right = 591.0
-offset_bottom = 140.0
-
 [node name="Carpet" type="TextureRect" parent="."]
 z_index = -1
 offset_left = 32.0
@@ -206,5 +201,7 @@ volume_db = -6.215
 
 [node name="Heartbeat" type="Timer" parent="."]
 wait_time = 0.8
+
+[node name="HUD" parent="." instance=ExtResource("16_2j5fn")]
 
 [connection signal="timeout" from="Heartbeat" to="." method="_on_heartbeat_timeout"]
