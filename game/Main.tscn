@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://xwxup6f3hc8h"]
+[gd_scene load_steps=18 format=3 uid="uid://xwxup6f3hc8h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m74ch"]
 [ext_resource type="PackedScene" uid="uid://dre28xt7mpcfn" path="res://scenes/all_walls/wallcorner.tscn" id="2_iwlok"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bk1ine5xwxmip" path="res://scenes/all_kitchen/k_bflushend.tscn" id="9_8tx62"]
 [ext_resource type="PackedScene" uid="uid://bs7lus22j3wpu" path="res://scenes/risk_objects/toaster.tscn" id="12_arlyk"]
 [ext_resource type="PackedScene" uid="uid://conjny7l1pn1y" path="res://scenes/all_furniture/chair.tscn" id="13_jkp1c"]
+[ext_resource type="PackedScene" uid="uid://b3v76c1kw8qh8" path="res://scenes/risk_objects/toilet.tscn" id="13_wv7pw"]
 [ext_resource type="PackedScene" uid="uid://xgaahnhjccj" path="res://scenes/all_furniture/table.tscn" id="14_hcyx7"]
 [ext_resource type="AudioStream" uid="uid://d0dyiupatsmsv" path="res://sound/418866__name__heartbeat-loop.wav" id="15_k8mtv"]
 [ext_resource type="PackedScene" uid="uid://t50cjbmojbxg" path="res://scenes/hud/hud.tscn" id="16_2j5fn"]
@@ -142,6 +143,39 @@ rotation = -1.5708
 [node name="KBflushend" parent="Kitchen" instance=ExtResource("9_8tx62")]
 position = Vector2(1012, 256)
 
+[node name="bathroomwalls" type="Node" parent="."]
+
+[node name="walljoint" parent="bathroomwalls" instance=ExtResource("5_x3qqu")]
+position = Vector2(676, 589)
+
+[node name="walllongstraight" parent="bathroomwalls" instance=ExtResource("3_8747k")]
+position = Vector2(676, 451)
+
+[node name="wallcorner" parent="bathroomwalls" instance=ExtResource("2_iwlok")]
+position = Vector2(676, 303)
+
+[node name="wallstraight" parent="bathroomwalls" instance=ExtResource("3_52rpf")]
+position = Vector2(613, 303)
+rotation = 1.5708
+
+[node name="wallstraight2" parent="bathroomwalls" instance=ExtResource("3_52rpf")]
+position = Vector2(551, 303)
+rotation = 1.5708
+
+[node name="wallcorner2" parent="bathroomwalls" instance=ExtResource("2_iwlok")]
+position = Vector2(487, 304)
+rotation = -1.5708
+
+[node name="walljoint2" parent="bathroomwalls" instance=ExtResource("5_x3qqu")]
+position = Vector2(487, 588)
+
+[node name="wallstraightend" parent="bathroomwalls" instance=ExtResource("6_q67f0")]
+position = Vector2(487, 524)
+
+[node name="wallstraightend2" parent="bathroomwalls" instance=ExtResource("6_q67f0")]
+position = Vector2(488, 367)
+rotation = 3.14159
+
 [node name="Carpet" type="TextureRect" parent="."]
 z_index = -1
 offset_left = 32.0
@@ -153,10 +187,18 @@ stretch_mode = 1
 
 [node name="KitchenFloor" type="TextureRect" parent="."]
 z_index = -1
-offset_left = 832.0
+offset_left = 799.0
 offset_top = 32.0
 offset_right = 1120.0
-offset_bottom = 286.0
+offset_bottom = 319.0
+texture = ExtResource("7_sk75g")
+stretch_mode = 1
+
+[node name="BathroomFloor" type="TextureRect" parent="."]
+offset_left = 471.0
+offset_top = 320.0
+offset_right = 660.0
+offset_bottom = 616.0
 texture = ExtResource("7_sk75g")
 stretch_mode = 1
 
@@ -164,6 +206,10 @@ stretch_mode = 1
 
 [node name="Toaster" parent="RiskItems" instance=ExtResource("12_arlyk")]
 position = Vector2(1027, 256)
+rotation = 1.5708
+
+[node name="Toilet" parent="RiskItems" instance=ExtResource("13_wv7pw")]
+position = Vector2(579, 569)
 rotation = 1.5708
 
 [node name="ChairsNTable" type="Node" parent="."]

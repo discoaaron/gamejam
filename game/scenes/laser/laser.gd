@@ -24,9 +24,9 @@ func _process(delta):
 		if is_colliding():
 			$Line2D.points[1] = to_local(get_collision_point())
 			var collidedThing = get_collider()
-			for item in things_to_check:
-				if collidedThing.get_class() == item:
-					SignalManager.risk_item_lasered.emit(item)
+			if collidedThing is Baby or Toaster:
+				SignalManager.risk_item_lasered.emit(collidedThing)
+				#print("Collided with: ", collidedThing)
 		else:
 			$Line2D.points[1] = target_position
 	else:

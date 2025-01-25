@@ -6,7 +6,7 @@ signal toaster_action_exit
 signal baby_enter
 signal baby_exit
 
-signal risk_item_lasered(item)
+signal risk_item_lasered(collidedThing)
 signal baby_saved
 signal win_condition_achieved
 

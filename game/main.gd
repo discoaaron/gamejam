@@ -82,11 +82,11 @@ func _spawnBaby() -> void:
 func _getRandomPositionOnScreen() -> Vector2:
 	return Vector2(randi_range(spawn_offset, screen_size.x),randi_range(spawn_offset, screen_size.y))
 	
-func game_over() -> void:
+func game_over(collidedThing) -> void:
 	ScoreManager.reset_score()
 	remove_child(dad)
 	remove_child(baby)
-	print("ya dun fucked up")
+	print("ya dun fucked up: ", collidedThing)
 
 func heart_pulse() -> void:
 	if Globals.heartbeat_pulse_ready:
