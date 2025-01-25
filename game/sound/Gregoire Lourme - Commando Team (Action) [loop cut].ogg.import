@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bqi0ns2nme3s1"
+path="res://.godot/imported/Gregoire Lourme - Commando Team (Action) [loop cut].ogg-7f37365211e8d3fa85d72e990b1aae45.oggvorbisstr"
+
+[deps]
+
+source_file="res://sound/Gregoire Lourme - Commando Team (Action) [loop cut].ogg"
+dest_files=["res://.godot/imported/Gregoire Lourme - Commando Team (Action) [loop cut].ogg-7f37365211e8d3fa85d72e990b1aae45.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

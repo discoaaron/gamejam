@@ -1,7 +1,58 @@
-[gd_scene load_steps=3 format=3 uid="uid://blwnomklccg61"]
+[gd_scene load_steps=10 format=3 uid="uid://blwnomklccg61"]
 
 [ext_resource type="Script" path="res://scenes/menu/menu.gd" id="1_5vsd1"]
 [ext_resource type="Texture2D" uid="uid://bwm0iehm5dnys" path="res://icon.svg" id="1_knau2"]
+[ext_resource type="LabelSettings" uid="uid://bl3m4ihdash5m" path="res://fonts/working_title.tres" id="3_a0h3k"]
+[ext_resource type="FontFile" uid="uid://cw6g0hytutgdl" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="4_16k1r"]
+[ext_resource type="AudioStream" uid="uid://bqi0ns2nme3s1" path="res://sound/Gregoire Lourme - Commando Team (Action) [loop cut].ogg" id="4_wxh7w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pxs2t"]
+font = ExtResource("4_16k1r")
+font_size = 50
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 7
+shadow_color = Color(0.686275, 0, 0, 0.803922)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="Animation" id="Animation_scbhk"]
+resource_name = "pulse"
+length = 0.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.988971, 0, 0.237538, 0.262745), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6w1kf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p15om"]
+_data = {
+"RESET": SubResource("Animation_6w1kf"),
+"pulse": SubResource("Animation_scbhk")
+}
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -36,12 +87,27 @@ theme_override_constants/margin_bottom = 20
 
 [node name="TitleLabel" type="Label" parent="MarginContainer"]
 layout_mode = 2
-text = "GAME TITLE: YOU ARE THE WEAPON"
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "NORMALITY GLITCH"
+label_settings = ExtResource("3_a0h3k")
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-text = "SPACE TO PLAY"
+text = "Press 'SPACE' to play"
+label_settings = SubResource("LabelSettings_pxs2t")
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/Label"]
+libraries = {
+"": SubResource("AnimationLibrary_p15om")
+}
+autoplay = "pulse"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wxh7w")
+volume_db = -8.0
+autoplay = true

@@ -10,7 +10,7 @@ radius = 2.80178
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qqgts"]
 radius = 14.0
-height = 62.0
+height = 52.0
 
 [node name="Dad" type="CharacterBody2D"]
 z_index = 2
@@ -27,7 +27,7 @@ shape = SubResource("CircleShape2D_bw4p8")
 [node name="Hands_Collision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hands_Collision"]
-position = Vector2(23, 0)
+position = Vector2(23, -3)
 shape = SubResource("CapsuleShape2D_qqgts")
 
 [node name="Timer" type="Timer" parent="."]
