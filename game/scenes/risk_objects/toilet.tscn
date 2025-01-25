@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3v76c1kw8qh8"]
+[gd_scene load_steps=5 format=3 uid="uid://b3v76c1kw8qh8"]
 
+[ext_resource type="Script" path="res://scenes/risk_objects/toilet.gd" id="1_5i45s"]
 [ext_resource type="Texture2D" uid="uid://bsr7rh8uqa2l8" path="res://art/Toilet.png" id="1_g1fb4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cltnn"]
 size = Vector2(50, 82)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fkv47"]
+radius = 27.0
+height = 76.0
+
 [node name="Toilet" type="StaticBody2D"]
+script = ExtResource("1_5i45s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_g1fb4")
@@ -14,3 +20,12 @@ texture = ExtResource("1_g1fb4")
 position = Vector2(7, 1.90735e-06)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_cltnn")
+
+[node name="ActionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionArea"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_fkv47")
+
+[connection signal="area_entered" from="ActionArea" to="." method="_on_action_area_entered"]
+[connection signal="area_exited" from="ActionArea" to="." method="_on_action_area_exited"]

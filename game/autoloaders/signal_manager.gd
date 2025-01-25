@@ -3,6 +3,9 @@ extends Node
 signal toaster_action_enter
 signal toaster_action_exit
 
+signal toilet_action_enter
+signal toilet_action_exit
+
 signal baby_enter
 signal baby_exit
 

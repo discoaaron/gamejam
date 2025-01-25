@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://4q46ugr14c8l"]
+
+[ext_resource type="Texture2D" uid="uid://cpua7ye6rt0fb" path="res://art/Bookshelf.png" id="1_3stwl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhwuf"]
+size = Vector2(16, 128)
+
+[node name="Bookshelf" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3stwl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(24, 0)
+shape = SubResource("RectangleShape2D_rhwuf")

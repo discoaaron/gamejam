@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqldjtcoh27nr"]
+
+[ext_resource type="Texture2D" uid="uid://d2hid15t7d7jb" path="res://art/Bed green.png" id="1_sdals"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0qmh"]
+size = Vector2(122, 187)
+
+[node name="BedGreen" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sdals")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_b0qmh")

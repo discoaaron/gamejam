@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw624hyilbo88"]
+
+[ext_resource type="Texture2D" uid="uid://31kn2rsvra8m" path="res://art/Bed single.png" id="1_3j2f2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0qmh"]
+size = Vector2(63, 158)
+
+[node name="BedSingle" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3j2f2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -17)
+shape = SubResource("RectangleShape2D_b0qmh")

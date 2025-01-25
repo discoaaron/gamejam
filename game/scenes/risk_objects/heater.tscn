@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://kyhpwbcf6ct6"]
+
+[ext_resource type="Texture2D" uid="uid://uark58wesjhr" path="res://art/Heater.png" id="1_5qjoa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydo5y"]
+size = Vector2(61, 18)
+
+[node name="Heater" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5qjoa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -23)
+shape = SubResource("RectangleShape2D_ydo5y")

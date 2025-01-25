@@ -16,7 +16,7 @@ var spawn_offset = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalManager.risk_item_lasered.connect(game_over)
+	SignalManager.risk_item_lasered.connect(game_over_laser)
 	SignalManager.baby_saved.connect(update_score)
 	SignalManager.win_condition_achieved.connect(update_score)
 	screen_size = get_viewport_rect().size
@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 
 func start_level() -> void:
 	_spawnDad()
-	_spawnBaby()
+	#_spawnBaby()
 
 func update_score() -> void:
 	ScoreManager.increase_score()
@@ -82,11 +82,11 @@ func _spawnBaby() -> void:
 func _getRandomPositionOnScreen() -> Vector2:
 	return Vector2(randi_range(spawn_offset, screen_size.x),randi_range(spawn_offset, screen_size.y))
 	
-func game_over(collidedThing) -> void:
+func game_over_laser(collidedThing) -> void:
 	ScoreManager.reset_score()
 	remove_child(dad)
 	remove_child(baby)
-	print("ya dun fucked up: ", collidedThing)
+	print("ya dun fucked up and lasered: ", collidedThing)
 
 func heart_pulse() -> void:
 	if Globals.heartbeat_pulse_ready:

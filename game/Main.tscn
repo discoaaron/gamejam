@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://xwxup6f3hc8h"]
+[gd_scene load_steps=29 format=3 uid="uid://xwxup6f3hc8h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m74ch"]
 [ext_resource type="PackedScene" uid="uid://dre28xt7mpcfn" path="res://scenes/all_walls/wallcorner.tscn" id="2_iwlok"]
@@ -12,17 +12,54 @@
 [ext_resource type="PackedScene" uid="uid://xcfmc4nra18" path="res://scenes/all_kitchen/k_bflush.tscn" id="8_dkbco"]
 [ext_resource type="PackedScene" uid="uid://bk1ine5xwxmip" path="res://scenes/all_kitchen/k_bflushend.tscn" id="9_8tx62"]
 [ext_resource type="PackedScene" uid="uid://bs7lus22j3wpu" path="res://scenes/risk_objects/toaster.tscn" id="12_arlyk"]
+[ext_resource type="Texture2D" uid="uid://cak5lw2pwd2vk" path="res://art/kitchen/Kitchen Bench Sink.png" id="12_ikxp5"]
+[ext_resource type="PackedScene" uid="uid://c4mtwc7hcwuo0" path="res://scenes/misc_objects/bed_blue.tscn" id="12_wt4m5"]
 [ext_resource type="PackedScene" uid="uid://conjny7l1pn1y" path="res://scenes/all_furniture/chair.tscn" id="13_jkp1c"]
+[ext_resource type="Texture2D" uid="uid://ckrxvmev8n58g" path="res://art/Lamp.png" id="13_nq24u"]
 [ext_resource type="PackedScene" uid="uid://b3v76c1kw8qh8" path="res://scenes/risk_objects/toilet.tscn" id="13_wv7pw"]
 [ext_resource type="PackedScene" uid="uid://d10q63frccgx" path="res://scenes/risk_objects/tv.tscn" id="14_br2es"]
+[ext_resource type="PackedScene" uid="uid://bw624hyilbo88" path="res://scenes/misc_objects/bed_single.tscn" id="14_cht8k"]
 [ext_resource type="PackedScene" uid="uid://xgaahnhjccj" path="res://scenes/all_furniture/table.tscn" id="14_hcyx7"]
 [ext_resource type="AudioStream" uid="uid://d0dyiupatsmsv" path="res://sound/418866__name__heartbeat-loop.wav" id="15_k8mtv"]
 [ext_resource type="PackedScene" uid="uid://t50cjbmojbxg" path="res://scenes/hud/hud.tscn" id="16_2j5fn"]
+[ext_resource type="PackedScene" uid="uid://cj54jyhwwok70" path="res://scenes/risk_objects/lamp.tscn" id="18_0i2p2"]
 [ext_resource type="PackedScene" uid="uid://c1klbkjabo2bj" path="res://scenes/misc_objects/bathroom_sink.tscn" id="18_ooh6d"]
+[ext_resource type="PackedScene" uid="uid://kyhpwbcf6ct6" path="res://scenes/risk_objects/heater.tscn" id="19_liinm"]
 [ext_resource type="PackedScene" uid="uid://dmfyuh7mc4jvs" path="res://scenes/misc_objects/couch.tscn" id="20_rlsls"]
+[ext_resource type="Texture2D" uid="uid://bsbnwkumt6a7e" path="res://art/Plant.png" id="27_wgpcm"]
+[ext_resource type="PackedScene" uid="uid://4q46ugr14c8l" path="res://scenes/misc_objects/bookshelf.tscn" id="27_y54mv"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_m74ch")
+
+[node name="ChairsNTable" type="Node" parent="."]
+
+[node name="Chair" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
+position = Vector2(959, 376)
+rotation = 1.5708
+
+[node name="Chair2" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
+position = Vector2(875, 376)
+rotation = 1.5708
+
+[node name="Table" parent="ChairsNTable" instance=ExtResource("14_hcyx7")]
+position = Vector2(917, 451)
+rotation = 1.5708
+
+[node name="Chair3" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
+position = Vector2(818, 452)
+
+[node name="Chair4" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
+position = Vector2(1016, 452)
+rotation = 3.14159
+
+[node name="Chair5" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
+position = Vector2(875, 526)
+rotation = -1.5708
+
+[node name="Chair6" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
+position = Vector2(959, 526)
+rotation = -1.5708
 
 [node name="borderwalls" type="Node" parent="."]
 
@@ -146,38 +183,40 @@ rotation = -1.5708
 [node name="KBflushend" parent="Kitchen" instance=ExtResource("9_8tx62")]
 position = Vector2(1012, 256)
 
+[node name="KitchenBenchSink" type="Sprite2D" parent="Kitchen"]
+position = Vector2(1088, 124)
+texture = ExtResource("12_ikxp5")
+
 [node name="bathroomwalls" type="Node" parent="."]
 
 [node name="walljoint" parent="bathroomwalls" instance=ExtResource("5_x3qqu")]
 position = Vector2(676, 589)
 
-[node name="walllongstraight" parent="bathroomwalls" instance=ExtResource("3_8747k")]
-position = Vector2(676, 451)
-
 [node name="wallcorner" parent="bathroomwalls" instance=ExtResource("2_iwlok")]
-position = Vector2(676, 303)
+z_index = 1
+position = Vector2(676, 461)
 
 [node name="wallstraight" parent="bathroomwalls" instance=ExtResource("3_52rpf")]
-position = Vector2(613, 303)
-rotation = 1.5708
+position = Vector2(487, 524)
 
 [node name="wallstraight2" parent="bathroomwalls" instance=ExtResource("3_52rpf")]
-position = Vector2(551, 303)
-rotation = 1.5708
+position = Vector2(676, 525)
 
 [node name="wallcorner2" parent="bathroomwalls" instance=ExtResource("2_iwlok")]
-position = Vector2(487, 304)
+z_index = 1
+position = Vector2(487, 462)
 rotation = -1.5708
 
 [node name="walljoint2" parent="bathroomwalls" instance=ExtResource("5_x3qqu")]
 position = Vector2(487, 588)
 
 [node name="wallstraightend" parent="bathroomwalls" instance=ExtResource("6_q67f0")]
-position = Vector2(487, 524)
+position = Vector2(661, 462)
+rotation = -1.5708
 
 [node name="wallstraightend2" parent="bathroomwalls" instance=ExtResource("6_q67f0")]
-position = Vector2(488, 367)
-rotation = 3.14159
+position = Vector2(503, 461)
+rotation = 1.5708
 
 [node name="loungewalls" type="Node" parent="."]
 
@@ -197,6 +236,100 @@ rotation = 1.5708
 [node name="wallstraight2" parent="loungewalls" instance=ExtResource("3_52rpf")]
 position = Vector2(180, 303)
 rotation = 1.5708
+
+[node name="bedroomwalls" type="Node" parent="."]
+
+[node name="walllongstraight" parent="bedroomwalls" instance=ExtResource("3_8747k")]
+position = Vector2(380, 165)
+
+[node name="walllongstraight2" parent="bedroomwalls" instance=ExtResource("3_8747k")]
+position = Vector2(676, 169)
+
+[node name="walljoint" parent="bedroomwalls" instance=ExtResource("5_x3qqu")]
+position = Vector2(381, 59)
+rotation = -3.14159
+
+[node name="walljoint2" parent="bedroomwalls" instance=ExtResource("5_x3qqu")]
+position = Vector2(677, 59)
+rotation = -3.14159
+
+[node name="wallcorner" parent="bedroomwalls" instance=ExtResource("2_iwlok")]
+position = Vector2(381, 304)
+rotation = -3.14159
+
+[node name="wallcorner2" parent="bedroomwalls" instance=ExtResource("2_iwlok")]
+position = Vector2(677, 302)
+rotation = 1.5708
+
+[node name="wallstraightend" parent="bedroomwalls" instance=ExtResource("6_q67f0")]
+z_index = -1
+position = Vector2(396, 303)
+rotation = 1.5708
+
+[node name="wallstraightend2" parent="bedroomwalls" instance=ExtResource("6_q67f0")]
+position = Vector2(554, 303)
+rotation = -1.5708
+
+[node name="wallstraight" parent="bedroomwalls" instance=ExtResource("3_52rpf")]
+position = Vector2(618, 303)
+rotation = -1.5708
+
+[node name="bedroomitems" type="Node" parent="."]
+
+[node name="BedBlue" parent="bedroomitems" instance=ExtResource("12_wt4m5")]
+position = Vector2(199, 130)
+
+[node name="Table2" parent="bedroomitems" instance=ExtResource("14_hcyx7")]
+position = Vector2(110, 60)
+rotation = 1.5708
+scale = Vector2(0.5, 0.3)
+
+[node name="Table4" parent="bedroomitems" instance=ExtResource("14_hcyx7")]
+position = Vector2(635, 142)
+rotation = 1.5708
+scale = Vector2(0.5, 0.3)
+
+[node name="Table3" parent="bedroomitems" instance=ExtResource("14_hcyx7")]
+position = Vector2(287, 59)
+rotation = -1.5708
+scale = Vector2(0.5, 0.3)
+
+[node name="Lamp" type="Sprite2D" parent="bedroomitems"]
+position = Vector2(110, 61)
+texture = ExtResource("13_nq24u")
+
+[node name="Lamp2" type="Sprite2D" parent="bedroomitems"]
+position = Vector2(287, 61)
+texture = ExtResource("13_nq24u")
+
+[node name="BedSingle" parent="bedroomitems" instance=ExtResource("14_cht8k")]
+position = Vector2(562, 67)
+rotation = 1.5708
+
+[node name="BedSingle2" parent="bedroomitems" instance=ExtResource("14_cht8k")]
+position = Vector2(562, 221)
+rotation = 1.5708
+
+[node name="RiskItems" type="Node" parent="."]
+
+[node name="Toaster" parent="RiskItems" instance=ExtResource("12_arlyk")]
+position = Vector2(1027, 256)
+rotation = 1.5708
+
+[node name="Toilet" parent="RiskItems" instance=ExtResource("13_wv7pw")]
+position = Vector2(544, 569)
+rotation = 1.5708
+
+[node name="TV" parent="RiskItems" instance=ExtResource("14_br2es")]
+position = Vector2(129, 585)
+rotation = -1.5708
+
+[node name="Lamp" parent="RiskItems" instance=ExtResource("18_0i2p2")]
+position = Vector2(635, 143)
+
+[node name="Heater" parent="RiskItems" instance=ExtResource("19_liinm")]
+position = Vector2(64, 246)
+rotation = -1.5708
 
 [node name="Carpet" type="TextureRect" parent="."]
 z_index = -1
@@ -218,54 +351,11 @@ stretch_mode = 1
 
 [node name="BathroomFloor" type="TextureRect" parent="."]
 offset_left = 471.0
-offset_top = 320.0
-offset_right = 660.0
+offset_top = 445.0
+offset_right = 693.0
 offset_bottom = 616.0
 texture = ExtResource("7_sk75g")
 stretch_mode = 1
-
-[node name="RiskItems" type="Node" parent="."]
-
-[node name="Toaster" parent="RiskItems" instance=ExtResource("12_arlyk")]
-position = Vector2(1027, 256)
-rotation = 1.5708
-
-[node name="Toilet" parent="RiskItems" instance=ExtResource("13_wv7pw")]
-position = Vector2(579, 569)
-rotation = 1.5708
-
-[node name="TV" parent="RiskItems" instance=ExtResource("14_br2es")]
-position = Vector2(129, 585)
-rotation = -1.5708
-
-[node name="ChairsNTable" type="Node" parent="."]
-
-[node name="Chair" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
-position = Vector2(959, 376)
-rotation = 1.5708
-
-[node name="Chair2" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
-position = Vector2(875, 376)
-rotation = 1.5708
-
-[node name="Table" parent="ChairsNTable" instance=ExtResource("14_hcyx7")]
-position = Vector2(917, 451)
-rotation = 1.5708
-
-[node name="Chair3" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
-position = Vector2(818, 452)
-
-[node name="Chair4" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
-position = Vector2(1016, 452)
-rotation = 3.14159
-
-[node name="Chair5" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
-position = Vector2(875, 526)
-rotation = -1.5708
-
-[node name="Chair6" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
-position = Vector2(959, 526)
-rotation = -1.5708
 
 [node name="Heartbeatsound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_k8mtv")
@@ -276,8 +366,13 @@ wait_time = 0.8
 
 [node name="HUD" parent="." instance=ExtResource("16_2j5fn")]
 
+[node name="Table5" parent="." instance=ExtResource("14_hcyx7")]
+position = Vector2(445, 587)
+rotation = 1.5708
+scale = Vector2(0.5, 0.3)
+
 [node name="BathroomSink" parent="." instance=ExtResource("18_ooh6d")]
-position = Vector2(628, 452)
+position = Vector2(628, 513)
 
 [node name="Table" parent="." instance=ExtResource("14_hcyx7")]
 position = Vector2(129, 590)
@@ -287,5 +382,14 @@ scale = Vector2(0.5, 0.5)
 [node name="Couch" parent="." instance=ExtResource("20_rlsls")]
 position = Vector2(131, 387)
 rotation = -1.5708
+
+[node name="Bookshelf" parent="." instance=ExtResource("27_y54mv")]
+position = Vector2(746, 58)
+rotation = -1.5708
+scale = Vector2(0.8, 0.8)
+
+[node name="Plant" type="Sprite2D" parent="."]
+position = Vector2(443, 587)
+texture = ExtResource("27_wgpcm")
 
 [connection signal="timeout" from="Heartbeat" to="." method="_on_heartbeat_timeout"]
