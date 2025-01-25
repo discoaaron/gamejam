@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bs7lus22j3wpu"]
+[gd_scene load_steps=5 format=3 uid="uid://bs7lus22j3wpu"]
 
 [ext_resource type="Texture2D" uid="uid://b350irr6tj4c1" path="res://art/Toaster floating.png" id="1_akojh"]
+[ext_resource type="Script" path="res://scenes/risk_objects/toaster.gd" id="1_duewv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rexxd"]
 size = Vector2(60, 64)
@@ -9,6 +10,7 @@ size = Vector2(60, 64)
 radius = 44.0114
 
 [node name="Toaster" type="StaticBody2D"]
+script = ExtResource("1_duewv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_akojh")
@@ -21,3 +23,5 @@ shape = SubResource("RectangleShape2D_rexxd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Action Area"]
 shape = SubResource("CircleShape2D_20137")
+
+[connection signal="area_entered" from="Action Area" to="." method="_on_action_area_entered"]
