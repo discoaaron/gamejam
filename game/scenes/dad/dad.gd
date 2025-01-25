@@ -27,6 +27,8 @@ func _ready() -> void:
 	add_child(laser_instance)
 	SignalManager.baby_enter.connect(on_baby_area2d)
 	SignalManager.baby_exit.connect(on_baby_exit)
+	SignalManager.chair_enter.connect(on_chair_enter_area)
+	SignalManager.chair_exit.connect(on_chair_exit_area)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -36,6 +38,9 @@ func _process(delta: float) -> void:
 		if Globals.action_ready:
 			SignalManager.baby_saved.emit()
 			print("you win!!")
+		elif Globals.chair_ready:
+			print("in the chair")
+			sit_in_chair(Globals.target_chair)
 		else:
 			print("not quite!")
 	if Input.is_action_just_pressed(dash):
@@ -103,3 +108,21 @@ func stepping() -> void:
 
 func _on_step_timer_timeout() -> void:
 	step_audio = false
+
+
+func sit_in_chair(chair: StaticBody2D) -> void:
+	chair.set_deferred("disabled", true)
+	velocity = Vector2.ZERO
+	set_deferred("disabled", true)
+	position = Globals.target_chair.global_position
+	print("Dad is now sitting in chair at:", position)
+
+
+func on_chair_enter_area(area: Area2D) -> void:
+	if not dashing:
+		print("works", area.name)
+	if dashing:
+		print("ya messed up the chair")
+
+func on_chair_exit_area(area: Area2D) -> void:
+	print("exit", area.name)

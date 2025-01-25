@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://conjny7l1pn1y"]
+
+[ext_resource type="Script" path="res://scenes/all_furniture/chair.gd" id="1_avkcr"]
+[ext_resource type="Texture2D" uid="uid://dso36fyc6mu3t" path="res://art/Chair.png" id="1_cocpp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5vlu"]
+size = Vector2(44, 48)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_smv6a"]
+radius = 39.0512
+
+[node name="Chair" type="StaticBody2D"]
+script = ExtResource("1_avkcr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cocpp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j5vlu")
+
+[node name="Chair_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chair_area"]
+shape = SubResource("CircleShape2D_smv6a")
+
+[connection signal="area_entered" from="Chair_area" to="." method="_on_chair_area_entered"]
+[connection signal="area_exited" from="Chair_area" to="." method="_on_chair_area_exited"]
