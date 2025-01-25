@@ -45,6 +45,10 @@ wait_time = 0.4
 [node name="audio_dash" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_6w2tv")
 
+[node name="SittingTimer" type="Timer" parent="."]
+wait_time = 0.2
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
 [connection signal="timeout" from="audio_steps/Timer" to="." method="_on_step_timer_timeout"]
+[connection signal="timeout" from="SittingTimer" to="." method="_on_sitting_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://xwxup6f3hc8h"]
+[gd_scene load_steps=15 format=3 uid="uid://xwxup6f3hc8h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m74ch"]
 [ext_resource type="PackedScene" uid="uid://dre28xt7mpcfn" path="res://scenes/all_walls/wallcorner.tscn" id="2_iwlok"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bk1ine5xwxmip" path="res://scenes/all_kitchen/k_bflushend.tscn" id="9_8tx62"]
 [ext_resource type="PackedScene" uid="uid://bs7lus22j3wpu" path="res://scenes/risk_objects/toaster.tscn" id="12_arlyk"]
 [ext_resource type="PackedScene" uid="uid://conjny7l1pn1y" path="res://scenes/all_furniture/chair.tscn" id="13_jkp1c"]
+[ext_resource type="PackedScene" uid="uid://xgaahnhjccj" path="res://scenes/all_furniture/table.tscn" id="14_hcyx7"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_m74ch")
@@ -106,23 +107,12 @@ position = Vector2(816, 123)
 rotation = 3.14159
 
 [node name="walljoint2" parent="kitchenwalls" instance=ExtResource("5_x3qqu")]
-position = Vector2(1093, 380)
+position = Vector2(1093, 303)
 rotation = -1.5708
 
 [node name="wallstraightend2" parent="kitchenwalls" instance=ExtResource("6_q67f0")]
-position = Vector2(1029, 380)
+position = Vector2(1076, 303)
 rotation = -1.5708
-
-[node name="wallcorner" parent="kitchenwalls" instance=ExtResource("2_iwlok")]
-position = Vector2(816, 380)
-rotation = 3.14159
-
-[node name="wallstraightend3" parent="kitchenwalls" instance=ExtResource("6_q67f0")]
-position = Vector2(815, 331)
-
-[node name="wallstraightend4" parent="kitchenwalls" instance=ExtResource("6_q67f0")]
-position = Vector2(864, 379)
-rotation = 1.5708
 
 [node name="Kitchen" type="Node" parent="."]
 
@@ -148,11 +138,7 @@ position = Vector2(1088, 256)
 rotation = -1.5708
 
 [node name="KBflushend" parent="Kitchen" instance=ExtResource("9_8tx62")]
-position = Vector2(933, 256)
-
-[node name="KBflushend2" parent="Kitchen" instance=ExtResource("9_8tx62")]
-position = Vector2(963, 256)
-rotation = 3.14159
+position = Vector2(1012, 256)
 
 [node name="Label" type="Label" parent="."]
 offset_left = 551.0
@@ -174,18 +160,41 @@ z_index = -1
 offset_left = 832.0
 offset_top = 32.0
 offset_right = 1120.0
-offset_bottom = 363.0
+offset_bottom = 286.0
 texture = ExtResource("7_sk75g")
 stretch_mode = 1
 
 [node name="RiskItems" type="Node" parent="."]
 
 [node name="Toaster" parent="RiskItems" instance=ExtResource("12_arlyk")]
-position = Vector2(948, 256)
+position = Vector2(1027, 256)
 rotation = 1.5708
 
-[node name="Chair" parent="." instance=ExtResource("13_jkp1c")]
-position = Vector2(626, 475)
+[node name="ChairsNTable" type="Node" parent="."]
 
-[node name="Chair2" parent="." instance=ExtResource("13_jkp1c")]
-position = Vector2(825, 479)
+[node name="Chair" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
+position = Vector2(959, 386)
+rotation = 1.5708
+
+[node name="Chair2" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
+position = Vector2(875, 386)
+rotation = 1.5708
+
+[node name="Table" parent="ChairsNTable" instance=ExtResource("14_hcyx7")]
+position = Vector2(917, 461)
+rotation = 1.5708
+
+[node name="Chair3" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
+position = Vector2(818, 462)
+
+[node name="Chair4" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
+position = Vector2(1016, 462)
+rotation = 3.14159
+
+[node name="Chair5" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
+position = Vector2(875, 536)
+rotation = -1.5708
+
+[node name="Chair6" parent="ChairsNTable" instance=ExtResource("13_jkp1c")]
+position = Vector2(959, 536)
+rotation = -1.5708

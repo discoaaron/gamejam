@@ -5,6 +5,8 @@ extends CharacterBody2D
 @export var dash_distance = 100
 var dashing = false
 var step_audio = false
+var sitting = false
+var sitting_timer_bool = false
 
 @export var up = "not_set"
 @export var down = "not_set"
@@ -17,6 +19,7 @@ var step_audio = false
 @onready var audio_steps: AudioStreamPlayer2D = $audio_steps
 @onready var step_timer: Timer = $audio_steps/Timer
 @onready var audio_dash: AudioStreamPlayer2D = $audio_dash
+@onready var sitting_timer: Timer = $SittingTimer
 
 var laser_scene = preload("res://scenes/laser/laser.tscn")
 var laser_instance: Node
@@ -32,9 +35,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_pressed(laser):
+	if Input.is_action_pressed(laser) and not sitting:
 		fire_laser(self.position, rotation_degrees)
-	if Input.is_action_just_pressed(action):
+	if Input.is_action_just_pressed(action) and not sitting:
 		if Globals.action_ready:
 			SignalManager.baby_saved.emit()
 			print("you win!!")
@@ -43,8 +46,10 @@ func _process(delta: float) -> void:
 			sit_in_chair(Globals.target_chair)
 		else:
 			print("not quite!")
-	if Input.is_action_just_pressed(dash):
+	if Input.is_action_just_pressed(dash) and not sitting:
 		dash_action()
+	if Input.is_action_just_pressed(action) and sitting and not sitting_timer_bool:
+		exit_chair(Globals.target_chair)
 
 func _physics_process(delta: float) -> void:	
 	if not dashing:
@@ -59,19 +64,19 @@ func _physics_process(delta: float) -> void:
 		move_and_collide(dash_velocity * delta)
 
 func movement_input_check() -> void:
-	if Input.is_action_pressed(up):
+	if Input.is_action_pressed(up) and not sitting:
 		velocity.y -= speed
 		rotation_degrees = -90
 		stepping()
-	if Input.is_action_pressed(down):
+	if Input.is_action_pressed(down) and not sitting:
 		velocity.y += speed
 		rotation_degrees = 90
 		stepping()
-	if Input.is_action_pressed(left):
+	if Input.is_action_pressed(left) and not sitting:
 		velocity.x -= speed
 		rotation_degrees = -180
 		stepping()
-	if Input.is_action_pressed(right):
+	if Input.is_action_pressed(right) and not sitting:
 		velocity.x += speed
 		rotation_degrees = 0
 		stepping()
@@ -111,12 +116,22 @@ func _on_step_timer_timeout() -> void:
 
 
 func sit_in_chair(chair: StaticBody2D) -> void:
-	chair.set_deferred("disabled", true)
+	chair.get_node("CollisionShape2D").set_deferred("disabled", true)
 	velocity = Vector2.ZERO
-	set_deferred("disabled", true)
 	position = Globals.target_chair.global_position
+	rotation_degrees = Globals.target_chair.rotation_degrees
+	sitting = true
+	sitting_timer_bool = true
+	sitting_timer.start()
 	print("Dad is now sitting in chair at:", position)
 
+func exit_chair(chair: StaticBody2D) -> void:
+	chair.get_node("CollisionShape2D").set_deferred("disabled", false)
+	sitting = false
+	print("Dad is now exiting the chair at:", position)
+
+func _on_sitting_timer_timeout() -> void:
+	sitting_timer_bool = false
 
 func on_chair_enter_area(area: Area2D) -> void:
 	if not dashing:
