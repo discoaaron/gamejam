@@ -7,7 +7,7 @@
 size = Vector2(60, 64)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_20137"]
-radius = 44.0114
+radius = 29.0689
 
 [node name="Toaster" type="StaticBody2D"]
 script = ExtResource("1_duewv")
@@ -25,3 +25,4 @@ shape = SubResource("RectangleShape2D_rexxd")
 shape = SubResource("CircleShape2D_20137")
 
 [connection signal="area_entered" from="Action Area" to="." method="_on_action_area_entered"]
+[connection signal="area_exited" from="Action Area" to="." method="_on_action_area_exited"]

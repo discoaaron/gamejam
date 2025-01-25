@@ -16,8 +16,9 @@ var spawn_offset = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SignalManager.baby_lasered.connect(game_over)
+	SignalManager.risk_item_lasered.connect(game_over)
 	SignalManager.baby_saved.connect(update_score)
+	SignalManager.win_condition_achieved.connect(update_score)
 	screen_size = get_viewport_rect().size
 	screen_size.x = screen_size.x - spawn_offset
 	screen_size.y = screen_size.y - spawn_offset

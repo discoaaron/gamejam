@@ -44,6 +44,9 @@ func _process(delta: float) -> void:
 		elif Globals.chair_ready:
 			print("in the chair")
 			sit_in_chair(Globals.target_chair)
+		elif Globals.toaster_action_ready:
+			print("Toaster off")
+			SignalManager.win_condition_achieved.emit()
 		else:
 			print("not quite!")
 	if Input.is_action_just_pressed(dash) and not sitting:

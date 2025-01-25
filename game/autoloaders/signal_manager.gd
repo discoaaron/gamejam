@@ -6,8 +6,9 @@ signal toaster_action_exit
 signal baby_enter
 signal baby_exit
 
-signal baby_lasered
+signal risk_item_lasered(item)
 signal baby_saved
+signal win_condition_achieved
 
 signal chair_enter
 signal chair_exit
