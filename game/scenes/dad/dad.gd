@@ -3,10 +3,10 @@ extends CharacterBody2D
 @export var speed = 250 # How fast the player will move (pixels/sec).
 @export var dash_speed = 800
 @export var dash_distance = 100
-var dashing = false
 var step_audio = false
 var sitting = false
 var sitting_timer_bool = false
+var dad_hands: Area2D = null
 
 @export var up = "not_set"
 @export var down = "not_set"
@@ -56,14 +56,15 @@ func _process(delta: float) -> void:
 		dash_action()
 	if Input.is_action_just_pressed(action) and sitting and not sitting_timer_bool:
 		exit_chair(Globals.target_chair)
+	dash_gameover_check(dad_hands)
 
 func _physics_process(delta: float) -> void:	
-	if not dashing:
+	if not Globals.dashing:
 		velocity = Vector2.ZERO
 		movement_input_check()
 		velocity = velocity.normalized() * speed
 		move_and_collide(velocity * delta)
-	if dashing:
+	if Globals.dashing:
 		var direction = rotation
 		var vect = Vector2.from_angle(direction)
 		var dash_velocity = vect * dash_speed
@@ -88,21 +89,21 @@ func movement_input_check() -> void:
 		stepping()
 
 func on_baby_area2d(area: Area2D) -> void:
-	if not dashing:
+	if not Globals.dashing:
 		print("works", area.name)
-	if dashing:
+	if Globals.dashing:
 		print("ya messed up")
 
 func on_baby_exit(area: Area2D) -> void:
 	print("exit", area.name)
 
 func dash_action() -> void:
-	dashing = true
+	Globals.dashing = true
 	audio_dash.play()
 	timer.start()
 
 func _on_timer_timeout() -> void:
-	dashing = false
+	Globals.dashing = false
 
 func fire_laser(start_position: Vector2, rotation: int):
 	laser_instance.firing = true
@@ -140,10 +141,24 @@ func _on_sitting_timer_timeout() -> void:
 	sitting_timer_bool = false
 
 func on_chair_enter_area(area: Area2D) -> void:
-	if not dashing:
+	if not Globals.dashing:
 		print("works", area.name)
-	if dashing:
+	if Globals.dashing:
 		print("ya messed up the chair")
 
 func on_chair_exit_area(area: Area2D) -> void:
 	print("exit", area.name)
+
+func dash_gameover_check(area: Area2D) -> void:
+	if area != null:
+		var parent = area.get_parent()
+		if parent != null and Globals.dashing and parent.is_in_group(Globals.risk_group[0]):
+			SignalManager.risk_item_dashed.emit(parent)
+
+func _on_hands_collision_area_entered(area: Area2D) -> void:
+	dad_hands = area
+	print("dad hands value is: ", dad_hands)
+
+func _on_hands_collision_area_exited(area: Area2D) -> void:
+	dad_hands = null
+	print("dad hands free")

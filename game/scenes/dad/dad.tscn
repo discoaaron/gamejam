@@ -48,6 +48,8 @@ stream = ExtResource("4_6w2tv")
 [node name="SittingTimer" type="Timer" parent="."]
 wait_time = 0.2
 
+[connection signal="area_entered" from="Hands_Collision" to="." method="_on_hands_collision_area_entered"]
+[connection signal="area_exited" from="Hands_Collision" to="." method="_on_hands_collision_area_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
 [connection signal="timeout" from="audio_steps/Timer" to="." method="_on_step_timer_timeout"]
