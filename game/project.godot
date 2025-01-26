@@ -22,6 +22,11 @@ Globals="*res://autoloaders/globals.gd"
 GameManager="*res://autoloaders/game_manager.gd"
 ScoreManager="*res://autoloaders/score_manager.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="ignore"
+
 [global_group]
 
 RiskItems="All risk items"

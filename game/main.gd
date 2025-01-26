@@ -63,7 +63,7 @@ func get_button() -> String:
 	return key;
 	
 func _spawnDad() -> void:
-	var keys = originalKeys.duplicate();
+	var keys = originalKeys.duplicate(); 
 	dad = dad_scene.instantiate();
 	
 		# Choose a random location on Path2D.
