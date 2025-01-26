@@ -6,7 +6,7 @@ var based_width = 10
 var widthy = based_width
 var shoot = false
 var active = false
-var things_to_check = ["Toaster", "Baby"]
+var risk_group = ["RiskItems"]
 @export var laser_direction: Vector2 = Vector2.RIGHT  # Direction the laser fires
 @onready var collision = $Line2D/DamageArea/CollisionShape2D
 
@@ -24,9 +24,10 @@ func _process(delta):
 		if is_colliding():
 			$Line2D.points[1] = to_local(get_collision_point())
 			var collidedThing = get_collider()
-			if collidedThing is Baby or Toaster or Toilet:
-				SignalManager.risk_item_lasered.emit(collidedThing)
-				#print("Collided with: ", collidedThing)
+			for group in risk_group:
+				if collidedThing.is_in_group(group):
+					SignalManager.risk_item_lasered.emit(collidedThing)
+					#print("Collided with: ", collidedThing)
 		else:
 			$Line2D.points[1] = target_position
 	else:

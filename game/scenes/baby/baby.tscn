@@ -17,7 +17,7 @@ height = 34.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_oh43a"]
 radius = 8.0
 
-[node name="Baby" type="StaticBody2D"]
+[node name="Baby" type="StaticBody2D" groups=["RiskItems"]]
 script = ExtResource("1_77sm7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

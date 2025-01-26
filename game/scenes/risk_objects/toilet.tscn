@@ -10,7 +10,7 @@ size = Vector2(50, 82)
 radius = 27.0
 height = 76.0
 
-[node name="Toilet" type="StaticBody2D"]
+[node name="Toilet" type="StaticBody2D" groups=["RiskItems"]]
 script = ExtResource("1_5i45s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

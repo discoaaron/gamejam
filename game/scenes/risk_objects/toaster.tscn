@@ -9,7 +9,7 @@ size = Vector2(60, 64)
 [sub_resource type="CircleShape2D" id="CircleShape2D_20137"]
 radius = 29.0689
 
-[node name="Toaster" type="StaticBody2D"]
+[node name="Toaster" type="StaticBody2D" groups=["RiskItems"]]
 script = ExtResource("1_duewv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

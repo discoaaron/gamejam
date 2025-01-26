@@ -22,6 +22,10 @@ Globals="*res://autoloaders/globals.gd"
 GameManager="*res://autoloaders/game_manager.gd"
 ScoreManager="*res://autoloaders/score_manager.gd"
 
+[global_group]
+
+RiskItems="All risk items"
+
 [input]
 
 w={
