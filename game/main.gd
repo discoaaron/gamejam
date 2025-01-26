@@ -65,7 +65,15 @@ func get_button() -> String:
 func _spawnDad() -> void:
 	var keys = originalKeys.duplicate();
 	dad = dad_scene.instantiate();
-	dad.position = _getRandomPositionOnScreen()
+	
+		# Choose a random location on Path2D.
+	var dad_spawn_location = $Dad_Path/DadSpawnLocation
+	dad_spawn_location.progress_ratio = randf()
+	# Set the mob's position to a random location.
+	dad.position = dad_spawn_location.position
+	#dad.rotation = Vector2.RIGHT
+	#dad.position = _getRandomPositionOnScreen()
+	
 	dad.up = get_button()
 	dad.down = get_button()
 	dad.left = get_button()
