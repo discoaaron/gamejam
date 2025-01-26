@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://d10q63frccgx"]
+[gd_scene load_steps=5 format=3 uid="uid://d10q63frccgx"]
 
 [ext_resource type="Texture2D" uid="uid://cw620rrrt0rn" path="res://art/Tv.png" id="1_fp33c"]
+[ext_resource type="Script" path="res://scenes/risk_objects/tv.gd" id="1_kjt2f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a13g6"]
 size = Vector2(52, 60)
 
-[node name="TV" type="StaticBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_b5q4l"]
+radius = 37.1214
+
+[node name="TV" type="StaticBody2D" groups=["RiskItems"]]
+script = ExtResource("1_kjt2f")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_fp33c")
@@ -13,3 +18,11 @@ texture = ExtResource("1_fp33c")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4, 0)
 shape = SubResource("RectangleShape2D_a13g6")
+
+[node name="ActionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionArea"]
+shape = SubResource("CircleShape2D_b5q4l")
+
+[connection signal="area_entered" from="ActionArea" to="." method="_on_action_area_entered"]
+[connection signal="area_exited" from="ActionArea" to="." method="_on_action_area_exited"]

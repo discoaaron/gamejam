@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://kyhpwbcf6ct6"]
+[gd_scene load_steps=5 format=3 uid="uid://kyhpwbcf6ct6"]
 
 [ext_resource type="Texture2D" uid="uid://uark58wesjhr" path="res://art/Heater.png" id="1_5qjoa"]
+[ext_resource type="Script" path="res://scenes/risk_objects/heater.gd" id="1_w7n6p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ydo5y"]
 size = Vector2(61, 18)
 
-[node name="Heater" type="StaticBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4f75o"]
+radius = 14.0
+height = 66.0
+
+[node name="Heater" type="StaticBody2D" groups=["RiskItems"]]
+script = ExtResource("1_w7n6p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_5qjoa")
@@ -13,3 +19,13 @@ texture = ExtResource("1_5qjoa")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, -23)
 shape = SubResource("RectangleShape2D_ydo5y")
+
+[node name="ActionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionArea"]
+position = Vector2(-2, -23)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4f75o")
+
+[connection signal="area_entered" from="ActionArea" to="." method="_on_action_area_entered"]
+[connection signal="area_exited" from="ActionArea" to="." method="_on_action_area_exited"]

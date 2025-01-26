@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cj54jyhwwok70"]
+[gd_scene load_steps=5 format=3 uid="uid://cj54jyhwwok70"]
 
+[ext_resource type="Script" path="res://scenes/risk_objects/lamp.gd" id="1_8eye0"]
 [ext_resource type="Texture2D" uid="uid://ckrxvmev8n58g" path="res://art/Lamp.png" id="1_k5r5g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vql4"]
 radius = 20.025
 
-[node name="Lamp" type="StaticBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_lv8ei"]
+radius = 26.0192
+
+[node name="Lamp" type="StaticBody2D" groups=["RiskItems"]]
+script = ExtResource("1_8eye0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_k5r5g")
@@ -13,3 +18,12 @@ texture = ExtResource("1_k5r5g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_3vql4")
+
+[node name="Action_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Action_area"]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_lv8ei")
+
+[connection signal="area_entered" from="Action_area" to="." method="_on_action_area_entered"]
+[connection signal="area_exited" from="Action_area" to="." method="_on_action_area_exited"]

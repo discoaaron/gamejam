@@ -50,6 +50,12 @@ func _process(delta: float) -> void:
 		elif Globals.toilet_action_ready:
 			print("Toilet unblocked")
 			SignalManager.win_condition_achieved.emit()
+		elif Globals.tv_action_ready:
+			print("TV off")
+			SignalManager.win_condition_achieved.emit()
+		elif Globals.lamp_action_ready:
+			print("Lamp off")
+			SignalManager.win_condition_achieved.emit()
 		else:
 			print("not quite!")
 	if Input.is_action_just_pressed(dash) and not sitting:

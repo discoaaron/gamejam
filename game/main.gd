@@ -38,7 +38,6 @@ func _process(delta: float) -> void:
 		dad.action = "e"
 		dad.laser = "q"
 		dad.dash = "z"
-		
 	heart_pulse()
 
 func start_level() -> void:

@@ -6,6 +6,15 @@ signal toaster_action_exit
 signal toilet_action_enter
 signal toilet_action_exit
 
+signal tv_action_enter
+signal tv_action_exit
+
+signal lamp_action_enter
+signal lamp_action_exit
+
+signal heater_action_enter
+signal heater_action_exit
+
 signal baby_enter
 signal baby_exit
 

@@ -1,7 +1,5 @@
 extends Node2D
 
-class_name Baby
-
 
 func _on_body_area_entered(area: Area2D) -> void:
 	SignalManager.baby_enter.emit(area)

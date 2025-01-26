@@ -1,6 +1,5 @@
 extends StaticBody2D
 
-class_name Toaster
 
 func _on_action_area_entered(area: Area2D) -> void:
 	Globals.toaster_action_ready = true

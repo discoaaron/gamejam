@@ -1,7 +1,5 @@
 extends StaticBody2D
 
-class_name Toilet
-
 
 func _on_action_area_entered(area: Area2D) -> void:
 	Globals.toilet_action_ready = true
