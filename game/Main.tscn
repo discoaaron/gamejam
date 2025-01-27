@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://xwxup6f3hc8h"]
+[gd_scene load_steps=32 format=3 uid="uid://xwxup6f3hc8h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m74ch"]
 [ext_resource type="PackedScene" uid="uid://dre28xt7mpcfn" path="res://scenes/all_walls/wallcorner.tscn" id="2_iwlok"]
@@ -26,8 +26,13 @@
 [ext_resource type="PackedScene" uid="uid://c1klbkjabo2bj" path="res://scenes/misc_objects/bathroom_sink.tscn" id="18_ooh6d"]
 [ext_resource type="PackedScene" path="res://scenes/risk_objects/heater.tscn" id="19_liinm"]
 [ext_resource type="PackedScene" uid="uid://dmfyuh7mc4jvs" path="res://scenes/misc_objects/couch.tscn" id="20_rlsls"]
+[ext_resource type="FontFile" uid="uid://cw6g0hytutgdl" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="25_wry1b"]
 [ext_resource type="Texture2D" uid="uid://bsbnwkumt6a7e" path="res://art/Plant.png" id="27_wgpcm"]
 [ext_resource type="PackedScene" path="res://scenes/misc_objects/bookshelf.tscn" id="27_y54mv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3y05j"]
+font = ExtResource("25_wry1b")
+font_size = 50
 
 [sub_resource type="Curve2D" id="Curve2D_a7r28"]
 _data = {
@@ -371,6 +376,14 @@ volume_db = -6.215
 wait_time = 0.8
 
 [node name="HUD" parent="." instance=ExtResource("16_2j5fn")]
+
+[node name="Label" type="Label" parent="."]
+top_level = true
+offset_left = 317.0
+offset_top = 354.0
+offset_right = 357.0
+offset_bottom = 414.0
+label_settings = SubResource("LabelSettings_3y05j")
 
 [node name="Table5" parent="." instance=ExtResource("14_hcyx7")]
 position = Vector2(445, 587)

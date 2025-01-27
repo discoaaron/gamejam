@@ -2,27 +2,28 @@ extends Node2D
 
 var dad_scene = preload("res://scenes/dad/dad.tscn")
 var baby_scene = preload("res://scenes/baby/baby.tscn")
+var heater_scene = preload("res://scenes/risk_objects/heater.tscn")
+var lamp_scene = preload("res://scenes/risk_objects/lamp.tscn")
+var toaster_scene = preload("res://scenes/risk_objects/toaster.tscn")
+var toilet_scene = preload("res://scenes/risk_objects/toilet.tscn")
+var tv_scene = preload("res://scenes/risk_objects/tv.tscn")
+var risks: Array[Resource] = [heater_scene, lamp_scene, toaster_scene, toilet_scene, tv_scene]
+
 var dad: Node
-var baby: Node
-var screen_size # Size of the game window.
+var risk: Node
 var originalKeys = ["w", "a", "s", "d", "e", "q", "z"]
 var keysCopy = []
-var spawn_offset = 50
 
 @onready var heartbeatsound: AudioStreamPlayer2D = $Heartbeatsound
 
 @onready var heartbeat: Timer = $Heartbeat
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalManager.risk_item_lasered.connect(game_over_laser)
 	SignalManager.risk_item_dashed.connect(game_over_dash)
 	SignalManager.baby_saved.connect(update_score)
 	SignalManager.win_condition_achieved.connect(update_score)
-	screen_size = get_viewport_rect().size
-	screen_size.x = screen_size.x - spawn_offset
-	screen_size.y = screen_size.y - spawn_offset
 	start_level()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,7 +43,7 @@ func _process(delta: float) -> void:
 
 func start_level() -> void:
 	_spawnDad()
-	#_spawnBaby()
+	_spawnBaby()
 
 func update_score() -> void:
 	ScoreManager.increase_score()
@@ -50,7 +51,9 @@ func update_score() -> void:
 
 func start_next_level() -> void:
 	remove_child(dad)
-	remove_child(baby)
+	remove_child(risk)
+	dad.queue_free()
+	risk.queue_free()
 	start_level()
 	print("start new level")
 		
@@ -63,17 +66,11 @@ func get_button() -> String:
 	return key;
 	
 func _spawnDad() -> void:
-	var keys = originalKeys.duplicate(); 
 	dad = dad_scene.instantiate();
-	
-		# Choose a random location on Path2D.
 	var dad_spawn_location = $Dad_Path/DadSpawnLocation
 	dad_spawn_location.progress_ratio = randf()
-	# Set the mob's position to a random location.
 	dad.position = dad_spawn_location.position
-	#dad.rotation = Vector2.RIGHT
-	#dad.position = _getRandomPositionOnScreen()
-	
+	#dad.rotation = todo could set random location
 	dad.up = get_button()
 	dad.down = get_button()
 	dad.left = get_button()
@@ -84,25 +81,46 @@ func _spawnDad() -> void:
 	add_child(dad)
 	
 func _spawnBaby() -> void:
-	baby = baby_scene.instantiate()
-	baby.position = _getRandomPositionOnScreen()
-	add_child(baby)
-	
-func _getRandomPositionOnScreen() -> Vector2:
-	return Vector2(randi_range(spawn_offset, screen_size.x),randi_range(spawn_offset, screen_size.y))
-	
+	var riskIndex = randi_range(0, risks.size() - 1)
+	# not sure why this doesn't work
+	#var riskScene: Resource = risks[riskIndex]
+	#riskScene.instantiate()
+	match riskIndex:
+		0:
+			$Label.text = "Turn off the heater!"
+			risk = heater_scene.instantiate()
+		1:
+			$Label.text = "Turn off the lamp!"
+			risk = lamp_scene.instantiate()
+		2:
+			$Label.text = "Toast is burning!"
+			risk = toaster_scene.instantiate()
+		3:
+			$Label.text = "Toilet is overflowing!"
+			risk = toilet_scene.instantiate()
+		4:
+			$Label.text = "TV is melting?!"
+			risk = tv_scene.instantiate()
+
+	var risk_spawn_location = $Dad_Path/DadSpawnLocation
+	risk_spawn_location.progress_ratio = randf()
+	risk.position = risk_spawn_location.position
+	add_child(risk)
+
 func game_over_laser(collidedThing) -> void:
-	ScoreManager.reset_score()
-	remove_child(dad)
-	#remove_child(baby)
-	print("ya dun fucked up and lasered: ", collidedThing)
+	game_over(str("Game Over\n You lasered the ", collidedThing))
 
 func game_over_dash(collidedThing) -> void:
 	if Globals.dashing:
-		ScoreManager.reset_score()
-		remove_child(dad)
-		#remove_child(baby)
-		print("ya dun fucked up and dashed into: ", collidedThing)
+		game_over(str("Game Over\n You dashed into the ", collidedThing))
+
+func game_over(text: String) -> void:
+	$Label.text = text
+	ScoreManager.reset_score()
+	remove_child(dad)
+	remove_child(risk)
+	dad.queue_free()
+	risk.queue_free()
 
 func heart_pulse() -> void:
 	if Globals.heartbeat_pulse_ready:
