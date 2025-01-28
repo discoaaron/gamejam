@@ -21,7 +21,12 @@ func showLabel() -> void:
 		timerLength = 20 
 	else:
 		timerLength = 5
+	
+	labels[visibleLabelIndex].modulate.a = 0  # Start transparent
 	labels[visibleLabelIndex].visible = true
+	var tween = get_tree().create_tween()
+	# Tween the alpha from 0 to 1 over 2 seconds
+	tween.tween_property(labels[visibleLabelIndex], "modulate:a", 1.0, 2.0)
 	timer.start(timerLength)
 
 func _on_timer_timeout() -> void:
