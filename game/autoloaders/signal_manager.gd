@@ -18,6 +18,7 @@ signal heater_action_exit
 signal baby_enter
 signal baby_exit
 
+#HUD Only
 signal laser_fired
 signal dash_dashed
 signal action_actioned

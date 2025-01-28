@@ -29,7 +29,7 @@
 [ext_resource type="FontFile" uid="uid://cw6g0hytutgdl" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="25_wry1b"]
 [ext_resource type="Texture2D" uid="uid://bsbnwkumt6a7e" path="res://art/Plant.png" id="27_wgpcm"]
 [ext_resource type="PackedScene" uid="uid://4q46ugr14c8l" path="res://scenes/misc_objects/bookshelf.tscn" id="27_y54mv"]
-[ext_resource type="PackedScene" path="res://scenes/hud/controls.tscn" id="30_xryxh"]
+[ext_resource type="PackedScene" uid="uid://ibfrg6i1f37e" path="res://scenes/hud/controls.tscn" id="30_xryxh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3y05j"]
 font = ExtResource("25_wry1b")
@@ -419,7 +419,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Controls" parent="." instance=ExtResource("30_xryxh")]
-position = Vector2(248, 520)
+position = Vector2(200, 524)
 scale = Vector2(0.785, 0.785)
 
 [connection signal="timeout" from="Heartbeat" to="." method="_on_heartbeat_timeout"]

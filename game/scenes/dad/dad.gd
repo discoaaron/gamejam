@@ -47,6 +47,8 @@ func _process(delta: float) -> void:
 	if not Globals.move_cooldown:
 		if Input.is_action_pressed(laser) and not sitting:
 			fire_laser(self.position, rotation_degrees)
+		if Input.is_action_just_pressed(action):
+			SignalManager.action_actioned.emit()
 		if Input.is_action_just_pressed(action) and not sitting:
 			#if Globals.action_ready:
 				#print("you win!!")
@@ -139,6 +141,7 @@ func on_baby_exit(area: Area2D) -> void:
 	print("exit", area.name)
 
 func dash_action() -> void:
+	SignalManager.dash_dashed.emit()
 	Globals.dashing = true
 	dash_sound()
 	timer.start()
@@ -151,6 +154,7 @@ func _on_timer_timeout() -> void:
 	Globals.dashing = false
 
 func fire_laser(start_position: Vector2, rotation: int):
+	SignalManager.laser_fired.emit()
 	laser_instance.firing = true
 	$LaserTimer.start()
 	

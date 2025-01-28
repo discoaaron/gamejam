@@ -31,6 +31,12 @@ func _ready() -> void:
 	SignalManager.risk_item_dashed.connect(game_over_dash)
 	SignalManager.baby_saved.connect(update_score)
 	SignalManager.win_condition_achieved.connect(update_score)
+	
+	# HUD only
+	SignalManager.laser_fired.connect(set_laser_key)
+	SignalManager.action_actioned.connect(set_action_key)
+	SignalManager.dash_dashed.connect(set_dash_key)
+	
 	start_level()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -46,6 +52,10 @@ func _process(delta: float) -> void:
 		dad.action = "e"
 		dad.laser = "q"
 		dad.dash = "z"
+		set_wasd_controls()
+		set_laser_key()
+		set_action_key()
+		set_dash_key()
 	heart_pulse()
 
 func start_level() -> void:
@@ -87,19 +97,27 @@ func _spawnDad() -> void:
 	dad.action = get_button()
 	dad.laser = get_button()
 	dad.dash = get_button()
-	set_hud_controls()
+	set_wasd_controls()
 	add_child(dad)
 
-func set_hud_controls() -> void:
+func set_wasd_controls() -> void:
 	$Controls.up_key = str(dad.up).to_upper()
 	$Controls.down_key = str(dad.down).to_upper()
 	$Controls.left_key = str(dad.left).to_upper()
 	$Controls.right_key = str(dad.right).to_upper()
+	$Controls.laser_key = "?"
+	$Controls.dash_key = "?"
+	$Controls.action_key = "?"
+
+func set_laser_key() -> void:
 	$Controls.laser_key = str(dad.laser).to_upper()
-	$Controls.dash_key = str(dad.dash).to_upper()
+	
+func set_action_key() -> void:
 	$Controls.action_key = str(dad.action).to_upper()
-	
-	
+
+func set_dash_key() -> void:
+	$Controls.dash_key = str(dad.dash).to_upper()
+
 func _spawnBaby() -> void:
 	var riskIndex = randi_range(0, risks.size() - 1)
 	# not sure why this doesn't work
