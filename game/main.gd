@@ -1,19 +1,13 @@
 extends Node2D
 
 var dad_scene = preload("res://scenes/dad/dad.tscn")
-var baby_scene = preload("res://scenes/baby/baby.tscn")
-var heater_scene = preload("res://scenes/risk_objects/heater.tscn")
-var lamp_scene = preload("res://scenes/risk_objects/lamp.tscn")
-var toaster_scene = preload("res://scenes/risk_objects/toaster.tscn")
-var toilet_scene = preload("res://scenes/risk_objects/toilet.tscn")
-var tv_scene = preload("res://scenes/risk_objects/tv.tscn")
-var risks: Array[Resource] = [heater_scene, lamp_scene, toaster_scene, toilet_scene, tv_scene]
+var baby_scene = preload("res://scenes/baby/baby.tscn") #rip
 
 var dad: Node
-#var risk: Node
 var originalKeys = ["w", "a", "s", "d", "e", "q", "f"]
 var keysCopy = []
 
+@onready var heartbeat: Timer = $Heartbeat
 @onready var heartbeatsound: AudioStreamPlayer2D = $Heartbeatsound
 
 @onready var toaster: StaticBody2D = $RiskItems/Toaster
@@ -22,9 +16,6 @@ var keysCopy = []
 @onready var lamp: StaticBody2D = $RiskItems/Lamp
 @onready var heater: StaticBody2D = $RiskItems/Heater
 @onready var start_cooldown: Timer = $StartCooldown
-
-@onready var heartbeat: Timer = $Heartbeat
-
 
 func _ready() -> void:
 	SignalManager.risk_item_lasered.connect(game_over_laser)
@@ -68,13 +59,11 @@ func update_score() -> void:
 	ScoreManager.increase_score()
 	start_next_level()
 
-func start_next_level() -> void:
+func start_next_level() -> void:	
 	remove_child(dad)
-	#remove_child(risk)
 	dad.queue_free()
-	#risk.queue_free()
+	# show between level 'thing' here?
 	start_level()
-	print("start new level")
 		
 func get_button() -> String:
 	if(keysCopy.size() == 0):
@@ -109,16 +98,17 @@ func get_dad_buttons() -> void:
 			dad.dash = "f"
 			set_all_hud_controls()
 		2: 
-			# left and right AND dash and action swapped
-			dad.up = "w"
+			# left and right AND up and action switched
+			dad.up = "f"
 			dad.down = "s"
 			dad.left = "d"
 			dad.right = "a"
-			dad.action = "f"
+			dad.action = "w"
 			dad.laser = "q"
 			dad.dash = "e"
 			set_all_hud_controls()
 		_:
+			# fully random
 			dad.up = get_button()
 			dad.down = get_button()
 			dad.left = get_button()
@@ -153,36 +143,23 @@ func set_hud_controls_dash() -> void:
 	$Controls.dash_key = str(dad.dash).to_upper()
 
 func _spawnBaby() -> void:
-	var riskIndex = randi_range(0, risks.size() - 1)
-	# not sure why this doesn't work
-	#var riskScene: Resource = risks[riskIndex]
-	#riskScene.instantiate()
+	var riskIndex = randi_range(0, 4)
 	match riskIndex:
 		0:
 			$Label.text = "Turn off the heater!"
-			#risk = heater_scene.instantiate()
 			Globals.current_risk = heater
 		1:
 			$Label.text = "Turn off the lamp!"
-			#risk = lamp_scene.instantiate()
 			Globals.current_risk = lamp
 		2:
 			$Label.text = "Toast is burning!"
-			#risk = toaster_scene.instantiate()
 			Globals.current_risk = toaster
 		3:
 			$Label.text = "Toilet is overflowing!"
-			#risk = toilet_scene.instantiate()
 			Globals.current_risk = toilet
 		4:
 			$Label.text = "TV is melting?!"
-			#risk = tv_scene.instantiate()
 			Globals.current_risk = tv
-	
-	#var risk_spawn_location = $Dad_Path/DadSpawnLocation
-	#risk_spawn_location.progress_ratio = randf()
-	#risk.position = risk_spawn_location.position
-	#add_child(risk)
 
 func game_over_laser(collidedThing) -> void:
 	var thing_name = str(collidedThing).split(":")[0]
@@ -197,9 +174,7 @@ func game_over(text: String) -> void:
 	$Label.text = text
 	ScoreManager.reset_score()
 	remove_child(dad)
-	#remove_child(risk)
 	dad.queue_free()
-	#risk.queue_free()
 
 func heart_pulse() -> void:
 	if Globals.heartbeat_pulse_ready:
