@@ -5,7 +5,7 @@ extends Node2D
 @export var left_key = "A"  
 @export var right_key = "D"  
 @export var laser_key = "Q"  
-@export var dash_key = "Z"  
+@export var dash_key = "F"  
 @export var action_key = "E"  
 
 # Called when the node enters the scene tree for the first time.

@@ -11,7 +11,7 @@ var risks: Array[Resource] = [heater_scene, lamp_scene, toaster_scene, toilet_sc
 
 var dad: Node
 #var risk: Node
-var originalKeys = ["w", "a", "s", "d", "e", "q", "z"]
+var originalKeys = ["w", "a", "s", "d", "e", "q", "f"]
 var keysCopy = []
 
 @onready var heartbeatsound: AudioStreamPlayer2D = $Heartbeatsound
@@ -33,9 +33,9 @@ func _ready() -> void:
 	SignalManager.win_condition_achieved.connect(update_score)
 	
 	# HUD only
-	SignalManager.laser_fired.connect(set_laser_key)
-	SignalManager.action_actioned.connect(set_action_key)
-	SignalManager.dash_dashed.connect(set_dash_key)
+	SignalManager.laser_fired.connect(set_hud_controls_laser)
+	SignalManager.action_actioned.connect(set_hud_controls_action)
+	SignalManager.dash_dashed.connect(set_hud_controls_dash)
 	
 	start_level()
 
@@ -45,18 +45,18 @@ func _process(delta: float) -> void:
 		GameManager.load_menu_scene()
 	if Input.is_action_just_pressed("dev_mode"):
 		ScoreManager.reset_score()
+		set_default_controls()
+		set_all_hud_controls()
+	heart_pulse()
+
+func set_default_controls() -> void:
 		dad.up = "w"
 		dad.down = "s"
 		dad.left = "a"
 		dad.right = "d"
 		dad.action = "e"
 		dad.laser = "q"
-		dad.dash = "z"
-		set_wasd_controls()
-		set_laser_key()
-		set_action_key()
-		set_dash_key()
-	heart_pulse()
+		dad.dash = "f"
 
 func start_level() -> void:
 	_spawnDad()
@@ -90,17 +90,51 @@ func _spawnDad() -> void:
 	dad_spawn_location.progress_ratio = randf()
 	dad.position = dad_spawn_location.position
 	#dad.rotation = todo could set random location
-	dad.up = get_button()
-	dad.down = get_button()
-	dad.left = get_button()
-	dad.right = get_button()
-	dad.action = get_button()
-	dad.laser = get_button()
-	dad.dash = get_button()
-	set_wasd_controls()
+	get_dad_buttons()
 	add_child(dad)
+	
+func get_dad_buttons() -> void:
+	match ScoreManager.score:
+		0:
+			set_default_controls()
+			set_all_hud_controls()
+		1: 
+			# left and right swapped
+			dad.up = "w"
+			dad.down = "s"
+			dad.left = "d"
+			dad.right = "a"
+			dad.action = "e"
+			dad.laser = "q"
+			dad.dash = "f"
+			set_all_hud_controls()
+		2: 
+			# left and right AND dash and action swapped
+			dad.up = "w"
+			dad.down = "s"
+			dad.left = "d"
+			dad.right = "a"
+			dad.action = "f"
+			dad.laser = "q"
+			dad.dash = "e"
+			set_all_hud_controls()
+		_:
+			dad.up = get_button()
+			dad.down = get_button()
+			dad.left = get_button()
+			dad.right = get_button()
+			dad.action = get_button()
+			dad.laser = get_button()
+			dad.dash = get_button()
+			set_hud_controls_wasd()
+		
+func set_all_hud_controls() -> void: 
+	set_hud_controls_wasd()
+	set_hud_controls_laser()
+	set_hud_controls_action()
+	set_hud_controls_dash()
 
-func set_wasd_controls() -> void:
+func set_hud_controls_wasd() -> void:
 	$Controls.up_key = str(dad.up).to_upper()
 	$Controls.down_key = str(dad.down).to_upper()
 	$Controls.left_key = str(dad.left).to_upper()
@@ -109,13 +143,13 @@ func set_wasd_controls() -> void:
 	$Controls.dash_key = "?"
 	$Controls.action_key = "?"
 
-func set_laser_key() -> void:
+func set_hud_controls_laser() -> void:
 	$Controls.laser_key = str(dad.laser).to_upper()
 	
-func set_action_key() -> void:
+func set_hud_controls_action() -> void:
 	$Controls.action_key = str(dad.action).to_upper()
 
-func set_dash_key() -> void:
+func set_hud_controls_dash() -> void:
 	$Controls.dash_key = str(dad.dash).to_upper()
 
 func _spawnBaby() -> void:
