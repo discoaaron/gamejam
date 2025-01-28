@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://xwxup6f3hc8h"]
+[gd_scene load_steps=33 format=3 uid="uid://xwxup6f3hc8h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m74ch"]
 [ext_resource type="PackedScene" uid="uid://dre28xt7mpcfn" path="res://scenes/all_walls/wallcorner.tscn" id="2_iwlok"]
@@ -29,6 +29,7 @@
 [ext_resource type="FontFile" uid="uid://cw6g0hytutgdl" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="25_wry1b"]
 [ext_resource type="Texture2D" uid="uid://bsbnwkumt6a7e" path="res://art/Plant.png" id="27_wgpcm"]
 [ext_resource type="PackedScene" uid="uid://4q46ugr14c8l" path="res://scenes/misc_objects/bookshelf.tscn" id="27_y54mv"]
+[ext_resource type="PackedScene" uid="uid://ibfrg6i1f37e" path="res://scenes/hud/controls.tscn" id="30_xryxh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3y05j"]
 font = ExtResource("25_wry1b")
@@ -416,6 +417,10 @@ scale = Vector2(1.4, 1.4)
 [node name="StartCooldown" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="Controls" parent="." instance=ExtResource("30_xryxh")]
+position = Vector2(248, 520)
+scale = Vector2(0.785, 0.785)
 
 [connection signal="timeout" from="Heartbeat" to="." method="_on_heartbeat_timeout"]
 [connection signal="timeout" from="StartCooldown" to="." method="_on_start_cooldown_timeout"]

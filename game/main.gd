@@ -87,7 +87,18 @@ func _spawnDad() -> void:
 	dad.action = get_button()
 	dad.laser = get_button()
 	dad.dash = get_button()
+	set_hud_controls()
 	add_child(dad)
+
+func set_hud_controls() -> void:
+	$Controls.up_key = str(dad.up).to_upper()
+	$Controls.down_key = str(dad.down).to_upper()
+	$Controls.left_key = str(dad.left).to_upper()
+	$Controls.right_key = str(dad.right).to_upper()
+	$Controls.laser_key = str(dad.laser).to_upper()
+	$Controls.dash_key = str(dad.dash).to_upper()
+	$Controls.action_key = str(dad.action).to_upper()
+	
 	
 func _spawnBaby() -> void:
 	var riskIndex = randi_range(0, risks.size() - 1)
