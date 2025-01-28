@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://blwnomklccg61"]
 
 [ext_resource type="Script" path="res://scenes/menu/menu.gd" id="1_5vsd1"]
-[ext_resource type="Texture2D" uid="uid://bwm0iehm5dnys" path="res://icon.svg" id="1_knau2"]
+[ext_resource type="Texture2D" uid="uid://ccf7cpmn0ohv0" path="res://art/Title Screen.png" id="2_f7p0i"]
 [ext_resource type="LabelSettings" uid="uid://bl3m4ihdash5m" path="res://fonts/working_title.tres" id="3_a0h3k"]
 [ext_resource type="FontFile" uid="uid://cw6g0hytutgdl" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="4_16k1r"]
 [ext_resource type="AudioStream" uid="uid://bqi0ns2nme3s1" path="res://sound/Gregoire Lourme - Commando Team (Action) [loop cut].ogg" id="4_wxh7w"]
@@ -71,29 +71,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_knau2")
+texture = ExtResource("2_f7p0i")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wxh7w")
+volume_db = -8.0
+autoplay = true
 
-[node name="TitleLabel" type="Label" parent="MarginContainer"]
+[node name="Label" type="Label" parent="."]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-text = "NORMALITY GLITCH"
-label_settings = ExtResource("3_a0h3k")
-
-[node name="Label" type="Label" parent="MarginContainer"]
-layout_mode = 2
+offset_left = 323.5
+offset_top = 568.0
+offset_right = 827.5
+offset_bottom = 628.0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "Press 'SPACE' to play"
@@ -101,13 +91,20 @@ label_settings = SubResource("LabelSettings_pxs2t")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/Label"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label"]
 libraries = {
 "": SubResource("AnimationLibrary_p15om")
 }
 autoplay = "pulse"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_wxh7w")
-volume_db = -8.0
-autoplay = true
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 2
+offset_left = 104.0
+offset_top = 24.0
+offset_right = 1096.0
+offset_bottom = 348.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Cyborg dad or: How I Learned to Stop Worrying and Love my Laser"
+label_settings = ExtResource("3_a0h3k")
+autowrap_mode = 3

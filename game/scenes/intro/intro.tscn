@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://deqeug6jeapyr"]
+[gd_scene load_steps=5 format=3 uid="uid://deqeug6jeapyr"]
 
 [ext_resource type="Script" path="res://scenes/intro/intro.gd" id="1_3l4es"]
+[ext_resource type="AudioStream" uid="uid://d0dyiupatsmsv" path="res://sound/418866__name__heartbeat-loop.wav" id="2_o8u8j"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8444k"]
 font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_rwqw0"]
 
 [node name="Intro" type="Node2D"]
 script = ExtResource("1_3l4es")
@@ -15,9 +18,9 @@ color = Color(0.0687983, 0.0687983, 0.0687983, 1)
 
 [node name="Text1" type="Label" parent="."]
 visible = false
-offset_left = 184.0
+offset_left = 152.0
 offset_top = 200.0
-offset_right = 1032.0
+offset_right = 1000.0
 offset_bottom = 392.0
 text = "In the year 20XX Earth was invaded by the Amargi Empire, in an act of desperation the United Nations turned to cybernetics to create a new breed of super soldiers. Our hero Jacksin was conscripted into the 16th (Cybernetics) Battalion of the Royal New Zealand Defence Force and fought bravely on many fronts for many years.
 "
@@ -26,20 +29,20 @@ autowrap_mode = 3
 
 [node name="Text2" type="Label" parent="."]
 visible = false
-offset_left = 184.0
+offset_left = 144.0
 offset_top = 200.0
-offset_right = 1032.0
-offset_bottom = 392.0
+offset_right = 992.0
+offset_bottom = 431.0
 text = "Jacksin has now been demobilised and is struggling to adapt back to civilian life with his family. Unfortunately his Veterans Pension has been drastically reduced due to budget cuts and he can no longer afford the immunosuppressants that keep his body and cybernetics in harmony. Can he learn to take control of himself without his medicine..."
 label_settings = SubResource("LabelSettings_8444k")
 autowrap_mode = 3
 
 [node name="Text3" type="Label" parent="."]
 visible = false
-offset_left = 512.0
-offset_top = 248.0
-offset_right = 696.0
-offset_bottom = 312.0
+offset_left = 488.0
+offset_top = 296.0
+offset_right = 656.0
+offset_bottom = 336.0
 text = "and maybe...
 "
 label_settings = SubResource("LabelSettings_8444k")
@@ -48,9 +51,9 @@ autowrap_mode = 3
 [node name="Text4" type="Label" parent="."]
 visible = false
 offset_left = 512.0
-offset_top = 248.0
-offset_right = 696.0
-offset_bottom = 312.0
+offset_top = 296.0
+offset_right = 640.0
+offset_bottom = 332.0
 text = "one day..."
 label_settings = SubResource("LabelSettings_8444k")
 autowrap_mode = 3
@@ -58,9 +61,9 @@ autowrap_mode = 3
 [node name="Text5" type="Label" parent="."]
 visible = false
 offset_left = 400.0
-offset_top = 248.0
-offset_right = 912.0
-offset_bottom = 362.0
+offset_top = 296.0
+offset_right = 760.0
+offset_bottom = 336.0
 text = "start to love his laser again?
 "
 label_settings = SubResource("LabelSettings_8444k")
@@ -68,4 +71,21 @@ autowrap_mode = 3
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="heartbeatsound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_o8u8j")
+autoplay = true
+
+[node name="heartbeat" type="Timer" parent="."]
+autostart = true
+
+[node name="TextSkip" type="Label" parent="."]
+offset_left = 520.0
+offset_top = 568.0
+offset_right = 632.0
+offset_bottom = 591.0
+text = "(space to skip)"
+label_settings = SubResource("LabelSettings_rwqw0")
+autowrap_mode = 3
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="heartbeat" to="." method="_on_heartbeat_timeout"]

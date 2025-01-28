@@ -1,10 +1,7 @@
-[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bl3m4ihdash5m"]
-
-[ext_resource type="FontFile" uid="uid://cw6g0hytutgdl" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="1_n7deh"]
+[gd_resource type="LabelSettings" format=3 uid="uid://bl3m4ihdash5m"]
 
 [resource]
-font = ExtResource("1_n7deh")
-font_size = 106
+font_size = 77
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 7

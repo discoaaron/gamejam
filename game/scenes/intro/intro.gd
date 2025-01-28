@@ -31,3 +31,6 @@ func _on_timer_timeout() -> void:
 		showLabel()
 	else:
 		GameManager.load_menu_scene()
+
+func _on_heartbeat_timeout() -> void:
+	$heartbeatsound.play()
