@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3 uid="uid://deqeug6jeapyr"]
+
+[ext_resource type="Script" path="res://scenes/intro/intro.gd" id="1_3l4es"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8444k"]
+font_size = 26
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_3l4es")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.0687983, 0.0687983, 0.0687983, 1)
+
+[node name="Text1" type="Label" parent="."]
+visible = false
+offset_left = 184.0
+offset_top = 200.0
+offset_right = 1032.0
+offset_bottom = 392.0
+text = "In the year 20XX Earth was invaded by the Amargi Empire, in an act of desperation the United Nations turned to cybernetics to create a new breed of super soldiers. Our hero Jacksin was conscripted into the 16th (Cybernetics) Battalion of the Royal New Zealand Defence Force and fought bravely on many fronts for many years.
+"
+label_settings = SubResource("LabelSettings_8444k")
+autowrap_mode = 3
+
+[node name="Text2" type="Label" parent="."]
+visible = false
+offset_left = 184.0
+offset_top = 200.0
+offset_right = 1032.0
+offset_bottom = 392.0
+text = "Jacksin has now been demobilised and is struggling to adapt back to civilian life with his family. Unfortunately his Veterans Pension has been drastically reduced due to budget cuts and he can no longer afford the immunosuppressants that keep his body and cybernetics in harmony. Can he learn to take control of himself without his medicine..."
+label_settings = SubResource("LabelSettings_8444k")
+autowrap_mode = 3
+
+[node name="Text3" type="Label" parent="."]
+visible = false
+offset_left = 512.0
+offset_top = 248.0
+offset_right = 696.0
+offset_bottom = 312.0
+text = "and maybe...
+"
+label_settings = SubResource("LabelSettings_8444k")
+autowrap_mode = 3
+
+[node name="Text4" type="Label" parent="."]
+visible = false
+offset_left = 512.0
+offset_top = 248.0
+offset_right = 696.0
+offset_bottom = 312.0
+text = "one day..."
+label_settings = SubResource("LabelSettings_8444k")
+autowrap_mode = 3
+
+[node name="Text5" type="Label" parent="."]
+visible = false
+offset_left = 400.0
+offset_top = 248.0
+offset_right = 912.0
+offset_bottom = 362.0
+text = "start to love his laser again?
+"
+label_settings = SubResource("LabelSettings_8444k")
+autowrap_mode = 3
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
