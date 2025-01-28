@@ -23,10 +23,8 @@ func _process(delta):
 		if is_colliding():
 			$Line2D.points[1] = to_local(get_collision_point())
 			var collidedThing = get_collider()
-			for group in Globals.risk_group:
-				if collidedThing.is_in_group(group):
-					SignalManager.risk_item_lasered.emit(collidedThing)
-					#print("Collided with: ", collidedThing)
+			if collidedThing == Globals.current_risk:
+				SignalManager.risk_item_lasered.emit(collidedThing)
 		else:
 			$Line2D.points[1] = target_position
 	else:
