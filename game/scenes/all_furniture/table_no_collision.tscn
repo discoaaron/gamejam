@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://djc7ymyb3uby5"]
+
+[ext_resource type="Texture2D" uid="uid://c6llv1v0s1rrs" path="res://art/Table.png" id="1_khefe"]
+
+[node name="TableNoCollision" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.3)
+texture = ExtResource("1_khefe")

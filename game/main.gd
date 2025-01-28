@@ -10,11 +10,18 @@ var tv_scene = preload("res://scenes/risk_objects/tv.tscn")
 var risks: Array[Resource] = [heater_scene, lamp_scene, toaster_scene, toilet_scene, tv_scene]
 
 var dad: Node
-var risk: Node
+#var risk: Node
 var originalKeys = ["w", "a", "s", "d", "e", "q", "z"]
 var keysCopy = []
 
 @onready var heartbeatsound: AudioStreamPlayer2D = $Heartbeatsound
+
+@onready var toaster: StaticBody2D = $RiskItems/Toaster
+@onready var toilet: StaticBody2D = $RiskItems/Toilet
+@onready var tv: StaticBody2D = $RiskItems/TV
+@onready var lamp: StaticBody2D = $RiskItems/Lamp
+@onready var heater: StaticBody2D = $RiskItems/Heater
+@onready var start_cooldown: Timer = $StartCooldown
 
 @onready var heartbeat: Timer = $Heartbeat
 
@@ -44,6 +51,8 @@ func _process(delta: float) -> void:
 func start_level() -> void:
 	_spawnDad()
 	_spawnBaby()
+	Globals.move_cooldown = true
+	start_cooldown.start()
 
 func update_score() -> void:
 	ScoreManager.increase_score()
@@ -51,9 +60,9 @@ func update_score() -> void:
 
 func start_next_level() -> void:
 	remove_child(dad)
-	remove_child(risk)
+	#remove_child(risk)
 	dad.queue_free()
-	risk.queue_free()
+	#risk.queue_free()
 	start_level()
 	print("start new level")
 		
@@ -88,39 +97,46 @@ func _spawnBaby() -> void:
 	match riskIndex:
 		0:
 			$Label.text = "Turn off the heater!"
-			risk = heater_scene.instantiate()
+			#risk = heater_scene.instantiate()
+			Globals.current_risk = heater
 		1:
 			$Label.text = "Turn off the lamp!"
-			risk = lamp_scene.instantiate()
+			#risk = lamp_scene.instantiate()
+			Globals.current_risk = lamp
 		2:
 			$Label.text = "Toast is burning!"
-			risk = toaster_scene.instantiate()
+			#risk = toaster_scene.instantiate()
+			Globals.current_risk = toaster
 		3:
 			$Label.text = "Toilet is overflowing!"
-			risk = toilet_scene.instantiate()
+			#risk = toilet_scene.instantiate()
+			Globals.current_risk = toilet
 		4:
 			$Label.text = "TV is melting?!"
-			risk = tv_scene.instantiate()
-
-	var risk_spawn_location = $Dad_Path/DadSpawnLocation
-	risk_spawn_location.progress_ratio = randf()
-	risk.position = risk_spawn_location.position
-	add_child(risk)
+			#risk = tv_scene.instantiate()
+			Globals.current_risk = tv
+	
+	#var risk_spawn_location = $Dad_Path/DadSpawnLocation
+	#risk_spawn_location.progress_ratio = randf()
+	#risk.position = risk_spawn_location.position
+	#add_child(risk)
 
 func game_over_laser(collidedThing) -> void:
-	game_over(str("Game Over\n You lasered the ", collidedThing))
+	var thing_name = str(collidedThing).split(":")[0]
+	game_over(str("Game Over\n You lasered the ", thing_name))
 
 func game_over_dash(collidedThing) -> void:
 	if Globals.dashing:
-		game_over(str("Game Over\n You dashed into the ", collidedThing))
+		var thing_name = str(collidedThing).split(":")[0]
+		game_over(str("Game Over\n You dashed into the ", thing_name))
 
 func game_over(text: String) -> void:
 	$Label.text = text
 	ScoreManager.reset_score()
 	remove_child(dad)
-	remove_child(risk)
+	#remove_child(risk)
 	dad.queue_free()
-	risk.queue_free()
+	#risk.queue_free()
 
 func heart_pulse() -> void:
 	if Globals.heartbeat_pulse_ready:
@@ -130,3 +146,6 @@ func heart_pulse() -> void:
 
 func _on_heartbeat_timeout() -> void:
 	Globals.heartbeat_pulse_ready = true
+
+func _on_start_cooldown_timeout() -> void:
+	Globals.move_cooldown = false

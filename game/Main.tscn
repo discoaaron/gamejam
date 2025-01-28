@@ -13,22 +13,22 @@
 [ext_resource type="PackedScene" uid="uid://bk1ine5xwxmip" path="res://scenes/all_kitchen/k_bflushend.tscn" id="9_8tx62"]
 [ext_resource type="PackedScene" uid="uid://bs7lus22j3wpu" path="res://scenes/risk_objects/toaster.tscn" id="12_arlyk"]
 [ext_resource type="Texture2D" uid="uid://cak5lw2pwd2vk" path="res://art/kitchen/Kitchen Bench Sink.png" id="12_ikxp5"]
-[ext_resource type="PackedScene" path="res://scenes/misc_objects/bed_blue.tscn" id="12_wt4m5"]
+[ext_resource type="PackedScene" uid="uid://c4mtwc7hcwuo0" path="res://scenes/misc_objects/bed_blue.tscn" id="12_wt4m5"]
 [ext_resource type="PackedScene" uid="uid://conjny7l1pn1y" path="res://scenes/all_furniture/chair.tscn" id="13_jkp1c"]
-[ext_resource type="Texture2D" uid="uid://ckrxvmev8n58g" path="res://art/Lamp.png" id="13_nq24u"]
-[ext_resource type="PackedScene" path="res://scenes/risk_objects/toilet.tscn" id="13_wv7pw"]
-[ext_resource type="PackedScene" path="res://scenes/risk_objects/tv.tscn" id="14_br2es"]
-[ext_resource type="PackedScene" path="res://scenes/misc_objects/bed_single.tscn" id="14_cht8k"]
+[ext_resource type="PackedScene" uid="uid://b3v76c1kw8qh8" path="res://scenes/risk_objects/toilet.tscn" id="13_wv7pw"]
+[ext_resource type="PackedScene" uid="uid://d10q63frccgx" path="res://scenes/risk_objects/tv.tscn" id="14_br2es"]
+[ext_resource type="PackedScene" uid="uid://bw624hyilbo88" path="res://scenes/misc_objects/bed_single.tscn" id="14_cht8k"]
 [ext_resource type="PackedScene" uid="uid://xgaahnhjccj" path="res://scenes/all_furniture/table.tscn" id="14_hcyx7"]
 [ext_resource type="AudioStream" uid="uid://d0dyiupatsmsv" path="res://sound/418866__name__heartbeat-loop.wav" id="15_k8mtv"]
+[ext_resource type="PackedScene" uid="uid://djc7ymyb3uby5" path="res://scenes/all_furniture/table_no_collision.tscn" id="15_ofy62"]
 [ext_resource type="PackedScene" uid="uid://t50cjbmojbxg" path="res://scenes/hud/hud.tscn" id="16_2j5fn"]
-[ext_resource type="PackedScene" path="res://scenes/risk_objects/lamp.tscn" id="18_0i2p2"]
+[ext_resource type="PackedScene" uid="uid://cj54jyhwwok70" path="res://scenes/risk_objects/lamp.tscn" id="18_0i2p2"]
 [ext_resource type="PackedScene" uid="uid://c1klbkjabo2bj" path="res://scenes/misc_objects/bathroom_sink.tscn" id="18_ooh6d"]
-[ext_resource type="PackedScene" path="res://scenes/risk_objects/heater.tscn" id="19_liinm"]
+[ext_resource type="PackedScene" uid="uid://kyhpwbcf6ct6" path="res://scenes/risk_objects/heater.tscn" id="19_liinm"]
 [ext_resource type="PackedScene" uid="uid://dmfyuh7mc4jvs" path="res://scenes/misc_objects/couch.tscn" id="20_rlsls"]
 [ext_resource type="FontFile" uid="uid://cw6g0hytutgdl" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="25_wry1b"]
 [ext_resource type="Texture2D" uid="uid://bsbnwkumt6a7e" path="res://art/Plant.png" id="27_wgpcm"]
-[ext_resource type="PackedScene" path="res://scenes/misc_objects/bookshelf.tscn" id="27_y54mv"]
+[ext_resource type="PackedScene" uid="uid://4q46ugr14c8l" path="res://scenes/misc_objects/bookshelf.tscn" id="27_y54mv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3y05j"]
 font = ExtResource("25_wry1b")
@@ -288,30 +288,8 @@ rotation = -1.5708
 [node name="bedroomitems" type="Node" parent="."]
 
 [node name="BedBlue" parent="bedroomitems" instance=ExtResource("12_wt4m5")]
-position = Vector2(199, 130)
-
-[node name="Table2" parent="bedroomitems" instance=ExtResource("14_hcyx7")]
-position = Vector2(110, 60)
-rotation = 1.5708
-scale = Vector2(0.5, 0.3)
-
-[node name="Table4" parent="bedroomitems" instance=ExtResource("14_hcyx7")]
-position = Vector2(635, 142)
-rotation = 1.5708
-scale = Vector2(0.5, 0.3)
-
-[node name="Table3" parent="bedroomitems" instance=ExtResource("14_hcyx7")]
-position = Vector2(287, 59)
-rotation = -1.5708
-scale = Vector2(0.5, 0.3)
-
-[node name="Lamp" type="Sprite2D" parent="bedroomitems"]
-position = Vector2(110, 61)
-texture = ExtResource("13_nq24u")
-
-[node name="Lamp2" type="Sprite2D" parent="bedroomitems"]
-position = Vector2(287, 61)
-texture = ExtResource("13_nq24u")
+position = Vector2(199, 126)
+scale = Vector2(1, 0.95)
 
 [node name="BedSingle" parent="bedroomitems" instance=ExtResource("14_cht8k")]
 position = Vector2(562, 67)
@@ -320,6 +298,15 @@ rotation = 1.5708
 [node name="BedSingle2" parent="bedroomitems" instance=ExtResource("14_cht8k")]
 position = Vector2(562, 221)
 rotation = 1.5708
+
+[node name="TableNoCollision" parent="bedroomitems" instance=ExtResource("15_ofy62")]
+position = Vector2(107, 57)
+
+[node name="TableNoCollision2" parent="bedroomitems" instance=ExtResource("15_ofy62")]
+position = Vector2(290, 57)
+
+[node name="TableNoCollision3" parent="bedroomitems" instance=ExtResource("15_ofy62")]
+position = Vector2(633, 142)
 
 [node name="RiskItems" type="Node" parent="."]
 
@@ -376,13 +363,22 @@ volume_db = -6.215
 wait_time = 0.8
 
 [node name="HUD" parent="." instance=ExtResource("16_2j5fn")]
+z_index = 3
 
 [node name="Label" type="Label" parent="."]
 top_level = true
-offset_left = 317.0
-offset_top = 354.0
-offset_right = 357.0
-offset_bottom = 414.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 12.0
+offset_right = 20.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
 label_settings = SubResource("LabelSettings_3y05j")
 
 [node name="Table5" parent="." instance=ExtResource("14_hcyx7")]
@@ -392,11 +388,6 @@ scale = Vector2(0.5, 0.3)
 
 [node name="BathroomSink" parent="." instance=ExtResource("18_ooh6d")]
 position = Vector2(628, 513)
-
-[node name="Table" parent="." instance=ExtResource("14_hcyx7")]
-position = Vector2(129, 590)
-rotation = 1.5708
-scale = Vector2(0.5, 0.5)
 
 [node name="Couch" parent="." instance=ExtResource("20_rlsls")]
 position = Vector2(131, 387)
@@ -418,4 +409,13 @@ curve = SubResource("Curve2D_a7r28")
 position = Vector2(91, 114)
 rotation = 1.5708
 
+[node name="TableNoCollision" parent="." instance=ExtResource("15_ofy62")]
+position = Vector2(129, 594)
+scale = Vector2(1.4, 1.4)
+
+[node name="StartCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="timeout" from="Heartbeat" to="." method="_on_heartbeat_timeout"]
+[connection signal="timeout" from="StartCooldown" to="." method="_on_start_cooldown_timeout"]

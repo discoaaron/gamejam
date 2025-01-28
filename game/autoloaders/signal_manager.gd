@@ -22,6 +22,7 @@ signal risk_item_lasered(collidedThing)
 signal risk_item_dashed(collidedThing)
 signal baby_saved
 signal win_condition_achieved
+signal current_risk_item(current_risk)
 
 signal chair_enter
 signal chair_exit

@@ -12,3 +12,5 @@ var lamp_action_ready: bool = false
 var heater_action_ready: bool = false
 var dashing: bool = false
 var risk_group = ["RiskItems"]
+var move_cooldown: bool = true
+var current_risk:StaticBody2D = null

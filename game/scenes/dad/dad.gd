@@ -35,46 +35,71 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_pressed(laser) and not sitting:
-		fire_laser(self.position, rotation_degrees)
-	if Input.is_action_just_pressed(action) and not sitting:
-		if Globals.action_ready:
-			print("you win!!")
-			SignalManager.baby_saved.emit()
-		elif Globals.chair_ready:
-			print("in the chair")
-			sit_in_chair(Globals.target_chair)
-		elif Globals.toaster_action_ready:
-			print("Toaster off")
-			SignalManager.win_condition_achieved.emit()
-		elif Globals.toilet_action_ready:
-			print("Toilet unblocked")
-			SignalManager.win_condition_achieved.emit()
-		elif Globals.tv_action_ready:
-			print("TV off")
-			SignalManager.win_condition_achieved.emit()
-		elif Globals.lamp_action_ready:
-			print("Lamp off")
-			SignalManager.win_condition_achieved.emit()
-		else:
-			print("not quite!")
-	if Input.is_action_just_pressed(dash) and not sitting:
-		dash_action()
-	if Input.is_action_just_pressed(action) and sitting and not sitting_timer_bool:
-		exit_chair(Globals.target_chair)
-	dash_gameover_check(dad_hands)
+	if not Globals.move_cooldown:
+		if Input.is_action_pressed(laser) and not sitting:
+			fire_laser(self.position, rotation_degrees)
+		if Input.is_action_just_pressed(action) and not sitting:
+			#if Globals.action_ready:
+				#print("you win!!")
+				#SignalManager.baby_saved.emit()
+			if Globals.chair_ready:
+				print("in the chair")
+				sit_in_chair(Globals.target_chair)
+			elif Globals.toaster_action_ready and dad_hands != null:
+				var parent = dad_hands.get_parent()
+				if parent == Globals.current_risk:
+					print("Toaster off")
+					SignalManager.win_condition_achieved.emit()
+				else:
+					print("Wrong risk item!")
+			elif Globals.toilet_action_ready and dad_hands != null:
+				var parent = dad_hands.get_parent()
+				if parent == Globals.current_risk:
+					print("Toilet unblocked")
+					SignalManager.win_condition_achieved.emit()
+				else:
+					print("Wrong risk item!")
+			elif Globals.tv_action_ready and dad_hands != null:
+				var parent = dad_hands.get_parent()
+				if parent == Globals.current_risk:
+					print("TV off")
+					SignalManager.win_condition_achieved.emit()
+				else:
+					print("Wrong risk item!")
+			elif Globals.lamp_action_ready and dad_hands != null:
+				var parent = dad_hands.get_parent()
+				if parent == Globals.current_risk:
+					print("Lamp off")
+					SignalManager.win_condition_achieved.emit()
+				else:
+					print("Wrong risk item!")
+			elif Globals.heater_action_ready and dad_hands != null:
+				var parent = dad_hands.get_parent()
+				if parent == Globals.current_risk:
+					print("Heater off")
+					SignalManager.win_condition_achieved.emit()
+				else:
+					print("Wrong risk item!")
+			else:
+				print("not quite!")
+		if Input.is_action_just_pressed(dash) and not sitting:
+			dash_action()
+		if Input.is_action_just_pressed(action) and sitting and not sitting_timer_bool:
+			exit_chair(Globals.target_chair)
+		dash_gameover_check(dad_hands)
 
 func _physics_process(delta: float) -> void:	
-	if not Globals.dashing:
-		velocity = Vector2.ZERO
-		movement_input_check()
-		velocity = velocity.normalized() * speed
-		move_and_collide(velocity * delta)
-	if Globals.dashing:
-		var direction = rotation
-		var vect = Vector2.from_angle(direction)
-		var dash_velocity = vect * dash_speed
-		move_and_collide(dash_velocity * delta)
+	if not Globals.move_cooldown:
+		if not Globals.dashing:
+			velocity = Vector2.ZERO
+			movement_input_check()
+			velocity = velocity.normalized() * speed
+			move_and_collide(velocity * delta)
+		if Globals.dashing:
+			var direction = rotation
+			var vect = Vector2.from_angle(direction)
+			var dash_velocity = vect * dash_speed
+			move_and_collide(dash_velocity * delta)
 
 func movement_input_check() -> void:
 	if Input.is_action_pressed(up) and not sitting:
