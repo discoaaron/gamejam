@@ -1,0 +1,118 @@
+[gd_scene load_steps=4 format=3 uid="uid://ibfrg6i1f37e"]
+
+[ext_resource type="Script" path="res://scenes/hud/controls.gd" id="1_nhrwi"]
+[ext_resource type="FontFile" uid="uid://cw6g0hytutgdl" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="2_srad6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e80jw"]
+font = ExtResource("2_srad6")
+font_size = 40
+
+[node name="Controls" type="Node2D"]
+script = ExtResource("1_nhrwi")
+
+[node name="LaserLabel" type="Label" parent="."]
+offset_left = 59.0
+offset_top = -62.0
+offset_right = 186.0
+offset_bottom = -13.0
+text = "Laser:"
+label_settings = SubResource("LabelSettings_e80jw")
+metadata/_edit_use_anchors_ = true
+
+[node name="LaserKey" type="Label" parent="LaserLabel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.661417
+anchor_top = 0.0408163
+anchor_right = 0.732283
+anchor_bottom = 0.571429
+offset_left = 54.0
+offset_right = 68.0
+offset_bottom = 23.0
+text = "Q"
+label_settings = SubResource("LabelSettings_e80jw")
+metadata/_edit_use_anchors_ = true
+
+[node name="DashLabel" type="Label" parent="."]
+offset_left = 60.0
+offset_top = -25.0
+offset_right = 165.0
+offset_bottom = 24.0
+text = "Dash:"
+label_settings = SubResource("LabelSettings_e80jw")
+metadata/_edit_use_anchors_ = true
+
+[node name="DashKey" type="Label" parent="DashLabel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.790476
+anchor_top = 0.0408163
+anchor_right = 0.790476
+anchor_bottom = 0.571429
+offset_left = 55.0
+offset_top = 1.0
+offset_right = 86.0
+offset_bottom = 24.0
+text = "Z"
+label_settings = SubResource("LabelSettings_e80jw")
+metadata/_edit_use_anchors_ = true
+
+[node name="ActionLabel" type="Label" parent="."]
+offset_left = 58.0
+offset_top = 8.0
+offset_right = 201.0
+offset_bottom = 57.0
+text = "Action: "
+label_settings = SubResource("LabelSettings_e80jw")
+metadata/_edit_use_anchors_ = true
+
+[node name="ActionKey" type="Label" parent="ActionLabel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.587413
+anchor_top = 0.0408163
+anchor_right = 0.587413
+anchor_bottom = 0.571429
+offset_left = 55.0
+offset_top = 1.0
+offset_right = 86.0
+offset_bottom = 24.0
+text = "E"
+label_settings = SubResource("LabelSettings_e80jw")
+metadata/_edit_use_anchors_ = true
+
+[node name="UpKey" type="Label" parent="."]
+offset_left = -17.0
+offset_top = -60.0
+offset_right = 14.0
+offset_bottom = -11.0
+text = "W"
+label_settings = SubResource("LabelSettings_e80jw")
+metadata/_edit_use_anchors_ = true
+
+[node name="DownKey" type="Label" parent="."]
+offset_left = -13.0
+offset_top = 6.0
+offset_right = 10.0
+offset_bottom = 55.0
+text = "S"
+label_settings = SubResource("LabelSettings_e80jw")
+metadata/_edit_use_anchors_ = true
+
+[node name="LeftKey" type="Label" parent="."]
+offset_left = -43.0
+offset_top = -27.0
+offset_right = -20.0
+offset_bottom = 22.0
+text = "A"
+label_settings = SubResource("LabelSettings_e80jw")
+metadata/_edit_use_anchors_ = true
+
+[node name="RightKey" type="Label" parent="."]
+offset_left = 15.0
+offset_top = -25.0
+offset_right = 38.0
+offset_bottom = 24.0
+text = "D"
+label_settings = SubResource("LabelSettings_e80jw")
+metadata/_edit_use_anchors_ = true
