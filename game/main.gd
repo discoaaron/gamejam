@@ -89,23 +89,17 @@ func get_dad_buttons() -> void:
 			set_all_hud_controls()
 		1: 
 			# left and right swapped
-			dad.up = "w"
-			dad.down = "s"
+			set_default_controls()
 			dad.left = "d"
 			dad.right = "a"
-			dad.action = "e"
-			dad.laser = "q"
-			dad.dash = "f"
 			set_all_hud_controls()
 		2: 
 			# left and right AND up and action switched
-			dad.up = "f"
-			dad.down = "s"
+			set_default_controls()
 			dad.left = "d"
 			dad.right = "a"
+			dad.up = "e"
 			dad.action = "w"
-			dad.laser = "q"
-			dad.dash = "e"
 			set_all_hud_controls()
 		_:
 			# fully random
