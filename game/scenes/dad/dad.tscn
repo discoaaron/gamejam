@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://7l4sbhfl0wks"]
+[gd_scene load_steps=9 format=3 uid="uid://7l4sbhfl0wks"]
 
 [ext_resource type="Script" path="res://scenes/dad/dad.gd" id="1_6knfq"]
 [ext_resource type="Texture2D" uid="uid://8mkdef3du7q0" path="res://art/Dad.png" id="1_v5e8r"]
 [ext_resource type="AudioStream" uid="uid://bpjqiqcveuvfo" path="res://sound/406747__kretopi__steponwood-013.wav" id="3_71toy"]
 [ext_resource type="AudioStream" uid="uid://b8y0jbbvqsite" path="res://sound/742832__sadiquecat__woosh-metal-tea-strainer-1.wav" id="4_6w2tv"]
+[ext_resource type="AudioStream" uid="uid://b2a2xwtiwk3bj" path="res://sound/voicelines/Chair 1.wav" id="5_3gpcg"]
+[ext_resource type="AudioStream" uid="uid://bfbot6v75hbo6" path="res://sound/voicelines/Chair 2.wav" id="6_sjcjo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bw4p8"]
 radius = 2.90172
@@ -47,6 +49,16 @@ stream = ExtResource("4_6w2tv")
 
 [node name="SittingTimer" type="Timer" parent="."]
 wait_time = 0.2
+
+[node name="audio_chair" type="Node" parent="."]
+
+[node name="chair1" type="AudioStreamPlayer2D" parent="audio_chair"]
+stream = ExtResource("5_3gpcg")
+volume_db = -10.0
+
+[node name="chair2" type="AudioStreamPlayer2D" parent="audio_chair"]
+stream = ExtResource("6_sjcjo")
+volume_db = -10.0
 
 [connection signal="area_entered" from="Hands_Collision" to="." method="_on_hands_collision_area_entered"]
 [connection signal="area_exited" from="Hands_Collision" to="." method="_on_hands_collision_area_exited"]

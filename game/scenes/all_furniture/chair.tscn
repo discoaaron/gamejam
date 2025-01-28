@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://conjny7l1pn1y"]
+[gd_scene load_steps=7 format=3 uid="uid://conjny7l1pn1y"]
 
 [ext_resource type="Script" path="res://scenes/all_furniture/chair.gd" id="1_avkcr"]
 [ext_resource type="Texture2D" uid="uid://dso36fyc6mu3t" path="res://art/Chair.png" id="1_cocpp"]
+[ext_resource type="AudioStream" uid="uid://b2a2xwtiwk3bj" path="res://sound/voicelines/Chair 1.wav" id="3_5mfxw"]
+[ext_resource type="AudioStream" uid="uid://bfbot6v75hbo6" path="res://sound/voicelines/Chair 2.wav" id="4_p83an"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5vlu"]
 size = Vector2(44, 48)
@@ -22,6 +24,14 @@ shape = SubResource("RectangleShape2D_j5vlu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chair_area"]
 shape = SubResource("CircleShape2D_smv6a")
+
+[node name="ChairSoundOne" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_5mfxw")
+volume_db = -10.0
+
+[node name="ChairSoundTwo" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_p83an")
+volume_db = -10.0
 
 [connection signal="area_entered" from="Chair_area" to="." method="_on_chair_area_entered"]
 [connection signal="area_exited" from="Chair_area" to="." method="_on_chair_area_exited"]

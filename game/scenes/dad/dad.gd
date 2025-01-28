@@ -15,6 +15,9 @@ var dad_hands: Area2D = null
 @export var action = "not_set"
 @export var laser = "not_set"
 @export var dash = "not_set"
+
+@onready var chair_1: AudioStreamPlayer2D = $audio_chair/chair1
+@onready var chair_2: AudioStreamPlayer2D = $audio_chair/chair2
 @onready var timer: Timer = $Timer
 @onready var audio_steps: AudioStreamPlayer2D = $audio_steps
 @onready var step_timer: Timer = $audio_steps/Timer
