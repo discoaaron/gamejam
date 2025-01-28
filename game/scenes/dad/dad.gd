@@ -183,7 +183,7 @@ func on_chair_exit_area(area: Area2D) -> void:
 func dash_gameover_check(area: Area2D) -> void:
 	if area != null:
 		var parent = area.get_parent()
-		if parent != null and Globals.dashing and parent.is_in_group(Globals.risk_group[0]):
+		if parent != null and Globals.dashing and parent == Globals.current_risk:
 			SignalManager.risk_item_dashed.emit(parent)
 
 func _on_hands_collision_area_entered(area: Area2D) -> void:
