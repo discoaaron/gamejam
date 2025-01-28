@@ -16,12 +16,18 @@ var dad_hands: Area2D = null
 @export var laser = "not_set"
 @export var dash = "not_set"
 
-@onready var chair_1: AudioStreamPlayer2D = $audio_chair/chair1
-@onready var chair_2: AudioStreamPlayer2D = $audio_chair/chair2
+#sounds
+@onready var chair_1: AudioStreamPlayer = $audio_chair/chair1
+@onready var chair_2: AudioStreamPlayer = $audio_chair/chair2
+@onready var dash_1: AudioStreamPlayer = $audio_dash2/dash1
+@onready var dash_2: AudioStreamPlayer = $audio_dash2/dash2
+@onready var dash_3: AudioStreamPlayer = $audio_dash2/dash3
+
+
 @onready var timer: Timer = $Timer
 @onready var audio_steps: AudioStreamPlayer2D = $audio_steps
 @onready var step_timer: Timer = $audio_steps/Timer
-@onready var audio_dash: AudioStreamPlayer2D = $audio_dash
+
 @onready var sitting_timer: Timer = $SittingTimer
 
 var laser_scene = preload("res://scenes/laser/laser.tscn")
@@ -47,6 +53,7 @@ func _process(delta: float) -> void:
 				#SignalManager.baby_saved.emit()
 			if Globals.chair_ready:
 				print("in the chair")
+				
 				sit_in_chair(Globals.target_chair)
 			elif Globals.toaster_action_ready and dad_hands != null:
 				var parent = dad_hands.get_parent()
@@ -133,8 +140,12 @@ func on_baby_exit(area: Area2D) -> void:
 
 func dash_action() -> void:
 	Globals.dashing = true
-	audio_dash.play()
+	dash_sound()
 	timer.start()
+
+func dash_sound() -> void:
+	var sounds: Array[AudioStreamPlayer] = [dash_1, dash_2, dash_3]
+	play_random_sound(sounds)
 
 func _on_timer_timeout() -> void:
 	Globals.dashing = false
@@ -164,12 +175,18 @@ func sit_in_chair(chair: StaticBody2D) -> void:
 	sitting = true
 	sitting_timer_bool = true
 	sitting_timer.start()
+	sit_in_chair_sound()
 	print("Dad is now sitting in chair at:", position)
 
 func exit_chair(chair: StaticBody2D) -> void:
 	chair.get_node("CollisionShape2D").set_deferred("disabled", false)
 	sitting = false
 	print("Dad is now exiting the chair at:", position)
+
+func sit_in_chair_sound() -> void:
+	var sounds: Array[AudioStreamPlayer] = [chair_1, chair_2]
+	play_random_sound(sounds)
+
 
 func _on_sitting_timer_timeout() -> void:
 	sitting_timer_bool = false
@@ -196,3 +213,9 @@ func _on_hands_collision_area_entered(area: Area2D) -> void:
 func _on_hands_collision_area_exited(area: Area2D) -> void:
 	dad_hands = null
 	print("dad hands free")
+
+
+func play_random_sound(sounds: Array[AudioStreamPlayer]) -> void:
+	var random_index = randi_range(0, sounds.size() - 1)
+	var sound_to_play = sounds[random_index]
+	sound_to_play.play()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://7l4sbhfl0wks"]
+[gd_scene load_steps=12 format=3 uid="uid://7l4sbhfl0wks"]
 
 [ext_resource type="Script" path="res://scenes/dad/dad.gd" id="1_6knfq"]
 [ext_resource type="Texture2D" uid="uid://8mkdef3du7q0" path="res://art/Dad.png" id="1_v5e8r"]
@@ -6,6 +6,9 @@
 [ext_resource type="AudioStream" uid="uid://b8y0jbbvqsite" path="res://sound/742832__sadiquecat__woosh-metal-tea-strainer-1.wav" id="4_6w2tv"]
 [ext_resource type="AudioStream" uid="uid://b2a2xwtiwk3bj" path="res://sound/voicelines/Chair 1.wav" id="5_3gpcg"]
 [ext_resource type="AudioStream" uid="uid://bfbot6v75hbo6" path="res://sound/voicelines/Chair 2.wav" id="6_sjcjo"]
+[ext_resource type="AudioStream" uid="uid://c7ohy57bp0lth" path="res://sound/voicelines/Dash.wav" id="7_qrv2f"]
+[ext_resource type="AudioStream" uid="uid://cjij43kaviqnt" path="res://sound/voicelines/Dash 2.wav" id="8_pb807"]
+[ext_resource type="AudioStream" uid="uid://dstibv1yysmpq" path="res://sound/voicelines/Dash 3.wav" id="9_vhjtg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bw4p8"]
 radius = 2.90172
@@ -52,13 +55,27 @@ wait_time = 0.2
 
 [node name="audio_chair" type="Node" parent="."]
 
-[node name="chair1" type="AudioStreamPlayer2D" parent="audio_chair"]
+[node name="chair1" type="AudioStreamPlayer" parent="audio_chair"]
 stream = ExtResource("5_3gpcg")
-volume_db = -10.0
+volume_db = -15.0
 
-[node name="chair2" type="AudioStreamPlayer2D" parent="audio_chair"]
+[node name="chair2" type="AudioStreamPlayer" parent="audio_chair"]
 stream = ExtResource("6_sjcjo")
-volume_db = -10.0
+volume_db = -15.0
+
+[node name="audio_dash2" type="Node" parent="."]
+
+[node name="dash1" type="AudioStreamPlayer" parent="audio_dash2"]
+stream = ExtResource("7_qrv2f")
+volume_db = -15.0
+
+[node name="dash2" type="AudioStreamPlayer" parent="audio_dash2"]
+stream = ExtResource("8_pb807")
+volume_db = -18.0
+
+[node name="dash3" type="AudioStreamPlayer" parent="audio_dash2"]
+stream = ExtResource("9_vhjtg")
+volume_db = -18.0
 
 [connection signal="area_entered" from="Hands_Collision" to="." method="_on_hands_collision_area_entered"]
 [connection signal="area_exited" from="Hands_Collision" to="." method="_on_hands_collision_area_exited"]
