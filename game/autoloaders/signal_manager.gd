@@ -18,6 +18,10 @@ signal heater_action_exit
 signal baby_enter
 signal baby_exit
 
+signal laser_fired
+signal dash_dashed
+signal action_actioned
+
 signal risk_item_lasered(collidedThing)
 signal risk_item_dashed(collidedThing)
 signal baby_saved
