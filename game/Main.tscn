@@ -408,8 +408,7 @@ rotation = -1.5708
 scale = Vector2(0.8, 0.8)
 
 [node name="Bookshelf2" parent="." instance=ExtResource("27_y54mv")]
-position = Vector2(58, 89)
-rotation = 3.14159
+position = Vector2(337, 85)
 scale = Vector2(0.8, 0.8)
 
 [node name="Plant" type="Sprite2D" parent="."]
@@ -451,5 +450,9 @@ volume_db = -18.0
 stream = ExtResource("34_rvekp")
 volume_db = -18.0
 
+[node name="Level_Timer" type="Timer" parent="."]
+wait_time = 40.0
+
 [connection signal="timeout" from="Heartbeat" to="." method="_on_heartbeat_timeout"]
 [connection signal="timeout" from="StartCooldown" to="." method="_on_start_cooldown_timeout"]
+[connection signal="timeout" from="Level_Timer" to="." method="_on_level_timer_timeout"]

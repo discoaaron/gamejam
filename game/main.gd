@@ -13,6 +13,7 @@ var keysCopy = []
 @onready var take_a_step_audio: AudioStreamPlayer = $TakeAStepAudio
 @onready var success_audio: AudioStreamPlayer = $SuccessAudio
 @onready var success_2_audio: AudioStreamPlayer = $Success2Audio
+@onready var level_timer: Timer = $Level_Timer
 
 @onready var toaster: StaticBody2D = $RiskItems/Toaster
 @onready var toilet: StaticBody2D = $RiskItems/Toilet
@@ -26,6 +27,8 @@ func _ready() -> void:
 	SignalManager.risk_item_dashed.connect(game_over_dash)
 	SignalManager.baby_saved.connect(update_score)
 	SignalManager.win_condition_achieved.connect(update_score)
+	SignalManager.update_timer.connect(update_timer)
+	
 	
 	# HUD only
 	SignalManager.laser_fired.connect(set_hud_controls_laser)
@@ -43,6 +46,7 @@ func _process(delta: float) -> void:
 		set_default_controls()
 		set_all_hud_controls()
 	heart_pulse()
+	update_timer()
 
 func set_default_controls() -> void:
 		dad.up = "w"
@@ -58,6 +62,8 @@ func start_level() -> void:
 	_spawnBaby()
 	Globals.move_cooldown = true
 	start_cooldown.start()
+	set_level_timer()
+	level_timer.start()
 
 func update_score() -> void:
 	ScoreManager.increase_score()
@@ -172,11 +178,15 @@ func game_over_dash(collidedThing) -> void:
 		var thing_name = str(collidedThing).split(":")[0]
 		game_over(str("Game Over\n You dashed into the ", thing_name))
 
+func game_over_timer() -> void:
+	game_over(str("Game Over\n You ran out of time!"))
+
 func game_over(text: String) -> void:
 	$Label.text = text
 	ScoreManager.reset_score()
 	remove_child(dad)
 	dad.queue_free()
+	level_timer.stop()
 
 func heart_pulse() -> void:
 	if Globals.heartbeat_pulse_ready:
@@ -189,3 +199,19 @@ func _on_heartbeat_timeout() -> void:
 
 func _on_start_cooldown_timeout() -> void:
 	Globals.move_cooldown = false
+
+func set_level_timer() -> void:
+	var current_level_time = Globals.game_timer - ScoreManager.score
+	if current_level_time >= 15:
+		level_timer.wait_time = current_level_time
+	else:
+		level_timer.wait_time = 15
+	print("Level timer is: ", level_timer.wait_time)
+
+func update_timer() -> void:
+	if level_timer.time_left > 0:
+		var time_left = level_timer.time_left
+		SignalManager.update_timer.emit(time_left)
+
+func _on_level_timer_timeout() -> void:
+	game_over_timer()
