@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://du5fve48kub6m"]
+[gd_scene load_steps=3 format=3 uid="uid://du5fve48kub6m"]
 
 [ext_resource type="Script" path="res://scenes/laser/laser.gd" id="1_gcgly"]
+[ext_resource type="AudioStream" uid="uid://o5a2rc4eev52" path="res://sound/voicelines/Laser.wav" id="2_6y1r7"]
 
 [node name="RayCast2D" type="RayCast2D"]
 z_index = 2
@@ -9,3 +10,7 @@ script = ExtResource("1_gcgly")
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, 48)
 default_color = Color(1, 0, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_6y1r7")
+volume_db = -18.0
