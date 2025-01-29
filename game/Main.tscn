@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://xwxup6f3hc8h"]
+[gd_scene load_steps=40 format=3 uid="uid://xwxup6f3hc8h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m74ch"]
 [ext_resource type="PackedScene" uid="uid://dre28xt7mpcfn" path="res://scenes/all_walls/wallcorner.tscn" id="2_iwlok"]
@@ -34,6 +34,9 @@
 [ext_resource type="AudioStream" uid="uid://c7p5s8iqhx7ao" path="res://sound/voicelines/Encourage.wav" id="32_5ixlc"]
 [ext_resource type="AudioStream" uid="uid://cfanv8ap8b5e3" path="res://sound/voicelines/Success.wav" id="33_wymg1"]
 [ext_resource type="AudioStream" uid="uid://tb4isxxvpow2" path="res://sound/voicelines/Success 2.wav" id="34_rvekp"]
+[ext_resource type="AudioStream" uid="uid://dpjprtu47dohw" path="res://sound/voicelines/No again.wav" id="35_skojw"]
+[ext_resource type="AudioStream" uid="uid://bbvle2ji0kyuo" path="res://sound/voicelines/I smell sausages.wav" id="35_uotw6"]
+[ext_resource type="AudioStream" uid="uid://dh3osjujikjs4" path="res://sound/voicelines/What's cooking.wav" id="36_hmbn8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3y05j"]
 font = ExtResource("25_wry1b")
@@ -448,6 +451,18 @@ volume_db = -18.0
 
 [node name="Success2Audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("34_rvekp")
+volume_db = -18.0
+
+[node name="ISmellSausAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("35_uotw6")
+volume_db = -18.0
+
+[node name="WhatsCookingAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("36_hmbn8")
+volume_db = -18.0
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("35_skojw")
 volume_db = -18.0
 
 [node name="Level_Timer" type="Timer" parent="."]

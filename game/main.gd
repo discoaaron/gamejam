@@ -7,6 +7,8 @@ var dad: Node
 var originalKeys = ["w", "a", "s", "d", "e", "q", "f"]
 var keysCopy = []
 
+var last_10_secs_audio = false
+
 @onready var heartbeat: Timer = $Heartbeat
 @onready var heartbeatsound: AudioStreamPlayer2D = $Heartbeatsound
 @onready var confused_audio: AudioStreamPlayer = $ConfusedAudio
@@ -14,6 +16,10 @@ var keysCopy = []
 @onready var success_audio: AudioStreamPlayer = $SuccessAudio
 @onready var success_2_audio: AudioStreamPlayer = $Success2Audio
 @onready var level_timer: Timer = $Level_Timer
+@onready var game_over_audio: AudioStreamPlayer = $GameOver
+@onready var whats_cooking_audio: AudioStreamPlayer = $WhatsCookingAudio
+@onready var i_smell_saus_audio: AudioStreamPlayer = $ISmellSausAudio
+
 
 @onready var toaster: StaticBody2D = $RiskItems/Toaster
 @onready var toilet: StaticBody2D = $RiskItems/Toilet
@@ -64,6 +70,7 @@ func start_level() -> void:
 	start_cooldown.start()
 	set_level_timer()
 	level_timer.start()
+	
 
 func update_score() -> void:
 	ScoreManager.increase_score()
@@ -72,6 +79,7 @@ func update_score() -> void:
 func start_next_level() -> void:	
 	remove_child(dad)
 	dad.queue_free()
+	last_10_secs_audio = false
 	# show between level 'thing' here?
 	start_level()
 		
@@ -187,6 +195,7 @@ func game_over(text: String) -> void:
 	remove_child(dad)
 	dad.queue_free()
 	level_timer.stop()
+	game_over_audio.play()
 
 func heart_pulse() -> void:
 	if Globals.heartbeat_pulse_ready:
@@ -212,6 +221,14 @@ func update_timer() -> void:
 	if level_timer.time_left > 0:
 		var time_left = level_timer.time_left
 		SignalManager.update_timer.emit(time_left)
+	if level_timer.time_left < 10 and not last_10_secs_audio:
+		last_10_secs_audio = true
+		var rand_num = randi_range(1,2)
+		print("Current risk is: ", Globals.current_risk.name)
+		if rand_num == 1 and Globals.current_risk.name != "Toilet":
+			whats_cooking_audio.play()
+		elif rand_num == 2 and Globals.current_risk.name != "Toilet":
+			i_smell_saus_audio.play()
 
 func _on_level_timer_timeout() -> void:
 	game_over_timer()
