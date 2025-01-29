@@ -1,7 +1,7 @@
 extends StaticBody2D
 
-@onready var chair_sound_one: AudioStreamPlayer2D = $ChairSoundOne
-@onready var chair_sound_two: AudioStreamPlayer2D = $ChairSoundTwo
+#@onready var chair_sound_one: AudioStreamPlayer2D = $ChairSoundOne
+#@onready var chair_sound_two: AudioStreamPlayer2D = $ChairSoundTwo
 
 
 func _on_chair_area_entered(area: Area2D) -> void:

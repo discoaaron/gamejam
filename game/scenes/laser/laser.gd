@@ -8,7 +8,6 @@ var shoot = false
 var active = false
 var is_sound_playing = false
 @export var laser_direction: Vector2 = Vector2.RIGHT  # Direction the laser fires
-@onready var collision = $Line2D/DamageArea/CollisionShape2D
 @onready var laser_sound: AudioStreamPlayer = $AudioStreamPlayer
 
 @export var firing = false
