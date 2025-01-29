@@ -14,3 +14,8 @@ default_color = Color(1, 0, 0, 1)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_6y1r7")
 volume_db = -18.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

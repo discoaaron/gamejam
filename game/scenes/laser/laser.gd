@@ -29,7 +29,8 @@ func _process(delta):
 			$Line2D.points[1] = to_local(get_collision_point())
 			var collidedThing = get_collider()
 			if collidedThing == Globals.current_risk:
-				SignalManager.risk_item_lasered.emit(collidedThing)
+				if($Timer.is_stopped()):
+					$Timer.start() #gives the player a small chance to save it
 		else:
 			$Line2D.points[1] = target_position
 	else:
@@ -38,3 +39,8 @@ func _process(delta):
 			is_sound_playing = false
 		$Line2D.visible = false
 		
+func _on_timer_timeout() -> void:
+	if firing && is_colliding():
+		var collidedThing = get_collider()
+		if collidedThing == Globals.current_risk:
+			SignalManager.risk_item_lasered.emit(collidedThing)
