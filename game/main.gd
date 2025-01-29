@@ -33,7 +33,7 @@ func _ready() -> void:
 	SignalManager.risk_item_dashed.connect(game_over_dash)
 	SignalManager.baby_saved.connect(update_score)
 	SignalManager.win_condition_achieved.connect(update_score)
-	SignalManager.update_timer.connect(update_timer)
+	#SignalManager.update_timer.connect(update_timer)
 	
 	
 	# HUD only
