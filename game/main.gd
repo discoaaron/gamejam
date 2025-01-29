@@ -41,6 +41,7 @@ func _ready() -> void:
 	SignalManager.action_actioned.connect(set_hud_controls_action)
 	SignalManager.dash_dashed.connect(set_hud_controls_dash)
 	
+	ScoreManager.reset_score()
 	start_level()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -191,7 +192,6 @@ func game_over_timer() -> void:
 
 func game_over(text: String) -> void:
 	$Label.text = text
-	ScoreManager.reset_score()
 	remove_child(dad)
 	dad.queue_free()
 	level_timer.stop()
