@@ -46,7 +46,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("space"):
+	if Input.is_action_just_pressed("escape"):
 		GameManager.load_menu_scene()
 	if Input.is_action_just_pressed("dev_mode"):
 		ScoreManager.reset_score()
