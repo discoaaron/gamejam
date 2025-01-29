@@ -22,6 +22,8 @@ var dad_hands: Area2D = null
 @onready var dash_1: AudioStreamPlayer = $audio_dash2/dash1
 @onready var dash_2: AudioStreamPlayer = $audio_dash2/dash2
 @onready var dash_3: AudioStreamPlayer = $audio_dash2/dash3
+@onready var no_again_audio: AudioStreamPlayer = $NoAgainAudio
+@onready var nope_audio: AudioStreamPlayer = $NopeAudio
 
 
 @onready var timer: Timer = $Timer
@@ -64,6 +66,7 @@ func _process(delta: float) -> void:
 					SignalManager.win_condition_achieved.emit()
 				else:
 					print("Wrong risk item!")
+					not_quite_sound()
 			elif Globals.toilet_action_ready and dad_hands != null:
 				var parent = dad_hands.get_parent()
 				if parent == Globals.current_risk:
@@ -71,6 +74,7 @@ func _process(delta: float) -> void:
 					SignalManager.win_condition_achieved.emit()
 				else:
 					print("Wrong risk item!")
+					not_quite_sound()
 			elif Globals.tv_action_ready and dad_hands != null:
 				var parent = dad_hands.get_parent()
 				if parent == Globals.current_risk:
@@ -78,6 +82,7 @@ func _process(delta: float) -> void:
 					SignalManager.win_condition_achieved.emit()
 				else:
 					print("Wrong risk item!")
+					not_quite_sound()
 			elif Globals.lamp_action_ready and dad_hands != null:
 				var parent = dad_hands.get_parent()
 				if parent == Globals.current_risk:
@@ -85,6 +90,7 @@ func _process(delta: float) -> void:
 					SignalManager.win_condition_achieved.emit()
 				else:
 					print("Wrong risk item!")
+					not_quite_sound()
 			elif Globals.heater_action_ready and dad_hands != null:
 				var parent = dad_hands.get_parent()
 				if parent == Globals.current_risk:
@@ -92,8 +98,10 @@ func _process(delta: float) -> void:
 					SignalManager.win_condition_achieved.emit()
 				else:
 					print("Wrong risk item!")
+					not_quite_sound()
 			else:
 				print("not quite!")
+				not_quite_sound()
 		if Input.is_action_just_pressed(dash) and not sitting:
 			dash_action()
 		if Input.is_action_just_pressed(action) and sitting and not sitting_timer_bool:
@@ -223,3 +231,7 @@ func play_random_sound(sounds: Array[AudioStreamPlayer]) -> void:
 	var random_index = randi_range(0, sounds.size() - 1)
 	var sound_to_play = sounds[random_index]
 	sound_to_play.play()
+
+func not_quite_sound() -> void:
+	var sounds: Array[AudioStreamPlayer] = [nope_audio, no_again_audio]
+	play_random_sound(sounds)

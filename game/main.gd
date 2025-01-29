@@ -9,6 +9,10 @@ var keysCopy = []
 
 @onready var heartbeat: Timer = $Heartbeat
 @onready var heartbeatsound: AudioStreamPlayer2D = $Heartbeatsound
+@onready var confused_audio: AudioStreamPlayer = $ConfusedAudio
+@onready var take_a_step_audio: AudioStreamPlayer = $TakeAStepAudio
+@onready var success_audio: AudioStreamPlayer = $SuccessAudio
+@onready var success_2_audio: AudioStreamPlayer = $Success2Audio
 
 @onready var toaster: StaticBody2D = $RiskItems/Toaster
 @onready var toilet: StaticBody2D = $RiskItems/Toilet
@@ -87,12 +91,14 @@ func get_dad_buttons() -> void:
 		0:
 			set_default_controls()
 			set_all_hud_controls()
+			confused_audio.play()
 		1: 
 			# left and right swapped
 			set_default_controls()
 			dad.left = "d"
 			dad.right = "a"
 			set_all_hud_controls()
+			success_audio.play()
 		2: 
 			# left and right AND up and action switched
 			set_default_controls()
@@ -101,6 +107,7 @@ func get_dad_buttons() -> void:
 			dad.up = "e"
 			dad.action = "w"
 			set_all_hud_controls()
+			success_2_audio.play()
 		_:
 			# fully random
 			dad.up = get_button()
@@ -111,6 +118,7 @@ func get_dad_buttons() -> void:
 			dad.laser = get_button()
 			dad.dash = get_button()
 			set_hud_controls_wasd()
+			take_a_step_audio.play()
 		
 func set_all_hud_controls() -> void: 
 	set_hud_controls_wasd()

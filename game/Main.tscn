@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://xwxup6f3hc8h"]
+[gd_scene load_steps=37 format=3 uid="uid://xwxup6f3hc8h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m74ch"]
 [ext_resource type="PackedScene" uid="uid://dre28xt7mpcfn" path="res://scenes/all_walls/wallcorner.tscn" id="2_iwlok"]
@@ -30,6 +30,10 @@
 [ext_resource type="Texture2D" uid="uid://bsbnwkumt6a7e" path="res://art/Plant.png" id="27_wgpcm"]
 [ext_resource type="PackedScene" uid="uid://4q46ugr14c8l" path="res://scenes/misc_objects/bookshelf.tscn" id="27_y54mv"]
 [ext_resource type="PackedScene" uid="uid://ibfrg6i1f37e" path="res://scenes/hud/controls.tscn" id="30_xryxh"]
+[ext_resource type="AudioStream" uid="uid://bkdpt7ja1hhs5" path="res://sound/voicelines/Confused.wav" id="31_xp1nh"]
+[ext_resource type="AudioStream" uid="uid://c7p5s8iqhx7ao" path="res://sound/voicelines/Encourage.wav" id="32_5ixlc"]
+[ext_resource type="AudioStream" uid="uid://cfanv8ap8b5e3" path="res://sound/voicelines/Success.wav" id="33_wymg1"]
+[ext_resource type="AudioStream" uid="uid://tb4isxxvpow2" path="res://sound/voicelines/Success 2.wav" id="34_rvekp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3y05j"]
 font = ExtResource("25_wry1b")
@@ -300,12 +304,6 @@ rotation = 1.5708
 position = Vector2(562, 221)
 rotation = 1.5708
 
-[node name="TableNoCollision" parent="bedroomitems" instance=ExtResource("15_ofy62")]
-position = Vector2(107, 57)
-
-[node name="TableNoCollision2" parent="bedroomitems" instance=ExtResource("15_ofy62")]
-position = Vector2(290, 57)
-
 [node name="TableNoCollision3" parent="bedroomitems" instance=ExtResource("15_ofy62")]
 position = Vector2(633, 142)
 
@@ -387,6 +385,16 @@ position = Vector2(445, 587)
 rotation = 1.5708
 scale = Vector2(0.5, 0.3)
 
+[node name="Table6" parent="." instance=ExtResource("14_hcyx7")]
+position = Vector2(111, 60)
+rotation = 1.5708
+scale = Vector2(0.5, 0.3)
+
+[node name="Table7" parent="." instance=ExtResource("14_hcyx7")]
+position = Vector2(287, 61)
+rotation = 1.5708
+scale = Vector2(0.5, 0.3)
+
 [node name="BathroomSink" parent="." instance=ExtResource("18_ooh6d")]
 position = Vector2(628, 513)
 
@@ -397,6 +405,11 @@ rotation = -1.5708
 [node name="Bookshelf" parent="." instance=ExtResource("27_y54mv")]
 position = Vector2(746, 58)
 rotation = -1.5708
+scale = Vector2(0.8, 0.8)
+
+[node name="Bookshelf2" parent="." instance=ExtResource("27_y54mv")]
+position = Vector2(58, 89)
+rotation = 3.14159
 scale = Vector2(0.8, 0.8)
 
 [node name="Plant" type="Sprite2D" parent="."]
@@ -421,6 +434,22 @@ one_shot = true
 [node name="Controls" parent="." instance=ExtResource("30_xryxh")]
 position = Vector2(200, 524)
 scale = Vector2(0.785, 0.785)
+
+[node name="ConfusedAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("31_xp1nh")
+volume_db = -18.0
+
+[node name="TakeAStepAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("32_5ixlc")
+volume_db = -18.0
+
+[node name="SuccessAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("33_wymg1")
+volume_db = -18.0
+
+[node name="Success2Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("34_rvekp")
+volume_db = -18.0
 
 [connection signal="timeout" from="Heartbeat" to="." method="_on_heartbeat_timeout"]
 [connection signal="timeout" from="StartCooldown" to="." method="_on_start_cooldown_timeout"]
