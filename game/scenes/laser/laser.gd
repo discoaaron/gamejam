@@ -11,9 +11,12 @@ var is_sound_playing = false
 @onready var laser_sound: AudioStreamPlayer = $AudioStreamPlayer
 
 @export var firing = false
+var laser_offset = 10
 
 func _ready():
 	$Line2D.points[0] = position
+	$Line2D.points[0].y += laser_offset
+	$Line2D.points[0].x += laser_offset
 	$Line2D.visible = false
 	$Line2D.width = widthy
 	target_position = laser_direction.normalized() * maxrange
