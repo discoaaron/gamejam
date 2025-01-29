@@ -6,8 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rexxd"]
 size = Vector2(60, 64)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_20137"]
-radius = 29.0689
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbbvq"]
+size = Vector2(58, 62)
 
 [node name="Toaster" type="StaticBody2D" groups=["RiskItems"]]
 script = ExtResource("1_duewv")
@@ -22,7 +22,7 @@ shape = SubResource("RectangleShape2D_rexxd")
 [node name="Action Area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Action Area"]
-shape = SubResource("CircleShape2D_20137")
+shape = SubResource("RectangleShape2D_bbbvq")
 
 [connection signal="area_entered" from="Action Area" to="." method="_on_action_area_entered"]
 [connection signal="area_exited" from="Action Area" to="." method="_on_action_area_exited"]
