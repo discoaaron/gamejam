@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://xwxup6f3hc8h"]
+[gd_scene load_steps=42 format=3 uid="uid://xwxup6f3hc8h"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_m74ch"]
 [ext_resource type="PackedScene" uid="uid://dre28xt7mpcfn" path="res://scenes/all_walls/wallcorner.tscn" id="2_iwlok"]
@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://xcfmc4nra18" path="res://scenes/all_kitchen/k_bflush.tscn" id="8_dkbco"]
 [ext_resource type="PackedScene" uid="uid://bs7lus22j3wpu" path="res://scenes/risk_objects/toaster.tscn" id="12_arlyk"]
 [ext_resource type="Texture2D" uid="uid://cak5lw2pwd2vk" path="res://art/kitchen/Kitchen Bench Sink.png" id="12_ikxp5"]
-[ext_resource type="PackedScene" uid="uid://c5wqegh6uuouu" path="res://scenes/all_kitchen/toaster_bench_edge.tscn" id="12_nujs1"]
+[ext_resource type="PackedScene" path="res://scenes/all_kitchen/toaster_bench_edge.tscn" id="12_nujs1"]
 [ext_resource type="PackedScene" uid="uid://c4mtwc7hcwuo0" path="res://scenes/misc_objects/bed_blue.tscn" id="12_wt4m5"]
 [ext_resource type="PackedScene" uid="uid://conjny7l1pn1y" path="res://scenes/all_furniture/chair.tscn" id="13_jkp1c"]
 [ext_resource type="PackedScene" uid="uid://b3v76c1kw8qh8" path="res://scenes/risk_objects/toilet.tscn" id="13_wv7pw"]
@@ -39,6 +39,10 @@
 [ext_resource type="AudioStream" uid="uid://dh3osjujikjs4" path="res://sound/voicelines/What's cooking.wav" id="36_hmbn8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3y05j"]
+font = ExtResource("25_wry1b")
+font_size = 39
+
+[sub_resource type="LabelSettings" id="LabelSettings_4ydxu"]
 font = ExtResource("25_wry1b")
 font_size = 50
 
@@ -209,37 +213,6 @@ texture = ExtResource("12_ikxp5")
 [node name="ToasterBenchEdge" parent="Kitchen" instance=ExtResource("12_nujs1")]
 position = Vector2(1011, 256)
 
-[node name="bathroomwalls" type="Node" parent="."]
-
-[node name="walljoint" parent="bathroomwalls" instance=ExtResource("5_x3qqu")]
-position = Vector2(676, 589)
-
-[node name="wallcorner" parent="bathroomwalls" instance=ExtResource("2_iwlok")]
-z_index = 1
-position = Vector2(676, 461)
-
-[node name="wallstraight" parent="bathroomwalls" instance=ExtResource("3_52rpf")]
-position = Vector2(487, 524)
-
-[node name="wallstraight2" parent="bathroomwalls" instance=ExtResource("3_52rpf")]
-position = Vector2(676, 525)
-
-[node name="wallcorner2" parent="bathroomwalls" instance=ExtResource("2_iwlok")]
-z_index = 1
-position = Vector2(487, 462)
-rotation = -1.5708
-
-[node name="walljoint2" parent="bathroomwalls" instance=ExtResource("5_x3qqu")]
-position = Vector2(487, 588)
-
-[node name="wallstraightend" parent="bathroomwalls" instance=ExtResource("6_q67f0")]
-position = Vector2(661, 462)
-rotation = -1.5708
-
-[node name="wallstraightend2" parent="bathroomwalls" instance=ExtResource("6_q67f0")]
-position = Vector2(503, 461)
-rotation = 1.5708
-
 [node name="loungewalls" type="Node" parent="."]
 
 [node name="walljoint" parent="loungewalls" instance=ExtResource("5_x3qqu")]
@@ -258,6 +231,23 @@ rotation = 1.5708
 [node name="wallstraight2" parent="loungewalls" instance=ExtResource("3_52rpf")]
 position = Vector2(180, 303)
 rotation = 1.5708
+
+[node name="GameOverLabel" type="Label" parent="."]
+top_level = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -346.0
+offset_top = 108.0
+offset_right = 1.0
+offset_bottom = 168.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Press space"
+label_settings = SubResource("LabelSettings_3y05j")
 
 [node name="bedroomwalls" type="Node" parent="."]
 
@@ -384,7 +374,7 @@ offset_bottom = 72.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-label_settings = SubResource("LabelSettings_3y05j")
+label_settings = SubResource("LabelSettings_4ydxu")
 
 [node name="Table5" parent="." instance=ExtResource("14_hcyx7")]
 position = Vector2(445, 587)
@@ -472,12 +462,43 @@ volume_db = -18.0
 wait_time = 40.0
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 1032.0
+offset_left = 952.0
 offset_top = 588.0
-offset_right = 1072.0
+offset_right = 1114.0
 offset_bottom = 611.0
-text = "Esc to quit"
+text = "Esc or Enter  to quit"
 label_settings = SubResource("LabelSettings_1u1uq")
+
+[node name="bathroomwalls" type="Node" parent="."]
+
+[node name="walljoint" parent="bathroomwalls" instance=ExtResource("5_x3qqu")]
+position = Vector2(676, 589)
+
+[node name="wallcorner" parent="bathroomwalls" instance=ExtResource("2_iwlok")]
+z_index = 1
+position = Vector2(676, 461)
+
+[node name="wallstraight" parent="bathroomwalls" instance=ExtResource("3_52rpf")]
+position = Vector2(487, 524)
+
+[node name="wallstraight2" parent="bathroomwalls" instance=ExtResource("3_52rpf")]
+position = Vector2(676, 525)
+
+[node name="wallcorner2" parent="bathroomwalls" instance=ExtResource("2_iwlok")]
+z_index = 1
+position = Vector2(487, 462)
+rotation = -1.5708
+
+[node name="walljoint2" parent="bathroomwalls" instance=ExtResource("5_x3qqu")]
+position = Vector2(487, 588)
+
+[node name="wallstraightend" parent="bathroomwalls" instance=ExtResource("6_q67f0")]
+position = Vector2(661, 462)
+rotation = -1.5708
+
+[node name="wallstraightend2" parent="bathroomwalls" instance=ExtResource("6_q67f0")]
+position = Vector2(503, 461)
+rotation = 1.5708
 
 [connection signal="timeout" from="Heartbeat" to="." method="_on_heartbeat_timeout"]
 [connection signal="timeout" from="StartCooldown" to="." method="_on_start_cooldown_timeout"]

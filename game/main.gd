@@ -8,6 +8,7 @@ var originalKeys = ["w", "a", "s", "d", "e", "q", "f"]
 var keysCopy = []
 
 var last_10_secs_audio = false
+var game_over_flag = false
 
 @onready var heartbeat: Timer = $Heartbeat
 @onready var heartbeatsound: AudioStreamPlayer2D = $Heartbeatsound
@@ -20,13 +21,13 @@ var last_10_secs_audio = false
 @onready var whats_cooking_audio: AudioStreamPlayer = $WhatsCookingAudio
 @onready var i_smell_saus_audio: AudioStreamPlayer = $ISmellSausAudio
 
-
 @onready var toaster: StaticBody2D = $RiskItems/Toaster
 @onready var toilet: StaticBody2D = $RiskItems/Toilet
 @onready var tv: StaticBody2D = $RiskItems/TV
 @onready var lamp: StaticBody2D = $RiskItems/Lamp
 @onready var heater: StaticBody2D = $RiskItems/Heater
 @onready var start_cooldown: Timer = $StartCooldown
+@onready var game_over_label: Label = $GameOverLabel
 
 func _ready() -> void:
 	SignalManager.risk_item_lasered.connect(game_over_laser)
@@ -34,7 +35,6 @@ func _ready() -> void:
 	SignalManager.baby_saved.connect(update_score)
 	SignalManager.win_condition_achieved.connect(update_score)
 	#SignalManager.update_timer.connect(update_timer)
-	
 	
 	# HUD only
 	SignalManager.laser_fired.connect(set_hud_controls_laser)
@@ -47,7 +47,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("escape"):
+	if game_over_flag && Input.is_action_just_released("space"):
+		game_over_flag = false
+		ScoreManager.reset_score()
+		start_level()
+	if Input.is_action_just_pressed("escape") || Input.is_action_just_pressed("enter"):
 		GameManager.load_menu_scene()
 	if Input.is_action_just_pressed("dev_mode"):
 		ScoreManager.reset_score()
@@ -66,13 +70,13 @@ func set_default_controls() -> void:
 		dad.dash = "f"
 
 func start_level() -> void:
+	game_over_label.visible = false
 	_spawnDad()
 	_spawnBaby()
 	Globals.move_cooldown = true
 	start_cooldown.start()
 	set_level_timer()
 	level_timer.start()
-	
 
 func update_score() -> void:
 	ScoreManager.increase_score()
@@ -192,6 +196,8 @@ func game_over_timer() -> void:
 	game_over(str("Game Over\n You ran out of time!"))
 
 func game_over(text: String) -> void:
+	game_over_label.visible = true
+	game_over_flag = true
 	$Label.text = text
 	remove_child(dad)
 	dad.queue_free()
