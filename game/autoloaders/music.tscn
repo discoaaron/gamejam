@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm4hnik6a88o5"]
+
+[ext_resource type="Script" path="res://autoloaders/music.gd" id="1_aqn5b"]
+[ext_resource type="AudioStream" uid="uid://bqi0ns2nme3s1" path="res://sound/Gregoire Lourme - Commando Team (Action) [loop cut].ogg" id="2_8qm5j"]
+
+[node name="Music" type="Node"]
+script = ExtResource("1_aqn5b")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_8qm5j")
+volume_db = -15.0

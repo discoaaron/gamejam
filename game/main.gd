@@ -42,6 +42,7 @@ func _ready() -> void:
 	SignalManager.dash_dashed.connect(set_hud_controls_dash)
 	
 	ScoreManager.reset_score()
+	Globals.menu_intro_sound = false
 	start_level()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

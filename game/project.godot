@@ -21,6 +21,7 @@ SignalManager="*res://autoloaders/signal_manager.gd"
 Globals="*res://autoloaders/globals.gd"
 GameManager="*res://autoloaders/game_manager.gd"
 ScoreManager="*res://autoloaders/score_manager.gd"
+Music="*res://autoloaders/music.tscn"
 
 [display]
 

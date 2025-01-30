@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_released("space"):
 		timer.stop()
 		_on_timer_timeout()
+	
 
 func showLabel() -> void:
 	var timerLength;
@@ -37,5 +38,5 @@ func _on_timer_timeout() -> void:
 	else:
 		GameManager.load_menu_scene()
 
-func _on_heartbeat_timeout() -> void:
-	$heartbeatsound.play()
+#func _on_heartbeat_timeout() -> void:
+	#$heartbeatsound.play()

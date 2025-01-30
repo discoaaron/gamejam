@@ -73,7 +73,6 @@ autowrap_mode = 3
 
 [node name="heartbeatsound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_o8u8j")
-autoplay = true
 
 [node name="heartbeat" type="Timer" parent="."]
 autostart = true

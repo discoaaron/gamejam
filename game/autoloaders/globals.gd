@@ -15,3 +15,4 @@ var risk_group = ["RiskItems"]
 var move_cooldown: bool = true
 var current_risk:StaticBody2D = null
 const game_timer: int = 40
+var menu_intro_sound = true
