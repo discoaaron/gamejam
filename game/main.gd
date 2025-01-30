@@ -197,6 +197,7 @@ func game_over(text: String) -> void:
 	dad.queue_free()
 	level_timer.stop()
 	game_over_audio.play()
+	Globals.dashing = false
 
 func heart_pulse() -> void:
 	if Globals.heartbeat_pulse_ready:

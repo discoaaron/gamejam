@@ -10,9 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://cmh045y6a8v75" path="res://art/kitchen/Floor tiles.png" id="7_sk75g"]
 [ext_resource type="PackedScene" uid="uid://barrb3i5shvy4" path="res://scenes/all_kitchen/k_bflushedge.tscn" id="7_w1uw1"]
 [ext_resource type="PackedScene" uid="uid://xcfmc4nra18" path="res://scenes/all_kitchen/k_bflush.tscn" id="8_dkbco"]
-[ext_resource type="PackedScene" uid="uid://bk1ine5xwxmip" path="res://scenes/all_kitchen/k_bflushend.tscn" id="9_8tx62"]
 [ext_resource type="PackedScene" uid="uid://bs7lus22j3wpu" path="res://scenes/risk_objects/toaster.tscn" id="12_arlyk"]
 [ext_resource type="Texture2D" uid="uid://cak5lw2pwd2vk" path="res://art/kitchen/Kitchen Bench Sink.png" id="12_ikxp5"]
+[ext_resource type="PackedScene" uid="uid://c5wqegh6uuouu" path="res://scenes/all_kitchen/toaster_bench_edge.tscn" id="12_nujs1"]
 [ext_resource type="PackedScene" uid="uid://c4mtwc7hcwuo0" path="res://scenes/misc_objects/bed_blue.tscn" id="12_wt4m5"]
 [ext_resource type="PackedScene" uid="uid://conjny7l1pn1y" path="res://scenes/all_furniture/chair.tscn" id="13_jkp1c"]
 [ext_resource type="PackedScene" uid="uid://b3v76c1kw8qh8" path="res://scenes/risk_objects/toilet.tscn" id="13_wv7pw"]
@@ -202,12 +202,12 @@ position = Vector2(1088, 192)
 position = Vector2(1088, 256)
 rotation = -1.5708
 
-[node name="KBflushend" parent="Kitchen" instance=ExtResource("9_8tx62")]
-position = Vector2(1012, 256)
-
 [node name="KitchenBenchSink" type="Sprite2D" parent="Kitchen"]
 position = Vector2(1088, 124)
 texture = ExtResource("12_ikxp5")
+
+[node name="ToasterBenchEdge" parent="Kitchen" instance=ExtResource("12_nujs1")]
+position = Vector2(1011, 256)
 
 [node name="bathroomwalls" type="Node" parent="."]
 
